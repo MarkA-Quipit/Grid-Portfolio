@@ -1,7 +1,7 @@
 .project-card {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  padding: 30px;
+  border-radius: 8px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -9,7 +9,8 @@
   overflow: hidden;
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  min-height: 0;
 }
 
 .project-card::before {
@@ -24,8 +25,8 @@
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .project-card:hover::before {
@@ -121,20 +122,27 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .project-card {
-    padding: 25px;
+    padding: 15px;
+    border-radius: 6px;
   }
   
   .card-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
   }
   
   .card-description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  
+  .card-link {
+    font-size: 0.8rem;
   }
   
   .project-card.large-vertical .card-title,
   .project-card.small-square .card-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   
   .project-card.wide-horizontal .card-content {
