@@ -30,6 +30,19 @@
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
 }
 
+/* Project showcase container - fits exactly within grid box */
+.project-card.project-showcase {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 /* Complex overlay effects */
 .project-card::before {
   content: '';

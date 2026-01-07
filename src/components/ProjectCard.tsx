@@ -1,5 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ProjectCard.css';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel"
 
 // Sample project data for the showcase
 const showcaseProjects = [
@@ -55,45 +62,39 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   personalSummary,
   isProjectShowcase 
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const nextProjects = () => {
-    setCurrentIndex((prev) => (prev + 3) % showcaseProjects.length);
-  };
-  
-  const prevProjects = () => {
-    setCurrentIndex((prev) => (prev - 3 + showcaseProjects.length) % showcaseProjects.length);
-  };
-  
-  const getCurrentProjects = () => {
-    const projects = [];
-    for (let i = 0; i < 3; i++) {
-      projects.push(showcaseProjects[(currentIndex + i) % showcaseProjects.length]);
-    }
-    return projects;
-  };
 
   if (isProjectShowcase) {
     return (
-      <div className={`project-card ${size} project-showcase bg-transparent p-0 overflow-hidden rounded-lg shadow-none relative flex items-center`}>
-        <button className="nav-arrow nav-arrow-left absolute top-0 bottom-0 bg-black bg-opacity-50 text-white border-none w-10 h-full rounded-none text-2xl font-bold cursor-pointer flex items-center justify-center transition-all duration-300 z-10 left-1.5 hover:bg-opacity-70 md:w-7.5 md:text-xl md:left-0" onClick={prevProjects}>
-          &#8249;
-        </button>
-        <div className="showcase-container w-[calc(100%-80px)] h-full flex items-stretch justify-stretch mx-10 md:w-[calc(100%-60px)] md:mx-7.5">
-          <div className="showcase-grid flex w-full h-full gap-0">
-            {getCurrentProjects().map((project, index) => (
-              <div key={`${project.id}-${currentIndex}-${index}`} className="showcase-item flex-1 flex flex-col cursor-pointer transition-all duration-300 border-r border-black border-opacity-10 h-full relative z-[1] last:border-r-0 hover:z-10 hover:shadow-lg">
-                <div className="showcase-image w-full h-2/3 rounded-none overflow-hidden mb-0 shadow-none transition-shadow duration-300 hover:shadow-md">
-                  <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+      <div className={`project-card ${size} project-showcase`}>
+        <Carousel 
+          className="w-full h-full absolute inset-0"
+          opts={{
+            align: "start",
+            loop: true,
+            slidesToScroll: 3,
+          }}
+        >
+          <CarouselContent className="h-full ml-0">
+            {showcaseProjects.map((project) => (
+              <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full">
+                <div className="showcase-item w-full h-full flex flex-col cursor-pointer transition-all duration-300 border-r border-black border-opacity-10 last:border-r-0 hover:z-10 hover:shadow-lg relative">
+                  <div className="showcase-image w-full flex-shrink-0 overflow-hidden bg-gray-200" style={{ height: '66.666667%' }}>
+                    <img 
+                      src={project.image} 
+                      alt={project.name} 
+                      className="w-full h-full object-contain transition-transform duration-300 hover:scale-105" 
+                    />
+                  </div>
+                  <div className="showcase-name w-full flex-shrink-0 flex items-center justify-center text-xs font-semibold text-gray-800 text-center leading-tight break-words p-2 transition-all duration-300 hover:bg-white hover:bg-opacity-90 hover:text-gray-900" style={{ height: '33.333333%' }}>
+                    {project.name}
+                  </div>
                 </div>
-                <div className="showcase-name h-1/3 flex items-center justify-center text-xs font-semibold text-gray-800 text-center leading-tight break-words p-2 transition-all duration-300 hover:bg-white hover:bg-opacity-90 hover:text-gray-900 md:text-[0.7rem] md:p-1.5">{project.name}</div>
-              </div>
+              </CarouselItem>
             ))}
-          </div>
-        </div>
-        <button className="nav-arrow nav-arrow-right absolute top-0 bottom-0 bg-black bg-opacity-50 text-white border-none w-10 h-full rounded-none text-2xl font-bold cursor-pointer flex items-center justify-center transition-all duration-300 z-10 right-1.5 hover:bg-opacity-70 md:w-7.5 md:text-xl md:right-0" onClick={nextProjects}>
-          &#8250;
-        </button>
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-1 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white border-none w-8 h-8 rounded-none hover:bg-opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 z-20" />
+          <CarouselNext className="absolute right-1 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white border-none w-8 h-8 rounded-none hover:bg-opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 z-20" />
+        </Carousel>
       </div>
     );
   }
@@ -105,7 +106,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <img 
             src={imageSrc || "https://via.placeholder.com/400x300/e0e0e0/666666?text=Sample+Image"} 
             alt="Sample placeholder" 
-            className="placeholder-image w-full h-full object-cover rounded-lg"
+            className="placeholder-image w-full h-full object-contain rounded-lg"
           />
         </div>
       </div>
