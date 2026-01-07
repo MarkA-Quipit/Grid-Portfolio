@@ -1,0 +1,143 @@
+.project-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-card:hover::before {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.card-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.card-link:hover {
+  border-bottom-color: white;
+  transform: translateX(3px);
+}
+
+/* Different gradient backgrounds for variety */
+.project-card:nth-child(1) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.project-card:nth-child(2) {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.project-card:nth-child(3) {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.project-card:nth-child(4) {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.project-card:nth-child(5) {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.project-card:nth-child(6) {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Size-specific adjustments */
+.project-card.large-vertical .card-title {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.project-card.large-vertical .card-description {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.project-card.small-square .card-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.project-card.small-square .card-description {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.project-card.wide-horizontal .card-content {
+  max-width: 60%;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .project-card {
+    padding: 25px;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+  }
+  
+  .card-description {
+    font-size: 0.9rem;
+  }
+  
+  .project-card.large-vertical .card-title,
+  .project-card.small-square .card-title {
+    font-size: 1.3rem;
+  }
+  
+  .project-card.wide-horizontal .card-content {
+    max-width: 100%;
+  }
+}
