@@ -1,49 +1,51 @@
 /* Only keeping complex CSS that can't be easily replicated with Tailwind */
 
-/* Custom gradient backgrounds for project cards */
+/* Tech-styled gradient backgrounds for project cards */
 .project-card:nth-child(1) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c4a6e 100%);
 }
 
 .project-card:nth-child(2) {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
 }
 
 .project-card:nth-child(3) {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #164e63 0%, #0e7490 50%, #0891b2 100%);
 }
 
 .project-card:nth-child(4) {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
 }
 
 .project-card:nth-child(5) {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  background: linear-gradient(135deg, #7c2d12 0%, #9a3412 50%, #c2410c 100%);
 }
 
 .project-card:nth-child(6) {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #8b5cf6 100%);
 }
 
-/* Personal section gradient */
+/* Personal section tech gradient */
 .project-card.personal-section {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 70%, #6b21a8 100%);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
 }
 
-/* Project showcase container - fits exactly within grid box */
+/* Project showcase container - tech styled */
 .project-card.project-showcase {
-  background: transparent;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   padding: 0;
   margin: 0;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: none;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/* Complex overlay effects */
+/* Tech-styled overlay effects */
 .project-card::before {
   content: '';
   position: absolute;
@@ -51,12 +53,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.1) 0%, transparent 50%, rgba(139, 92, 246, 0.1) 100%);
+  opacity: 0;
   transition: all 0.3s ease;
 }
 
 .project-card:hover::before {
-  background: rgba(0, 0, 0, 0.1);
+  opacity: 1;
 }
 
 .project-card.image-placeholder::before,
