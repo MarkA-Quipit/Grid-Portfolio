@@ -239,6 +239,9 @@
   overflow: hidden;
   border-radius: 8px;
   box-shadow: none;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .project-card.project-showcase::before {
@@ -250,12 +253,45 @@
   box-shadow: none;
 }
 
+.nav-arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 100%;
+  border-radius: 0;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.nav-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.nav-arrow-left {
+  left: 5px;
+}
+
+.nav-arrow-right {
+  right: 5px;
+}
+
 .showcase-container {
-  width: 100%;
+  width: calc(100% - 80px);
   height: 100%;
   display: flex;
   align-items: stretch;
   justify-content: stretch;
+  margin: 0 40px;
 }
 
 .showcase-grid {
@@ -321,6 +357,24 @@
 @media (max-width: 768px) {
   .project-card.project-showcase {
     padding: 0;
+  }
+  
+  .showcase-container {
+    width: calc(100% - 60px);
+    margin: 0 30px;
+  }
+  
+  .nav-arrow {
+    width: 30px;
+    font-size: 20px;
+  }
+  
+  .nav-arrow-left {
+    left: 0;
+  }
+  
+  .nav-arrow-right {
+    right: 0;
   }
   
   .showcase-grid {

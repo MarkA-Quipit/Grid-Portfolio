@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProjectCard.css';
 
 // Sample project data for the showcase
@@ -56,12 +56,33 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   isProjectShowcase 
 }) => {
   if (isProjectShowcase) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    
+    const nextProjects = () => {
+      setCurrentIndex((prev) => (prev + 3) % showcaseProjects.length);
+    };
+    
+    const prevProjects = () => {
+      setCurrentIndex((prev) => (prev - 3 + showcaseProjects.length) % showcaseProjects.length);
+    };
+    
+    const getCurrentProjects = () => {
+      const projects = [];
+      for (let i = 0; i < 3; i++) {
+        projects.push(showcaseProjects[(currentIndex + i) % showcaseProjects.length]);
+      }
+      return projects;
+    };
+
     return (
       <div className={`project-card ${size} project-showcase`}>
+        <button className="nav-arrow nav-arrow-left" onClick={prevProjects}>
+          &#8249;
+        </button>
         <div className="showcase-container">
           <div className="showcase-grid">
-            {showcaseProjects.slice(0, 3).map((project) => (
-              <div key={project.id} className="showcase-item">
+            {getCurrentProjects().map((project, index) => (
+              <div key={`${project.id}-${currentIndex}-${index}`} className="showcase-item">
                 <div className="showcase-image">
                   <img src={project.image} alt={project.name} />
                 </div>
@@ -70,6 +91,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             ))}
           </div>
         </div>
+        <button className="nav-arrow nav-arrow-right" onClick={nextProjects}>
+          &#8250;
+        </button>
       </div>
     );
   }
