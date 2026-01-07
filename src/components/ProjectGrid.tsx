@@ -53,6 +53,13 @@ const ProjectGrid: React.FC = () => {
       description: "Interactive charts and analytics dashboard for business intelligence with real-time data processing",
       link: "#",
       size: "wide-horizontal"
+    },
+    {
+      id: 7,
+      title: "Inventory Management System",
+      description: "Comprehensive inventory tracking with automated reordering and supplier management",
+      link: "#",
+      size: "medium-horizontal"
     }
   ];
 
