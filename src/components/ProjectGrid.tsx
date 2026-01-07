@@ -75,7 +75,7 @@ const ProjectGrid: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-3 grid-rows-[1fr_1fr_auto] gap-2.5 w-full h-full max-w-[calc(100vw-20px)] max-h-[calc(100vh-20px)] lg:grid-cols-2 lg:gap-2 lg:max-w-[calc(100vw-16px)] lg:max-h-[calc(100vh-16px)] md:grid-cols-1 md:grid-rows-[repeat(6,1fr)] md:gap-1.5 md:max-w-[calc(100vw-16px)] md:max-h-[calc(100vh-16px)]">
+    <div className="grid grid-cols-6 grid-rows-6 gap-2.5 w-screen h-screen">
       {projects.map((project) => (
         <ProjectCard
           key={project.id}
