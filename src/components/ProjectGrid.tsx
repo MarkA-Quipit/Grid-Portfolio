@@ -13,6 +13,7 @@ interface Project {
   isPersonalSection?: boolean;
   personalName?: string;
   personalSummary?: string;
+  isProjectShowcase?: boolean;
 }
 
 const ProjectGrid: React.FC = () => {
@@ -37,10 +38,11 @@ const ProjectGrid: React.FC = () => {
     },
     {
       id: 3,
-      title: "Weather Dashboard",
-      description: "Interactive weather app with location-based forecasts",
+      title: "Project Showcase",
+      description: "Featured projects with interactive sliding gallery",
       link: "#",
-      size: "medium-horizontal"
+      size: "medium-horizontal",
+      isProjectShowcase: true
     },
     {
       id: 4,
@@ -86,6 +88,7 @@ const ProjectGrid: React.FC = () => {
           isPersonalSection={project.isPersonalSection}
           personalName={project.personalName}
           personalSummary={project.personalSummary}
+          isProjectShowcase={project.isProjectShowcase}
         />
       ))}
     </div>

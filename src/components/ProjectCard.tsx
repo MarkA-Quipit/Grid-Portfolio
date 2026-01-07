@@ -1,6 +1,35 @@
 import React from 'react';
 import './ProjectCard.css';
 
+// Sample project data for the showcase
+const showcaseProjects = [
+  {
+    id: 1,
+    name: "E-Commerce App",
+    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+  },
+  {
+    id: 2,
+    name: "Social Platform",
+    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+  },
+  {
+    id: 3,
+    name: "Analytics Dashboard",
+    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+  },
+  {
+    id: 4,
+    name: "Mobile Game",
+    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+  },
+  {
+    id: 5,
+    name: "AI Assistant",
+    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+  }
+];
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -11,6 +40,7 @@ interface ProjectCardProps {
   isPersonalSection?: boolean;
   personalName?: string;
   personalSummary?: string;
+  isProjectShowcase?: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
@@ -22,8 +52,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   imageSrc, 
   isPersonalSection, 
   personalName, 
-  personalSummary 
+  personalSummary,
+  isProjectShowcase 
 }) => {
+  if (isProjectShowcase) {
+    return (
+      <div className={`project-card ${size} project-showcase`}>
+        <div className="showcase-container">
+          <div className="showcase-grid">
+            {showcaseProjects.slice(0, 3).map((project) => (
+              <div key={project.id} className="showcase-item">
+                <div className="showcase-image">
+                  <img src={project.image} alt={project.name} />
+                </div>
+                <div className="showcase-name">{project.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (isImagePlaceholder) {
     return (
       <div className={`project-card ${size} image-placeholder`}>
