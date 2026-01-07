@@ -306,9 +306,11 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .showcase-item:last-child {
@@ -316,7 +318,17 @@
 }
 
 .showcase-item:hover {
-  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-item:hover .showcase-image {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+}
+
+.showcase-item:hover .showcase-name {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #222;
 }
 
 .showcase-image {
@@ -327,10 +339,6 @@
   margin-bottom: 0;
   box-shadow: none;
   transition: box-shadow 0.3s ease;
-}
-
-.showcase-item:hover .showcase-image {
-  box-shadow: none;
 }
 
 .showcase-image img {
@@ -351,6 +359,7 @@
   line-height: 1.2;
   word-wrap: break-word;
   padding: 8px;
+  transition: all 0.3s ease;
 }
 
 /* Responsive adjustments for showcase */
