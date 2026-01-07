@@ -10,6 +10,9 @@ interface Project {
   size: 'large-vertical' | 'medium-horizontal' | 'small-square' | 'wide-horizontal';
   isImagePlaceholder?: boolean;
   imageSrc?: string;
+  isPersonalSection?: boolean;
+  personalName?: string;
+  personalSummary?: string;
 }
 
 const ProjectGrid: React.FC = () => {
@@ -27,7 +30,10 @@ const ProjectGrid: React.FC = () => {
       title: "Task Management App",
       description: "Collaborative project management tool with real-time updates",
       link: "#",
-      size: "medium-horizontal"
+      size: "medium-horizontal",
+      isPersonalSection: true,
+      personalName: "Alex Johnson",
+      personalSummary: "Full-stack developer passionate about creating intuitive user experiences and scalable web applications. Experienced in React, TypeScript, and modern development practices."
     },
     {
       id: 3,
@@ -77,6 +83,9 @@ const ProjectGrid: React.FC = () => {
           size={project.size}
           isImagePlaceholder={project.isImagePlaceholder}
           imageSrc={project.imageSrc}
+          isPersonalSection={project.isPersonalSection}
+          personalName={project.personalName}
+          personalSummary={project.personalSummary}
         />
       ))}
     </div>

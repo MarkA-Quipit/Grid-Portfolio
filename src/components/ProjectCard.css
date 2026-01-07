@@ -182,4 +182,51 @@
 .project-card.image-placeholder:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}/
+* Personal section styles */
+.project-card.personal-section {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.personal-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 20px;
+}
+
+.personal-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  color: #ecf0f1;
+}
+
+.personal-summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  color: #bdc3c7;
+  margin: 0;
+}
+
+/* Responsive adjustments for personal section */
+@media (max-width: 768px) {
+  .personal-name {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  
+  .personal-summary {
+    font-size: 0.9rem;
+  }
+  
+  .personal-content {
+    padding: 15px;
+  }
 }
