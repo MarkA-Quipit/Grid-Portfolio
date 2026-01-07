@@ -8,6 +8,8 @@ interface Project {
   description: string;
   link: string;
   size: 'large-vertical' | 'medium-horizontal' | 'small-square' | 'wide-horizontal';
+  isImagePlaceholder?: boolean;
+  imageSrc?: string;
 }
 
 const ProjectGrid: React.FC = () => {
@@ -17,7 +19,8 @@ const ProjectGrid: React.FC = () => {
       title: "E-Commerce Platform",
       description: "Full-stack React application with payment integration and admin dashboard",
       link: "#",
-      size: "large-vertical"
+      size: "large-vertical",
+      isImagePlaceholder: true
     },
     {
       id: 2,
@@ -72,6 +75,8 @@ const ProjectGrid: React.FC = () => {
           description={project.description}
           link={project.link}
           size={project.size}
+          isImagePlaceholder={project.isImagePlaceholder}
+          imageSrc={project.imageSrc}
         />
       ))}
     </div>
