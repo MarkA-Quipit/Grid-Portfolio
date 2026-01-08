@@ -59,13 +59,6 @@ const ProjectGrid: React.FC = () => {
       link: "#",
       size: "wide-horizontal",
       isTechShowcase: true
-    },
-    {
-      id: 6,
-      title: "Inventory Management System",
-      description: "Comprehensive inventory tracking with automated reordering and supplier management",
-      link: "#",
-      size: "medium-horizontal"
     }
   ];
 

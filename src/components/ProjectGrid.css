@@ -24,20 +24,8 @@
   grid-row: 5 / 6;
 }
 
-/* Div 5: spans row 5 and columns 3–4 */
+/* Div 5: spans row 5 and columns 3–6 */
 .project-card:nth-child(5) {
-  grid-column: 3 / 5;
+  grid-column: 3 / 7;
   grid-row: 5 / 6;
-}
-
-/* Div 6: spans row 5 and columns 5–6 */
-.project-card:nth-child(6) {
-  grid-column: 5 / 7;
-  grid-row: 5 / 6;
-}
-
-/* Div 7: spans row 6 and columns 1–6 */
-.project-card:nth-child(7) {
-  grid-column: 1 / 7;
-  grid-row: 6 / 7;
 }
