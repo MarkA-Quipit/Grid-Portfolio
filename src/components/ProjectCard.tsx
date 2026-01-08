@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ProjectCard.css';
 import {
   Carousel,
@@ -9,6 +9,7 @@ import {
 } from "./ui/carousel"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -39,129 +40,139 @@ const ProjectDialog: React.FC<{
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-2xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
-        {/* Project Image - Flush at top */}
-        <div className="w-full h-64 overflow-hidden bg-gray-800">
-          <img
-            src={projectData.image}
-            alt={projectData.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <DialogContent className="max-w-4xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
+        <div className="flex">
+          {/* Main Project Content - Left Side */}
+          <div className="flex-1">
+            {/* Project Image - Flush at top */}
+            <div className="w-full h-64 overflow-hidden bg-gray-800">
+              <img
+                src={projectData.image}
+                alt={projectData.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-        {/* Main Content */}
-        <div className="p-6">
-          <DialogHeader className="mb-6">
-            <DialogTitle className="text-2xl font-bold text-cyan-300 mb-3">
-              {projectData.name}
-            </DialogTitle>
-            <DialogDescription className="text-gray-300 text-base leading-relaxed">
-              {projectData.description}
-            </DialogDescription>
-          </DialogHeader>
+            {/* Main Content */}
+            <div className="p-6">
+              <DialogHeader className="mb-6">
+                <DialogTitle className="text-2xl font-bold text-cyan-300 mb-3">
+                  {projectData.name}
+                </DialogTitle>
+                <DialogDescription className="text-gray-300 text-base leading-relaxed">
+                  {projectData.description}
+                </DialogDescription>
+              </DialogHeader>
 
-          {/* Technologies */}
-          <div className="mb-6">
-            <h4 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h4>
-            <div className="flex flex-wrap gap-2">
-              {projectData.technologies.map((tech: string, index: number) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-gray-800 border border-cyan-500/30 rounded-full text-sm text-cyan-100"
+              {/* Technologies */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h4>
+                <div className="flex flex-wrap gap-2">
+                  {projectData.technologies.map((tech: string, index: number) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gray-800 border border-cyan-500/30 rounded-full text-sm text-cyan-100"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Links */}
+              <div className="flex gap-4">
+                <a
+                  href={projectData.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
                 >
-                  {tech}
-                </span>
-              ))}
+                  View Live Project
+                </a>
+                <a
+                  href={projectData.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
+                >
+                  View Code
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Links */}
-          <div className="flex gap-4">
-            <a
-              href={projectData.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
-            >
-              View Live Project
-            </a>
-            <a
-              href={projectData.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
-            >
-              View Code
-            </a>
-          </div>
-        </div>
+          {/* Project Details Card - Right Side */}
+          <div className="w-80 bg-gray-800 border-l border-cyan-500/30 p-6 space-y-4 relative">
+            {/* Close button in top-right corner of Project Details card */}
+            <DialogClose className="absolute top-4 right-4 w-6 h-6 rounded-full bg-gray-700 hover:bg-gray-600 border border-gray-600 hover:border-gray-500 text-gray-400 hover:text-white transition-all duration-200 flex items-center justify-center text-sm font-bold">
+              ×
+            </DialogClose>
+            
+            <h4 className="text-xl font-bold text-cyan-300 mb-4">Project Details</h4>
 
-        {/* External Information Card - Positioned outside the dialog */}
-        <div className="fixed top-1/2 right-4 transform -translate-y-1/2 w-80 bg-gray-800 border border-cyan-500 rounded-lg p-6 space-y-4 shadow-2xl z-[60]">
-          <h4 className="text-xl font-bold text-cyan-300 mb-4">Project Details</h4>
-
-          {/* Project Stats */}
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400 text-sm">Status:</span>
-              <span className="text-green-400 text-sm font-medium">Completed</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400 text-sm">Duration:</span>
-              <span className="text-gray-300 text-sm">{project ? "3 months" : "2 months"}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400 text-sm">Team Size:</span>
-              <span className="text-gray-300 text-sm">{project ? "4 developers" : "Solo project"}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400 text-sm">Platform:</span>
-              <span className="text-gray-300 text-sm">{project ? "Web & Mobile" : "Web"}</span>
-            </div>
-          </div>
-
-          <hr className="border-gray-700" />
-
-          {/* Key Features */}
-          <div>
-            <h5 className="text-lg font-semibold text-cyan-300 mb-3">Key Features</h5>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-center">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                Responsive Design
-              </li>
-              <li className="flex items-center">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                {project ? "Real-time Updates" : "Performance Optimized"}
-              </li>
-              <li className="flex items-center">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                User Authentication
-              </li>
-              <li className="flex items-center">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                {project ? "API Integration" : "SEO Friendly"}
-              </li>
-            </ul>
-          </div>
-
-          <hr className="border-gray-700" />
-
-          {/* Performance Metrics */}
-          <div>
-            <h5 className="text-lg font-semibold text-cyan-300 mb-3">Performance</h5>
-            <div className="space-y-3">
+            {/* Project Stats */}
+            <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Load Time:</span>
-                <span className="text-green-400 text-sm font-medium">&lt; {project ? "2s" : "1.5s"}</span>
+                <span className="text-gray-400 text-sm">Status:</span>
+                <span className="text-green-400 text-sm font-medium">Completed</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Lighthouse Score:</span>
-                <span className="text-green-400 text-sm font-medium">{project ? "95" : "98"}/100</span>
+                <span className="text-gray-400 text-sm">Duration:</span>
+                <span className="text-gray-300 text-sm">{project ? "3 months" : "2 months"}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">{project ? "Uptime:" : "Accessibility:"}</span>
-                <span className="text-green-400 text-sm font-medium">{project ? "99.9%" : "100/100"}</span>
+                <span className="text-gray-400 text-sm">Team Size:</span>
+                <span className="text-gray-300 text-sm">{project ? "4 developers" : "Solo project"}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400 text-sm">Platform:</span>
+                <span className="text-gray-300 text-sm">{project ? "Web & Mobile" : "Web"}</span>
+              </div>
+            </div>
+
+            <hr className="border-gray-700" />
+
+            {/* Key Features */}
+            <div>
+              <h5 className="text-lg font-semibold text-cyan-300 mb-3">Key Features</h5>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                  Responsive Design
+                </li>
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                  {project ? "Real-time Updates" : "Performance Optimized"}
+                </li>
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                  User Authentication
+                </li>
+                <li className="flex items-center">
+                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                  {project ? "API Integration" : "SEO Friendly"}
+                </li>
+              </ul>
+            </div>
+
+            <hr className="border-gray-700" />
+
+            {/* Performance Metrics */}
+            <div>
+              <h5 className="text-lg font-semibold text-cyan-300 mb-3">Performance</h5>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400 text-sm">Load Time:</span>
+                  <span className="text-green-400 text-sm font-medium">&lt; {project ? "2s" : "1.5s"}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400 text-sm">Lighthouse Score:</span>
+                  <span className="text-green-400 text-sm font-medium">{project ? "95" : "98"}/100</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400 text-sm">{project ? "Uptime:" : "Accessibility:"}</span>
+                  <span className="text-green-400 text-sm font-medium">{project ? "99.9%" : "100/100"}</span>
+                </div>
               </div>
             </div>
           </div>
