@@ -38,24 +38,26 @@ const ProjectDialog: React.FC<{
   // Dynamic project details configuration
   const projectStats = [
     { label: "Status", value: "Completed", color: "text-green-400" },
-    { label: "Duration", value: project ? "3 months" : "2 months", color: "text-gray-300" },
-    { label: "Team Size", value: project ? "4 developers" : "Solo project", color: "text-gray-300" },
-    { label: "Platform", value: project ? "Web & Mobile" : "Web", color: "text-gray-300" }
+    { label: "Duration", value: project ? "6 ½ months" : "6 months", color: "text-gray-300" },
+    { label: "Team Size", value: project ? "3 developers" : "Solo project", color: "text-gray-300" },
+    { label: "Platform", value: project ? "Web (Desktop & Mobile)" : "Web", color: "text-gray-300" }
   ];
 
   const keyFeatures = [
-    "Responsive Design",
-    project ? "Real-time Updates" : "Performance Optimized",
-    "User Authentication",
-    project ? "API Integration" : "SEO Friendly"
+    "Multi-role dashboards (Farmers, Customers, Admin, Logistics)",
+    project ? "Product management and inventory tracking" : "Performance Optimized",
+    "Secure authentication and authorization",
+    project ? "Order placement, tracking, and management system" : "SEO Friendly",
+    "Responsive design for seamless desktop and mobile use",
+    project ? "Efficient handling of perishable goods with real-time updates" : "SEO Friendly"
   ];
 
   const technologiesUsed = [
     "React",
+    "Laravel",
     "MySql",
-    "PostgreSQL (For Deployment)",
-    "Stripe",
-    "Redux"
+    "PHP",
+    "Inertia.js"
   ];
 
   return (
