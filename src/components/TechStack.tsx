@@ -33,9 +33,11 @@ const TechStack: React.FC<TechStackProps> = ({
     <TooltipProvider delayDuration={300}>
       <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
         <div className="tech-content relative z-[2] text-white h-full flex flex-col items-center justify-center text-center">
-          {/* Title - Centered */}
-          <div className="mb-3">
-            <h2 className="text-2xl font-bold text-cyan-300">{title}</h2>
+          {/* Title with horizontal lines on both sides */}
+          <div className="mb-3 flex items-center w-full">
+            <div className="flex-1 h-px bg-gradient-to-l from-cyan-400/50 to-transparent"></div>
+            <h2 className="text-2xl font-bold text-cyan-300 mx-4">{title}</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"></div>
           </div>
           {description && (
             <p className="tech-description leading-relaxed opacity-90 text-base mb-4 md:text-sm md:mb-3">{description}</p>

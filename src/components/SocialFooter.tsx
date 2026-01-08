@@ -51,8 +51,11 @@ const SocialFooter: React.FC = () => {
       <TooltipProvider delayDuration={300}>
       <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
         <div className="social-content relative z-[2] text-white w-full grid grid-cols-4 gap-4 items-center">
-          {/* Column 1: Empty */}
-          <div></div>
+          {/* Column 1: Decorative Lines */}
+          <div className="flex flex-col items-start justify-center gap-3 w-full">
+            <div className="h-px w-full bg-gradient-to-r from-transparent to-cyan-400/50"></div>
+            <div className="h-px w-3/4 bg-gradient-to-r from-transparent to-cyan-400/30"></div>
+          </div>
           
           {/* Column 2: Connect with me text */}
           <div className="text-left">

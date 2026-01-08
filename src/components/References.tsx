@@ -33,9 +33,10 @@ const References: React.FC = () => {
 
   return (
     <div className="references-section rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
-      {/* Left-sided title */}
-      <div className="mb-4">
-        <h2 className="text-2xl font-bold text-cyan-300">References</h2>
+      {/* Title with horizontal line */}
+      <div className="mb-4 flex items-center">
+        <h2 className="text-2xl font-bold text-cyan-300 mr-4">References</h2>
+        <div className="flex-1 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"></div>
       </div>
 
       {/* Two-column layout with popovers */}
