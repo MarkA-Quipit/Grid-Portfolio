@@ -15,7 +15,6 @@ interface Project {
   personalSummary?: string;
   isProjectShowcase?: boolean;
   isTechShowcase?: boolean;
-  isReferencesSection?: boolean;
 }
 
 const ProjectGrid: React.FC = () => {
@@ -48,11 +47,10 @@ const ProjectGrid: React.FC = () => {
     },
     {
       id: 4,
-      title: "References",
-      description: "",
+      title: "Portfolio Website",
+      description: "Responsive personal portfolio built with React and TypeScript",
       link: "#",
-      size: "small-square",
-      isReferencesSection: true
+      size: "small-square"
     },
     {
       id: 5,
@@ -80,7 +78,6 @@ const ProjectGrid: React.FC = () => {
           personalSummary={project.personalSummary}
           isProjectShowcase={project.isProjectShowcase}
           isTechShowcase={project.isTechShowcase}
-          isReferencesSection={project.isReferencesSection}
         />
       ))}
     </div>

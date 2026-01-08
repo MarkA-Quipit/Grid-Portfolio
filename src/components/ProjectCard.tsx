@@ -287,7 +287,6 @@ interface ProjectCardProps {
   personalSummary?: string;
   isProjectShowcase?: boolean;
   isTechShowcase?: boolean;
-  isReferencesSection?: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -301,8 +300,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   personalName,
   personalSummary,
   isProjectShowcase,
-  isTechShowcase,
-  isReferencesSection
+  isTechShowcase
 }) => {
 
   if (isProjectShowcase) {
@@ -413,47 +411,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
       </TooltipProvider>
-    );
-  }
-
-  if (isReferencesSection) {
-    const references = [
-      {
-        name: "Prof. Joseph Cartagenas",
-        title: "Asst. Professor",
-        company: "University of Cabuyao",
-        email: "joseph.cartagenas@gmail.com",
-        phone: "09182943201"
-      },
-      {
-        name: "Ms. Kier Panollera",
-        title: "Assistant Manager",
-        company: "SM Investments Corporation",
-        email: "kier.panollera@sminvestments.com",
-        phone: "09056373376"
-      }
-    ];
-
-    return (
-      <div className={`project-card ${size} rounded-lg border border-purple-500 border-opacity-50 p-4 flex flex-col justify-start relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)] h-full hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(147,51,234,0.4)] hover:border-opacity-80`}>
-        <div className="card-content relative z-[2] text-white w-full">
-          <h3 className="card-title font-bold mb-3 leading-tight text-lg text-purple-300">{title}</h3>
-          
-          <div className="references-list space-y-2 text-xs">
-            {references.map((ref, index) => (
-              <div key={index} className="reference-item bg-white/5 rounded p-2 border border-white/10">
-                <div className="font-semibold text-purple-200 text-sm">{ref.name}</div>
-                <div className="text-purple-300 text-xs">{ref.title}</div>
-                <div className="text-gray-300 text-xs">{ref.company}</div>
-                <div className="text-gray-400 text-xs mt-1">
-                  <div>{ref.email}</div>
-                  <div>{ref.phone}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     );
   }
 
