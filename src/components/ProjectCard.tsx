@@ -12,7 +12,7 @@ import {
 const showcaseProjects = [
   {
     id: 1,
-    name: "E-Commerce Platform ",
+    name: "E-Commerce Platform",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop"
   },
   {
