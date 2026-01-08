@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProjectCard.css';
 import {
   Carousel,
@@ -294,6 +294,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   personalSummary,
   isProjectShowcase
 }) => {
+  // Array of Mark Quipit photos for cycling animation
+  const markQuipitPhotos = [
+    "/images/Mark-Quipit-Photo1.jpg",
+    "/images/Mark-Quipit-Photo2.jpg",
+    "/images/Mark-Quipit-Photo3.jpg"
+  ];
+
+  // Always call hooks at the top level
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    // Only set up the interval if this is an image placeholder
+    if (isImagePlaceholder) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => 
+          (prevIndex + 1) % markQuipitPhotos.length
+        );
+      }, 5000); // Change image every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isImagePlaceholder, markQuipitPhotos.length]);
 
   if (isProjectShowcase) {
     return (
@@ -355,12 +377,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   if (isImagePlaceholder) {
     return (
       <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300`}>
-        <div className="image-container w-full h-full flex items-center justify-center overflow-hidden">
-          <img
-            src={imageSrc || "https://via.placeholder.com/400x300/e0e0e0/666666?text=Sample+Image"}
-            alt="Mark Quipit Photo"
-            className="placeholder-image w-full h-full object-cover rounded-lg"
-          />
+        <div className="image-container w-full h-full flex items-center justify-center overflow-hidden relative">
+          {markQuipitPhotos.map((photo, index) => (
+            <img
+              key={index}
+              src={photo}
+              alt={`Mark Quipit Photo ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover rounded-lg transition-opacity duration-1000 ease-in-out ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+          
+          {/* Optional: Add subtle indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+            {markQuipitPhotos.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentImageIndex 
+                    ? 'bg-cyan-400 shadow-lg' 
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
