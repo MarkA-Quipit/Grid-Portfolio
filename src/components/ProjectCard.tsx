@@ -44,12 +44,14 @@ const ProjectDialog: React.FC<{
   ];
 
   const keyFeatures = [
-    "Multi-role dashboards (Farmers, Customers, Admin, Logistics)",
-    project ? "Product management and inventory tracking" : "Performance Optimized",
     "Secure authentication and authorization",
-    project ? "Order placement, tracking, and management system" : "SEO Friendly",
+    project ? "Multi-role dashboards (Farmers, Customers, Admin, Logistics)" : "Performance Optimized",
+    "Order placement, tracking, and management system",
+    project ? "Product management and inventory tracking" : "SEO Friendly",
+    "Reporting and analytics for admins to monitor sales, deliveries, and user activity",
+    project ? "Data export reports in PDF and CSV formats for easy record-keeping and analysis" : "SEO Friendly",
     "Responsive design for seamless desktop and mobile use",
-    project ? "Efficient handling of perishable goods with real-time updates" : "SEO Friendly"
+    project ? "Efficient handling of perishable goods" : "SEO Friendly"
   ];
 
   const technologiesUsed = [
@@ -84,11 +86,22 @@ const ProjectDialog: React.FC<{
                 <DialogTitle className="text-2xl font-bold text-cyan-300 mb-3">
                   {projectData.name}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300 text-base leading-relaxed">
+                <DialogDescription className="text-gray-300 text-base leading-relaxed mb-6">
                   {projectData.description}
                 </DialogDescription>
               </DialogHeader>
 
+              {/* Technologies Used - Moved below description */}
+              <div className="mb-6">
+                <h5 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used:</h5>
+                <div className="flex flex-wrap gap-2">
+                  {technologiesUsed.map((tech, index) => (
+                    <span key={index} className="bg-gray-800 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-500/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
             </div>
           </div>
@@ -125,21 +138,6 @@ const ProjectDialog: React.FC<{
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <hr className="border-gray-700" />
-
-            {/* Technologies Used */}
-            <div>
-              <h5 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h5>
-              <div className="space-y-2">
-                {technologiesUsed.map((tech, index) => (
-                  <div key={index} className="flex items-center">
-                    <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                    <span className="text-gray-300 text-sm">{tech}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <hr className="border-gray-700" />
