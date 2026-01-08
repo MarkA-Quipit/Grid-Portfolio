@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from './ui/popover';
 
 interface Reference {
   name: string;
@@ -34,39 +39,61 @@ const References: React.FC = () => {
         <div className="w-12 h-0.5 bg-cyan-500"></div>
       </div>
 
-      {/* Two-column layout */}
+      {/* Two-column layout with popovers */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
         {references.map((reference, index) => (
-          <div
-            key={index}
-            className="reference-card bg-gray-800 rounded-md border border-cyan-500/20 p-3 hover:border-cyan-500/40 transition-all duration-300"
-          >
-            <div className="space-y-2">
-              <h3 className="text-sm font-bold text-white leading-tight">{reference.name}</h3>
-              
-              <div className="space-y-1">
-                <p className="text-cyan-300 font-medium text-xs">
-                  {reference.title} | {reference.company}
-                </p>
+          <Popover key={index}>
+            <PopoverTrigger asChild>
+              <button className="reference-card bg-gray-800 rounded-md border border-cyan-500/20 p-3 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left">
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-white leading-tight">{reference.name}</h3>
+                  <p className="text-cyan-300 font-medium text-xs">{reference.title}</p>
+                </div>
+              </button>
+            </PopoverTrigger>
+            <PopoverContent 
+              side="bottom" 
+              align="start"
+              sideOffset={8}
+              className="w-80 bg-gray-800 border border-cyan-500/30 text-white p-4 shadow-lg z-50"
+            >
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-lg font-bold text-white">{reference.name}</h3>
+                  <p className="text-cyan-300 font-medium text-sm">
+                    {reference.title}
+                  </p>
+                </div>
                 
-                <div className="space-y-0.5">
-                  <a
-                    href={`mailto:${reference.email}`}
-                    className="block text-gray-300 hover:text-cyan-300 transition-colors duration-200 text-xs"
-                  >
-                    {reference.email}
-                  </a>
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-gray-400 text-xs uppercase tracking-wide">Organization</p>
+                    <p className="text-white text-sm">{reference.company}</p>
+                  </div>
                   
-                  <a
-                    href={`tel:${reference.phone}`}
-                    className="block text-gray-300 hover:text-cyan-300 transition-colors duration-200 text-xs"
-                  >
-                    {reference.phone}
-                  </a>
+                  <div>
+                    <p className="text-gray-400 text-xs uppercase tracking-wide">Email</p>
+                    <a
+                      href={`mailto:${reference.email}`}
+                      className="text-cyan-300 hover:text-cyan-200 transition-colors duration-200 text-sm underline"
+                    >
+                      {reference.email}
+                    </a>
+                  </div>
+                  
+                  <div>
+                    <p className="text-gray-400 text-xs uppercase tracking-wide">Phone</p>
+                    <a
+                      href={`tel:${reference.phone}`}
+                      className="text-cyan-300 hover:text-cyan-200 transition-colors duration-200 text-sm underline"
+                    >
+                      {reference.phone}
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </PopoverContent>
+          </Popover>
         ))}
       </div>
     </div>
