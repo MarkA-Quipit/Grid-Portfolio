@@ -376,7 +376,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isImagePlaceholder) {
     return (
-      <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300`}>
+      <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative`}>
+        {/* Outside Bubbles - Larger bubbles floating around the photo */}
+        <div className="absolute inset-0 pointer-events-none overflow-visible z-20">
+          {/* Large Outside Bubbles */}
+          <div className="absolute -top-8 -left-6 w-12 h-12 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-100 group-hover:animate-[float_4s_ease-in-out_infinite]"></div>
+          
+          <div className="absolute -top-4 -right-8 w-10 h-10 bg-gradient-to-br from-purple-400/40 to-pink-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1200 delay-300 group-hover:animate-[float_3.5s_ease-in-out_infinite_0.5s]"></div>
+          
+          <div className="absolute -bottom-6 -left-8 w-14 h-14 bg-gradient-to-br from-teal-400/25 to-cyan-500/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-200 group-hover:animate-[float_4.5s_ease-in-out_infinite_1s]"></div>
+          
+          <div className="absolute -bottom-8 -right-4 w-8 h-8 bg-gradient-to-br from-indigo-400/35 to-purple-500/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1100 delay-400 group-hover:animate-[float_3s_ease-in-out_infinite_1.5s]"></div>
+          
+          <div className="absolute top-1/2 -left-10 w-6 h-6 bg-gradient-to-br from-sky-400/40 to-blue-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-150 group-hover:animate-[float_3.8s_ease-in-out_infinite_0.8s]"></div>
+          
+          <div className="absolute top-1/4 -right-6 w-9 h-9 bg-gradient-to-br from-violet-400/30 to-purple-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-350 group-hover:animate-[float_4.2s_ease-in-out_infinite_0.3s]"></div>
+        </div>
+
         <div className="image-container w-full h-full flex items-center justify-center overflow-hidden relative">
           {markQuipitPhotos.map((photo, index) => (
             <img
@@ -389,8 +405,33 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             />
           ))}
           
-          {/* Optional: Add subtle indicators */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+          {/* Inside Bubbles - Smaller, subtle bubbles within the photo */}
+          <div className="absolute inset-0 pointer-events-none z-10">
+            {/* Small Inside Bubbles */}
+            <div className="absolute top-[15%] left-[20%] w-2 h-2 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-200 group-hover:animate-pulse"></div>
+            
+            <div className="absolute top-[25%] right-[25%] w-3 h-3 bg-cyan-300/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-400 group-hover:animate-bounce"></div>
+            
+            <div className="absolute bottom-[35%] left-[30%] w-1.5 h-1.5 bg-blue-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 group-hover:animate-ping"></div>
+            
+            <div className="absolute top-[60%] right-[15%] w-2.5 h-2.5 bg-purple-300/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-500 group-hover:animate-pulse"></div>
+            
+            <div className="absolute bottom-[25%] right-[35%] w-2 h-2 bg-teal-300/45 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-250 group-hover:animate-bounce"></div>
+            
+            <div className="absolute top-[45%] left-[15%] w-1 h-1 bg-sky-300/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-350 group-hover:animate-ping"></div>
+            
+            <div className="absolute top-[35%] right-[45%] w-2 h-2 bg-indigo-300/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-150 group-hover:animate-pulse"></div>
+            
+            <div className="absolute bottom-[50%] left-[45%] w-1.5 h-1.5 bg-violet-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-450 group-hover:animate-bounce"></div>
+            
+            {/* Floating subtle bubbles */}
+            <div className="absolute top-[20%] left-[60%] w-2 h-2 bg-gradient-to-br from-cyan-300/20 to-blue-400/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-100 group-hover:animate-[float_2.5s_ease-in-out_infinite]"></div>
+            
+            <div className="absolute bottom-[40%] right-[20%] w-1.5 h-1.5 bg-gradient-to-br from-purple-300/25 to-pink-400/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-300 group-hover:animate-[float_3s_ease-in-out_infinite_0.5s]"></div>
+          </div>
+          
+          {/* Photo indicators */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
             {markQuipitPhotos.map((_, index) => (
               <div
                 key={index}
