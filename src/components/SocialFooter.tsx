@@ -36,7 +36,7 @@ const SocialFooter: React.FC = () => {
     },
     {
       name: 'Email',
-      url: '',
+      url: 'mailto:quipit.ma@gmail.com',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -68,26 +68,34 @@ const SocialFooter: React.FC = () => {
           {/* Column 3: Social Icons */}
           <div className="flex items-center gap-4 justify-center">
             {socialLinks.map((link, index) => (
-            <Tooltip key={index}>
-              <TooltipTrigger asChild>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
-                >
-                  {link.icon}
-                </a>
-              </TooltipTrigger>
-              <TooltipContent 
-                side="top" 
-                sideOffset={8}
-                className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
-              >
-                <p className="font-medium">{link.name}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
+              <div key={index} className="flex items-center gap-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
+                    >
+                      {link.icon}
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent 
+                    side="top" 
+                    sideOffset={8}
+                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
+                  >
+                    <p className="font-medium">{link.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+                {link.name === 'Email' && (
+                  <div className="flex flex-col text-sm text-cyan-300 font-medium whitespace-nowrap">
+                    <span>Got work for me?</span>
+                    <span className="text-xs text-gray-300 opacity-80">Email me</span>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
           
           {/* Column 4: Copyright with blinking cursor */}
