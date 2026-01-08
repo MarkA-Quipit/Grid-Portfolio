@@ -1,5 +1,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
+import TechStack from './TechStack';
+import PortfolioWebsite from './PortfolioWebsite';
 import './ProjectGrid.css';
 
 interface Project {
@@ -14,7 +16,6 @@ interface Project {
   personalName?: string;
   personalSummary?: string;
   isProjectShowcase?: boolean;
-  isTechShowcase?: boolean;
 }
 
 const ProjectGrid: React.FC = () => {
@@ -44,21 +45,6 @@ const ProjectGrid: React.FC = () => {
       link: "#",
       size: "medium-horizontal",
       isProjectShowcase: true
-    },
-    {
-      id: 4,
-      title: "Portfolio Website",
-      description: "Responsive personal portfolio built with React and TypeScript",
-      link: "#",
-      size: "small-square"
-    },
-    {
-      id: 5,
-      title: "Tech Stack",
-      description: "",
-      link: "#",
-      size: "wide-horizontal",
-      isTechShowcase: true
     }
   ];
 
@@ -77,9 +63,22 @@ const ProjectGrid: React.FC = () => {
           personalName={project.personalName}
           personalSummary={project.personalSummary}
           isProjectShowcase={project.isProjectShowcase}
-          isTechShowcase={project.isTechShowcase}
         />
       ))}
+      
+      {/* Portfolio Website - Independent Component */}
+      <PortfolioWebsite 
+        title="Portfolio Website"
+        description="Responsive personal portfolio built with React and TypeScript"
+        link="#"
+        technologies={["React", "TypeScript", "Tailwind CSS", "Framer Motion"]}
+      />
+      
+      {/* Tech Stack - Independent Component */}
+      <TechStack 
+        title="Tech Stack"
+        description=""
+      />
     </div>
   );
 };
