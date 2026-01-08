@@ -6,6 +6,14 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip"
 
+// Add custom blink animation
+const blinkStyle = `
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+`;
+
 const SocialFooter: React.FC = () => {
   const socialLinks = [
     {
@@ -38,7 +46,9 @@ const SocialFooter: React.FC = () => {
   ];
 
   return (
-    <TooltipProvider delayDuration={300}>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: blinkStyle }} />
+      <TooltipProvider delayDuration={300}>
       <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
         <div className="social-content relative z-[2] text-white w-full grid grid-cols-4 gap-4 items-center">
           {/* Column 1: Empty */}
@@ -53,7 +63,7 @@ const SocialFooter: React.FC = () => {
           </div>
           
           {/* Column 3: Social Icons */}
-          <div className="flex items-center gap-4 justify-start">
+          <div className="flex items-center gap-4 justify-center">
             {socialLinks.map((link, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
@@ -77,11 +87,17 @@ const SocialFooter: React.FC = () => {
           ))}
           </div>
           
-          {/* Column 4: Empty */}
-          <div></div>
+          {/* Column 4: Copyright with blinking cursor */}
+          <div className="text-right">
+            <p className="text-sm text-gray-300 opacity-90 flex items-center justify-end">
+              © 2026 Mark Aldrin Quipit
+              <span className="inline-block w-0.5 h-4 bg-cyan-300 animate-[blink_1s_infinite]"></span>
+            </p>
+          </div>
         </div>
       </div>
     </TooltipProvider>
+    </>
   );
 };
 
