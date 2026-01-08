@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import TechStack from './TechStack';
-import PortfolioWebsite from './PortfolioWebsite';
+import References from './References';
 import './ProjectGrid.css';
 
 interface Project {
@@ -66,13 +66,8 @@ const ProjectGrid: React.FC = () => {
         />
       ))}
       
-      {/* Portfolio Website - Independent Component */}
-      <PortfolioWebsite 
-        title="Portfolio Website"
-        description="Responsive personal portfolio built with React and TypeScript"
-        link="#"
-        technologies={["React", "TypeScript", "Tailwind CSS", "Framer Motion"]}
-      />
+      {/* References - Independent Component */}
+      <References />
       
       {/* Tech Stack - Independent Component */}
       <TechStack 
