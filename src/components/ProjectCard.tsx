@@ -189,83 +189,29 @@ const showcaseProjects = [
   {
     id: 1,
     name: "E-Commerce Platform",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+    image: "/images/smmc-front.png",
     description: "A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, inventory management, and admin dashboard.",
     technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redux"],
-    liveUrl: "https://example-ecommerce.com",
-    githubUrl: "https://github.com/user/ecommerce-platform"
+    liveUrl: "https://smmc-ecommerce.onrender.com",
+    githubUrl: "https://github.com/anyunyay/ITB13-capstone.git"
   },
   {
     id: 2,
-    name: "Social Network",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
-    description: "A modern social networking application with real-time messaging, post sharing, and user profiles. Built with React and Firebase for real-time functionality.",
-    technologies: ["React", "Firebase", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://example-social.com",
-    githubUrl: "https://github.com/user/social-network"
+    name: "Deploying..",
+    image: "/images/Default.jpg",
+    description: "",
+    technologies: [],
+    liveUrl: "",
+    githubUrl: ""
   },
   {
     id: 3,
-    name: "Analytics Dashboard",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-    description: "Interactive data visualization dashboard for business intelligence. Features real-time charts, customizable widgets, and data export capabilities.",
-    technologies: ["React", "D3.js", "Python", "FastAPI", "MongoDB"],
-    liveUrl: "https://example-analytics.com",
-    githubUrl: "https://github.com/user/analytics-dashboard"
-  },
-  {
-    id: 4,
-    name: "Mobile Game",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=300&fit=crop",
-    description: "HTML5 canvas-based mobile game with touch controls, physics engine, and leaderboard system. Optimized for mobile devices with responsive design.",
-    technologies: ["JavaScript", "HTML5 Canvas", "WebGL", "Node.js"],
-    liveUrl: "https://example-game.com",
-    githubUrl: "https://github.com/user/mobile-game"
-  },
-  {
-    id: 5,
-    name: "AI Assistant",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
-    description: "Intelligent chatbot assistant powered by machine learning. Features natural language processing, context awareness, and integration with various APIs.",
-    technologies: ["Python", "TensorFlow", "React", "FastAPI", "OpenAI"],
-    liveUrl: "https://example-ai.com",
-    githubUrl: "https://github.com/user/ai-assistant"
-  },
-  {
-    id: 6,
-    name: "Task Manager",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
-    description: "Collaborative project management tool with real-time updates, team collaboration features, and advanced task tracking capabilities.",
-    technologies: ["React", "Socket.io", "Express", "MongoDB", "JWT"],
-    liveUrl: "https://example-tasks.com",
-    githubUrl: "https://github.com/user/task-manager"
-  },
-  {
-    id: 7,
-    name: "Portfolio Site",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop",
-    description: "Responsive personal portfolio website showcasing projects and skills. Built with modern web technologies and optimized for performance.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "https://example-portfolio.com",
-    githubUrl: "https://github.com/user/portfolio-site"
-  },
-  {
-    id: 8,
-    name: "Weather App",
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=400&h=300&fit=crop",
-    description: "Real-time weather application with location-based forecasts, interactive maps, and weather alerts. Features beautiful UI and smooth animations.",
-    technologies: ["React", "OpenWeather API", "Mapbox", "CSS3"],
-    liveUrl: "https://example-weather.com",
-    githubUrl: "https://github.com/user/weather-app"
-  },
-  {
-    id: 9,
-    name: "Chat Application",
-    image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=400&h=300&fit=crop",
-    description: "Real-time chat application with multiple rooms, file sharing, and emoji support. Built with WebSocket technology for instant messaging.",
-    technologies: ["React", "Socket.io", "Node.js", "Express", "Redis"],
-    liveUrl: "https://example-chat.com",
-    githubUrl: "https://github.com/user/chat-app"
+    name: "Soon..",
+    image: "/images/Default.jpg",
+    description: "",
+    technologies: [],
+    liveUrl: "",
+    githubUrl: ""
   }
 ];
 
