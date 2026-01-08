@@ -368,7 +368,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isPersonalSection) {
     return (
-      <div className={`project-card ${size} personal-section flex items-center justify-center text-center rounded-lg border border-purple-500 border-opacity-50 p-5 md:p-3.5`}>
+      <div className={`project-card ${size} personal-section flex items-center justify-center text-center rounded-lg border border-purple-500 border-opacity-50 p-5 md:p-3.5 relative`}>
+        {/* Download CV Button - Top Right */}
+        <a
+          href="/path-to-cv.pdf"
+          download="Alex_Johnson_CV.pdf"
+          className="absolute top-4 right-4 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg z-10 flex items-center gap-2"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Download CV
+        </a>
+        
         <div className="personal-content relative z-[2] text-white p-5 md:p-3.5">
           <div className="mb-4">
             <h2 className="text-2xl font-bold text-cyan-300">{personalName || "Your Name"}</h2>
