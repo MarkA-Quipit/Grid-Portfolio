@@ -362,17 +362,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isTechShowcase) {
     const technologies = [
-      { name: 'Laravel', logo: 'L', color: 'text-red-400 bg-red-900/30' },
-      { name: 'React', logo: 'R', color: 'text-blue-400 bg-blue-900/30' },
-      { name: 'Inertia.js', logo: 'I', color: 'text-purple-400 bg-purple-900/30' },
-      { name: 'HTML', logo: 'H', color: 'text-orange-400 bg-orange-900/30' },
-      { name: 'CSS', logo: 'C', color: 'text-blue-300 bg-blue-900/30' },
-      { name: 'JavaScript', logo: 'JS', color: 'text-yellow-400 bg-yellow-900/30' },
-      { name: 'Tailwind CSS', logo: 'TW', color: 'text-cyan-400 bg-cyan-900/30' },
-      { name: 'PHP', logo: 'P', color: 'text-indigo-400 bg-indigo-900/30' },
-      { name: 'SQL', logo: 'S', color: 'text-green-400 bg-green-900/30' },
-      { name: 'Git', logo: 'G', color: 'text-orange-300 bg-orange-900/30' },
-      { name: 'GitHub', logo: 'GH', color: 'text-gray-300 bg-gray-900/30' }
+      { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg' },
+      { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+      { name: 'Inertia.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg' }, // Using Nuxt as closest alternative
+      { name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
+      { name: 'CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
+      { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+      { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
+      { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg' },
+      { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
+      { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
+      { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg' }
     ];
 
     return (
@@ -385,12 +385,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
             
             {/* Technology logos in horizontal line */}
-            <div className="flex items-center justify-center gap-2 overflow-hidden">
+            <div className="flex items-center justify-center gap-3 overflow-hidden">
               {technologies.map((tech, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
-                    <div className={`w-8 h-8 rounded-lg ${tech.color} border border-current/20 hover:scale-110 transition-transform duration-200 cursor-pointer flex items-center justify-center text-xs font-bold flex-shrink-0`}>
-                      {tech.logo}
+                    <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-6 h-6 object-contain"
+                        onError={(e) => {
+                          // Fallback to a generic icon if the image fails to load
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.innerHTML = `<span class="text-xs font-bold text-white">${tech.name.charAt(0)}</span>`;
+                        }}
+                      />
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
