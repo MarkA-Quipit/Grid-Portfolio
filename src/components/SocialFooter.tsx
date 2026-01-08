@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip"
+import ContactForm from './ContactForm';
 
 // Add custom blink animation
 const blinkStyle = `
@@ -15,6 +16,12 @@ const blinkStyle = `
 `;
 
 const SocialFooter: React.FC = () => {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsContactFormOpen(true);
+  };
   const socialLinks = [
     {
       name: 'GitHub',
@@ -72,9 +79,10 @@ const SocialFooter: React.FC = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={link.name === 'Email' ? '#' : link.url}
+                      target={link.name === 'Email' ? '_self' : '_blank'}
+                      rel={link.name === 'Email' ? '' : 'noopener noreferrer'}
+                      onClick={link.name === 'Email' ? handleEmailClick : undefined}
                       className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
                     >
                       {link.icon}
@@ -107,6 +115,11 @@ const SocialFooter: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      <ContactForm 
+        isOpen={isContactFormOpen} 
+        onClose={() => setIsContactFormOpen(false)} 
+      />
     </TooltipProvider>
     </>
   );
