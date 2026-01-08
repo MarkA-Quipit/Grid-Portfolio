@@ -377,15 +377,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
     return (
       <TooltipProvider>
-        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-center relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md`}>
-          <div className="card-content relative z-[2] text-white">
+        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-center relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md`}>
+          <div className="card-content relative z-[2] text-white text-center">
             <h3 className="card-title font-bold mb-4 leading-tight text-2xl md:text-lg md:mb-3">{title}</h3>
             {description && (
               <p className="card-description leading-relaxed opacity-90 text-base mb-6 md:text-sm md:mb-4">{description}</p>
             )}
             
             {/* Technology logos in horizontal line */}
-            <div className="flex items-center justify-center gap-2 mb-4 overflow-hidden">
+            <div className="flex items-center justify-center gap-2 overflow-hidden">
               {technologies.map((tech, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
