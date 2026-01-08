@@ -44,8 +44,8 @@ const ProjectDialog: React.FC<{
         <div className="flex">
           {/* Main Project Content - Left Side */}
           <div className="flex-1">
-            {/* Project Image - Flush at top */}
-            <div className="w-full h-64 overflow-hidden bg-gray-800">
+            {/* Project Image - Enlarged and emphasized */}
+            <div className="w-full h-96 overflow-hidden bg-gray-800">
               <img
                 src={projectData.image}
                 alt={projectData.name}
@@ -77,26 +77,6 @@ const ProjectDialog: React.FC<{
                     </span>
                   ))}
                 </div>
-              </div>
-
-              {/* Links */}
-              <div className="flex gap-4">
-                <a
-                  href={projectData.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
-                >
-                  View Live Project
-                </a>
-                <a
-                  href={projectData.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
-                >
-                  View Code
-                </a>
               </div>
             </div>
           </div>
@@ -174,6 +154,28 @@ const ProjectDialog: React.FC<{
                   <span className="text-green-400 text-sm font-medium">{project ? "99.9%" : "100/100"}</span>
                 </div>
               </div>
+            </div>
+
+            <hr className="border-gray-700" />
+
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-3">
+              <a
+                href={projectData.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
+              >
+                View Live Project
+              </a>
+              <a
+                href={projectData.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
+              >
+                View Code
+              </a>
             </div>
           </div>
         </div>
