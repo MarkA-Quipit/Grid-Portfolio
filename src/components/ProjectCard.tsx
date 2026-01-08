@@ -35,6 +35,29 @@ const ProjectDialog: React.FC<{
     githubUrl: "https://github.com/user/sample-project"
   };
 
+  // Dynamic project details configuration
+  const projectStats = [
+    { label: "Status", value: "Completed", color: "text-green-400" },
+    { label: "Duration", value: project ? "3 months" : "2 months", color: "text-gray-300" },
+    { label: "Team Size", value: project ? "4 developers" : "Solo project", color: "text-gray-300" },
+    { label: "Platform", value: project ? "Web & Mobile" : "Web", color: "text-gray-300" }
+  ];
+
+  const keyFeatures = [
+    "Responsive Design",
+    project ? "Real-time Updates" : "Performance Optimized",
+    "User Authentication",
+    project ? "API Integration" : "SEO Friendly"
+  ];
+
+  const technologiesUsed = [
+    "React",
+    "MySql",
+    "PostgreSQL (For Deployment)",
+    "Stripe",
+    "Redux"
+  ];
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -64,20 +87,7 @@ const ProjectDialog: React.FC<{
                 </DialogDescription>
               </DialogHeader>
 
-              {/* Technologies */}
-              <div className="mb-6">
-                <h4 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h4>
-                <div className="flex flex-wrap gap-2">
-                  {projectData.technologies.map((tech: string, index: number) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-gray-800 border border-cyan-500/30 rounded-full text-sm text-cyan-100"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+
             </div>
           </div>
 
@@ -92,22 +102,12 @@ const ProjectDialog: React.FC<{
 
             {/* Project Stats */}
             <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Status:</span>
-                <span className="text-green-400 text-sm font-medium">Completed</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Duration:</span>
-                <span className="text-gray-300 text-sm">{project ? "3 months" : "2 months"}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Team Size:</span>
-                <span className="text-gray-300 text-sm">{project ? "4 developers" : "Solo project"}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Platform:</span>
-                <span className="text-gray-300 text-sm">{project ? "Web & Mobile" : "Web"}</span>
-              </div>
+              {projectStats.map((stat, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <span className="text-gray-400 text-sm">{stat.label}:</span>
+                  <span className={`${stat.color} text-sm font-medium`}>{stat.value}</span>
+                </div>
+              ))}
             </div>
 
             <hr className="border-gray-700" />
@@ -116,43 +116,27 @@ const ProjectDialog: React.FC<{
             <div>
               <h5 className="text-lg font-semibold text-cyan-300 mb-3">Key Features</h5>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                  Responsive Design
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                  {project ? "Real-time Updates" : "Performance Optimized"}
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                  User Authentication
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
-                  {project ? "API Integration" : "SEO Friendly"}
-                </li>
+                {keyFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-center">
+                    <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                    {feature}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <hr className="border-gray-700" />
 
-            {/* Performance Metrics */}
+            {/* Technologies Used */}
             <div>
-              <h5 className="text-lg font-semibold text-cyan-300 mb-3">Performance</h5>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm">Load Time:</span>
-                  <span className="text-green-400 text-sm font-medium">&lt; {project ? "2s" : "1.5s"}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm">Lighthouse Score:</span>
-                  <span className="text-green-400 text-sm font-medium">{project ? "95" : "98"}/100</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm">{project ? "Uptime:" : "Accessibility:"}</span>
-                  <span className="text-green-400 text-sm font-medium">{project ? "99.9%" : "100/100"}</span>
-                </div>
+              <h5 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h5>
+              <div className="space-y-2">
+                {technologiesUsed.map((tech, index) => (
+                  <div key={index} className="flex items-center">
+                    <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                    <span className="text-gray-300 text-sm">{tech}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
