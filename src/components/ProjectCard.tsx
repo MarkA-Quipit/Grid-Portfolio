@@ -383,9 +383,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         
         <div className="card-content relative z-[2] text-white">
           <div className="mb-4">
-            <h2 className="text-2xl font-bold text-cyan-300">{personalName || "Your Name"}</h2>
+            <h2 className="text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
           </div>
-          <p className="card-description leading-relaxed opacity-90 text-base mb-5 md:text-sm md:mb-3">{personalSummary || "Brief personal summary goes here."}</p>
+          <p className="card-description leading-relaxed opacity-90 text-md mb-5 md:text-md md:mb-3">
+            I am a <span className="text-cyan-300 font-bold">full-stack developer</span> with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems.
+          </p>
         </div>
       </div>
     );
