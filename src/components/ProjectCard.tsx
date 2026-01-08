@@ -374,8 +374,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className="flex items-center mb-4 gap-4">
             <h2 className="text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
             <a
-              href="/path-to-cv.pdf"
-              download="Mark_Aldrin_Quipit_CV.pdf"
+              href="/file/MarkAldrin-Quipit-CV.pdf"
+              download="MarkAldrin-Quipit-CV.pdf"
               className="bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-2 flex-shrink-0"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
