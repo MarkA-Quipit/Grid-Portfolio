@@ -354,7 +354,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isImagePlaceholder) {
     return (
-      <div className={`project-card ${size} image-placeholder bg-gray-800 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300`}>
+      <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300`}>
         <div className="image-container w-full h-full flex items-center justify-center overflow-hidden">
           <img
             src={imageSrc || "https://via.placeholder.com/400x300/e0e0e0/666666?text=Sample+Image"}
@@ -368,11 +368,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isPersonalSection) {
     return (
-      <div className={`project-card ${size} personal-section flex items-center justify-center text-center rounded-lg border border-purple-500 border-opacity-50 p-5 md:p-3.5 relative`}>
+      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900`}>
         {/* Download CV Button - Top Right */}
         <a
           href="/path-to-cv.pdf"
-          download="Alex_Johnson_CV.pdf"
+          download="Mark_Aldrin_Quipit_CV.pdf"
           className="absolute top-4 right-4 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg z-10 flex items-center gap-2"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -381,11 +381,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           Download CV
         </a>
         
-        <div className="personal-content relative z-[2] text-white p-5 md:p-3.5">
+        <div className="card-content relative z-[2] text-white">
           <div className="mb-4">
             <h2 className="text-2xl font-bold text-cyan-300">{personalName || "Your Name"}</h2>
           </div>
-          <p className="personal-summary text-base leading-relaxed opacity-90 text-purple-100 m-0 md:text-sm">{personalSummary || "Brief personal summary goes here."}</p>
+          <p className="card-description leading-relaxed opacity-90 text-base mb-5 md:text-sm md:mb-3">{personalSummary || "Brief personal summary goes here."}</p>
         </div>
       </div>
     );
@@ -397,7 +397,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       description={description}
       link={link}
       trigger={
-        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md`}>
+        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900`}>
           <div className="card-content relative z-[2] text-white">
             <div className="mb-4">
               <h2 className="text-2xl font-bold text-cyan-300">{title}</h2>

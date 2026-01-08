@@ -1,39 +1,13 @@
 /* Only keeping complex CSS that can't be easily replicated with Tailwind */
 
-/* Tech-styled gradient backgrounds for project cards */
-.project-card:nth-child(1) {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c4a6e 100%);
-}
-
-.project-card:nth-child(2) {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-}
-
-.project-card:nth-child(3) {
-  background: linear-gradient(135deg, #164e63 0%, #0e7490 50%, #0891b2 100%);
-}
-
-.project-card:nth-child(4) {
-  background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
-}
-
-.project-card:nth-child(5) {
-  background: linear-gradient(135deg, #7c2d12 0%, #9a3412 50%, #c2410c 100%);
-}
-
-.project-card:nth-child(6) {
-  background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #8b5cf6 100%);
-}
-
-/* Personal section tech gradient */
-.project-card.personal-section {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 70%, #6b21a8 100%);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+/* Consistent dark background for all project cards */
+.project-card {
+  background: #111827; /* bg-gray-900 equivalent */
 }
 
 /* Project showcase container - tech styled with layout stability */
 .project-card.project-showcase {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: #111827; /* bg-gray-900 equivalent */
   padding: 0;
   margin: 0;
   overflow: hidden;
