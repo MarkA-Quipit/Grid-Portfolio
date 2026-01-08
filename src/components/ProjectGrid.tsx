@@ -27,7 +27,8 @@ const ProjectGrid: React.FC = () => {
       description: "Full-stack React application with payment integration and admin dashboard",
       link: "#",
       size: "large-vertical",
-      isImagePlaceholder: true
+      isImagePlaceholder: true,
+      imageSrc: "/images/473652273_1272421347381392_8984096361405809779_n.jpg"
     },
     {
       id: 2,

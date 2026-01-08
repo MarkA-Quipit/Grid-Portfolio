@@ -358,8 +358,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="image-container w-full h-full flex items-center justify-center overflow-hidden">
           <img
             src={imageSrc || "https://via.placeholder.com/400x300/e0e0e0/666666?text=Sample+Image"}
-            alt="Sample placeholder"
-            className="placeholder-image w-full h-full object-contain rounded-lg"
+            alt="Mark Quipit Photo"
+            className="placeholder-image w-full h-full object-cover rounded-lg"
           />
         </div>
       </div>
