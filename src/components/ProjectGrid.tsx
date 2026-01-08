@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectCard from './ProjectCard';
 import TechStack from './TechStack';
 import References from './References';
+import SocialFooter from './SocialFooter';
 import './ProjectGrid.css';
 
 interface Project {
@@ -74,6 +75,9 @@ const ProjectGrid: React.FC = () => {
         title="Tech Stack"
         description=""
       />
+      
+      {/* Social Footer - Independent Component */}
+      <SocialFooter />
     </div>
   );
 };
