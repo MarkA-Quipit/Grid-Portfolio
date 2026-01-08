@@ -97,28 +97,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <CarouselContent className="h-full -ml-0">
             {showcaseProjects.map((project) => (
               <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full">
-                <div className="w-full h-full flex flex-col bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                <div className="w-full h-full bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden">
                   {/* Subtle glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
 
-                  {/* Image section - 2/3 height */}
-                  <div className="w-full overflow-hidden bg-gray-800 relative" style={{ height: '66.666667%' }}>
+                  {/* Full height image */}
+                  <div className="w-full h-full overflow-hidden bg-gray-800 relative">
                     <img
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    {/* Darker overlay for better separation */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
 
-                  {/* Title section - 1/3 height */}
-                  <div className="w-full flex items-center justify-center text-center px-3 py-2 bg-black border-t border-cyan-500 relative" style={{ height: '33.333333%' }}>
-                    <h3 className="text-base font-black text-cyan-300 transition-colors duration-300 leading-tight z-20 relative drop-shadow-lg">
-                      {project.name}
-                    </h3>
-                    {/* Strong accent border */}
-                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-cyan-500 opacity-80" />
+                    {/* Dark overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+
+                    {/* Overlaid title text */}
+                    <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-3 z-20">
+                      <h3 className="text-lg font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                        {project.name}
+                      </h3>
+                    </div>
+
+                    {/* Accent border on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
                   </div>
                 </div>
               </CarouselItem>
