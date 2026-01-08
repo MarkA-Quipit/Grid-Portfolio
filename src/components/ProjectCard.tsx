@@ -170,28 +170,29 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                       </div>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl bg-gray-900 border border-cyan-500/30 text-white">
-                    <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold text-cyan-300 mb-4">
-                        {project.name}
-                      </DialogTitle>
-                      <DialogDescription className="text-gray-300 text-base leading-relaxed mb-6">
-                        {project.description}
-                      </DialogDescription>
-                    </DialogHeader>
+                  <DialogContent className="max-w-2xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
+                    {/* Project Image - Flush at top */}
+                    <div className="w-full h-64 overflow-hidden bg-gray-800">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
-                    <div className="space-y-6">
-                      {/* Project Image */}
-                      <div className="w-full h-64 overflow-hidden rounded-lg bg-gray-800">
-                        <img
-                          src={project.image}
-                          alt={project.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                    {/* Content Section with padding */}
+                    <div className="p-6">
+                      <DialogHeader className="mb-6">
+                        <DialogTitle className="text-2xl font-bold text-cyan-300 mb-3">
+                          {project.name}
+                        </DialogTitle>
+                        <DialogDescription className="text-gray-300 text-base leading-relaxed">
+                          {project.description}
+                        </DialogDescription>
+                      </DialogHeader>
 
                       {/* Technologies */}
-                      <div>
+                      <div className="mb-6">
                         <h4 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h4>
                         <div className="flex flex-wrap gap-2">
                           {project.technologies.map((tech, index) => (
@@ -206,7 +207,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                       </div>
 
                       {/* Links */}
-                      <div className="flex gap-4 pt-4">
+                      <div className="flex gap-4">
                         <a
                           href={project.liveUrl}
                           target="_blank"
@@ -277,28 +278,29 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-2xl bg-gray-900 border border-cyan-500/30 text-white">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-cyan-300 mb-4">
-            {title}
-          </DialogTitle>
-          <DialogDescription className="text-gray-300 text-base leading-relaxed mb-6">
-            {description}
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="max-w-2xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
+        {/* Project Image - Flush at top */}
+        <div className="w-full h-64 overflow-hidden bg-gray-800">
+          <img
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=300&fit=crop"
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        <div className="space-y-6">
-          {/* Project Details */}
-          <div>
-            <h4 className="text-lg font-semibold text-cyan-300 mb-3">Project Details</h4>
-            <p className="text-gray-300 leading-relaxed">
-              This project demonstrates modern web development practices and showcases various technical skills.
-              Built with attention to user experience, performance optimization, and clean code architecture.
-            </p>
-          </div>
+        {/* Content Section with padding */}
+        <div className="p-6">
+          <DialogHeader className="mb-6">
+            <DialogTitle className="text-2xl font-bold text-cyan-300 mb-3">
+              {title}
+            </DialogTitle>
+            <DialogDescription className="text-gray-300 text-base leading-relaxed">
+              {description}
+            </DialogDescription>
+          </DialogHeader>
 
-          {/* Sample Technologies */}
-          <div>
+          {/* Technologies */}
+          <div className="mb-6">
             <h4 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used</h4>
             <div className="flex flex-wrap gap-2">
               {["React", "TypeScript", "Tailwind CSS", "Node.js"].map((tech, index) => (
@@ -313,7 +315,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
 
           {/* Links */}
-          <div className="flex gap-4 pt-4">
+          <div className="flex gap-4">
             <a
               href={link}
               target="_blank"
