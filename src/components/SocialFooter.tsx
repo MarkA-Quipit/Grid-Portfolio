@@ -40,8 +40,11 @@ const SocialFooter: React.FC = () => {
   return (
     <TooltipProvider delayDuration={300}>
       <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
-        <div className="social-content relative z-[2] text-white w-full flex items-center justify-between">
-          {/* Left-aligned Text */}
+        <div className="social-content relative z-[2] text-white w-full grid grid-cols-4 gap-4 items-center">
+          {/* Column 1: Empty */}
+          <div></div>
+          
+          {/* Column 2: Connect with me text */}
           <div className="text-left">
             <h3 className="text-xl font-bold text-cyan-300 mb-1">Connect with me:</h3>
             <p className="text-sm text-gray-300 opacity-90">
@@ -49,8 +52,8 @@ const SocialFooter: React.FC = () => {
             </p>
           </div>
           
-          {/* Right-aligned Social Icons */}
-          <div className="flex items-center gap-4 ml-6">
+          {/* Column 3: Social Icons */}
+          <div className="flex items-center gap-4 justify-start">
             {socialLinks.map((link, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
@@ -73,6 +76,9 @@ const SocialFooter: React.FC = () => {
             </Tooltip>
           ))}
           </div>
+          
+          {/* Column 4: Empty */}
+          <div></div>
         </div>
       </div>
     </TooltipProvider>
