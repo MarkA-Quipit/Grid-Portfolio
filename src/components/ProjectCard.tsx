@@ -12,28 +12,48 @@ import {
 const showcaseProjects = [
   {
     id: 1,
-    name: "E-Commerce App",
-    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+    name: "E-Commerce Platform",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop"
   },
   {
     id: 2,
-    name: "Social Platform",
-    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+    name: "Social Network",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop"
   },
   {
     id: 3,
     name: "Analytics Dashboard",
-    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop"
   },
   {
     id: 4,
     name: "Mobile Game",
-    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=300&fit=crop"
   },
   {
     id: 5,
     name: "AI Assistant",
-    image: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop"
+  },
+  {
+    id: 6,
+    name: "Task Manager",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop"
+  },
+  {
+    id: 7,
+    name: "Portfolio Site",
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop"
+  },
+  {
+    id: 8,
+    name: "Weather App",
+    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=400&h=300&fit=crop"
+  },
+  {
+    id: 9,
+    name: "Chat Application",
+    image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=400&h=300&fit=crop"
   }
 ];
 
@@ -50,50 +70,64 @@ interface ProjectCardProps {
   isProjectShowcase?: boolean;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  title, 
-  description, 
-  link, 
-  size, 
-  isImagePlaceholder, 
-  imageSrc, 
-  isPersonalSection, 
-  personalName, 
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  title,
+  description,
+  link,
+  size,
+  isImagePlaceholder,
+  imageSrc,
+  isPersonalSection,
+  personalName,
   personalSummary,
-  isProjectShowcase 
+  isProjectShowcase
 }) => {
 
   if (isProjectShowcase) {
     return (
-      <div className={`project-card ${size} project-showcase`}>
-        <Carousel 
-          className="w-full h-full absolute inset-0"
+      <div className={`project-card ${size} project-showcase relative overflow-hidden`}>
+        <Carousel
+          className="w-full h-full"
           opts={{
             align: "start",
             loop: true,
-            slidesToScroll: 3,
+            slidesToScroll: 1,
           }}
         >
-          <CarouselContent className="h-full ml-0">
+          <CarouselContent className="h-full -ml-0">
             {showcaseProjects.map((project) => (
               <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full">
-                <div className="showcase-item w-full h-full flex flex-col cursor-pointer transition-all duration-300 border-r border-cyan-500 border-opacity-30 last:border-r-0 hover:z-10 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] relative bg-gray-800 hover:bg-gray-750">
-                  <div className="showcase-image w-full flex-shrink-0 overflow-hidden bg-gray-900 border-b border-cyan-500 border-opacity-20" style={{ height: '66.666667%' }}>
-                    <img 
-                      src={project.image} 
-                      alt={project.name} 
-                      className="w-full h-full object-contain transition-all duration-300 hover:scale-105 hover:brightness-110" 
+                <div className="w-full h-full flex flex-col bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                  {/* Image section - 2/3 height */}
+                  <div className="w-full overflow-hidden bg-gray-800 relative" style={{ height: '66.666667%' }}>
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
+                    {/* Darker overlay for better separation */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
-                  <div className="showcase-name w-full flex-shrink-0 flex items-center justify-center text-xs font-semibold text-cyan-100 text-center leading-tight break-words p-2 transition-all duration-300 hover:bg-cyan-500 hover:bg-opacity-20 hover:text-cyan-300" style={{ height: '33.333333%' }}>
-                    {project.name}
+
+                  {/* Title section - 1/3 height */}
+                  <div className="w-full flex items-center justify-center text-center px-3 py-2 bg-black border-t border-cyan-500 relative" style={{ height: '33.333333%' }}>
+                    <h3 className="text-base font-black text-cyan-300 transition-colors duration-300 leading-tight z-20 relative drop-shadow-lg">
+                      {project.name}
+                    </h3>
+                    {/* Strong accent border */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-cyan-500 opacity-80" />
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-1 top-1/2 -translate-y-1/2 bg-gray-800 border border-cyan-500 text-cyan-400 w-8 h-8 rounded-none hover:bg-cyan-500 hover:text-gray-900 focus-visible:ring-0 focus-visible:ring-offset-0 z-20 transition-all duration-300" />
-          <CarouselNext className="absolute right-1 top-1/2 -translate-y-1/2 bg-gray-800 border border-cyan-500 text-cyan-400 w-8 h-8 rounded-none hover:bg-cyan-500 hover:text-gray-900 focus-visible:ring-0 focus-visible:ring-offset-0 z-20 transition-all duration-300" />
+
+          {/* Navigation buttons with tech styling */}
+          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800/90 border border-gray-600 text-gray-300 w-8 h-8 rounded hover:bg-gray-700 hover:border-cyan-500 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 backdrop-blur-sm" />
+          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800/90 border border-gray-600 text-gray-300 w-8 h-8 rounded hover:bg-gray-700 hover:border-cyan-500 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 backdrop-blur-sm" />
         </Carousel>
       </div>
     );
@@ -103,9 +137,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     return (
       <div className={`project-card ${size} image-placeholder bg-gray-800 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300`}>
         <div className="image-container w-full h-full flex items-center justify-center overflow-hidden">
-          <img 
-            src={imageSrc || "https://via.placeholder.com/400x300/e0e0e0/666666?text=Sample+Image"} 
-            alt="Sample placeholder" 
+          <img
+            src={imageSrc || "https://via.placeholder.com/400x300/e0e0e0/666666?text=Sample+Image"}
+            alt="Sample placeholder"
             className="placeholder-image w-full h-full object-contain rounded-lg"
           />
         </div>

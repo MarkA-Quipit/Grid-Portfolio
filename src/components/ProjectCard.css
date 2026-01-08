@@ -31,7 +31,7 @@
   box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
 }
 
-/* Project showcase container - tech styled */
+/* Project showcase container - tech styled with layout stability */
 .project-card.project-showcase {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   padding: 0;
@@ -43,6 +43,10 @@
   position: relative;
   width: 100%;
   height: 100%;
+  /* Ensure no layout shifts */
+  min-width: 0;
+  min-height: 0;
+  flex-shrink: 0;
 }
 
 /* Tech-styled overlay effects */
