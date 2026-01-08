@@ -67,12 +67,12 @@ const ProjectDialog: React.FC<{
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
-        <div className="flex flex-col lg:flex-row">
+      <DialogContent className="w-[95vw] max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl max-h-[90vh] bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
+        <div className="flex flex-col lg:flex-row max-h-[90vh]">
           {/* Main Project Content - Top on mobile, Left on desktop */}
-          <div className="flex-1">
+          <div className="flex-1 overflow-y-auto">
             {/* Project Image - Responsive height */}
-            <div className="w-full h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden bg-gray-800">
+            <div className="w-full h-32 xs:h-40 sm:h-48 md:h-64 lg:h-80 xl:h-96 overflow-hidden bg-gray-800 flex-shrink-0">
               <img
                 src={projectData.image}
                 alt={projectData.name}
@@ -82,21 +82,21 @@ const ProjectDialog: React.FC<{
 
             {/* Main Content */}
             <div className="p-3 sm:p-4 lg:p-6">
-              <DialogHeader className="mb-4 sm:mb-6">
-                <DialogTitle className="text-lg sm:text-xl lg:text-2xl font-bold text-cyan-300 mb-2 sm:mb-3">
+              <DialogHeader className="mb-3 sm:mb-4 lg:mb-6">
+                <DialogTitle className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-cyan-300 mb-2 sm:mb-3">
                   {projectData.name}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
+                <DialogDescription className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-6">
                   {projectData.description}
                 </DialogDescription>
               </DialogHeader>
 
               {/* Technologies Used - Responsive spacing */}
-              <div className="mb-4 sm:mb-6">
-                <h5 className="text-base sm:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Technologies Used:</h5>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              <div className="mb-3 sm:mb-4 lg:mb-6">
+                <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Technologies Used:</h5>
+                <div className="flex flex-wrap gap-1 sm:gap-1.5 lg:gap-2">
                   {technologiesUsed.map((tech, index) => (
-                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm border border-cyan-500/30">
+                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm border border-cyan-500/30">
                       {tech}
                     </span>
                   ))}
@@ -107,16 +107,16 @@ const ProjectDialog: React.FC<{
           </div>
 
           {/* Project Details Card - Bottom on mobile, Right on desktop */}
-          <div className="w-full lg:w-80 bg-gray-800 border-t lg:border-t-0 lg:border-l border-cyan-500/30 p-4 sm:p-6 space-y-3 sm:space-y-4 relative">
+          <div className="w-full lg:w-80 bg-gray-800 border-t lg:border-t-0 lg:border-l border-cyan-500/30 p-3 sm:p-4 lg:p-6 space-y-2 sm:space-y-3 lg:space-y-4 relative overflow-y-auto lg:max-h-[90vh]">
             {/* Close button - Responsive positioning */}
-            <DialogClose className="absolute top-3 sm:top-4 right-3 sm:right-4 w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-gray-700 hover:bg-gray-600 border border-gray-600 hover:border-gray-500 text-gray-400 hover:text-white transition-all duration-200 flex items-center justify-center text-sm font-bold">
+            <DialogClose className="absolute top-2 sm:top-3 lg:top-4 right-2 sm:right-3 lg:right-4 w-6 sm:w-7 lg:w-8 h-6 sm:h-7 lg:h-8 rounded-full bg-gray-700 hover:bg-gray-600 border border-gray-600 hover:border-gray-500 text-gray-400 hover:text-white transition-all duration-200 flex items-center justify-center text-sm font-bold z-10">
               ×
             </DialogClose>
             
-            <h4 className="text-lg sm:text-xl font-bold text-cyan-300 mb-3 sm:mb-4">Project Details</h4>
+            <h4 className="text-base sm:text-lg lg:text-xl font-bold text-cyan-300 mb-2 sm:mb-3 lg:mb-4 pr-8">Project Details</h4>
 
             {/* Project Stats */}
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-2 sm:space-y-3 lg:space-y-4">
               {projectStats.map((stat, index) => (
                 <div key={index} className="flex justify-between items-center">
                   <span className="text-gray-400 text-xs sm:text-sm">{stat.label}:</span>
@@ -129,12 +129,12 @@ const ProjectDialog: React.FC<{
 
             {/* Key Features */}
             <div>
-              <h5 className="text-base sm:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Key Features</h5>
-              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-300">
-                {keyFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-cyan-400 rounded-full mr-2 sm:mr-3 flex-shrink-0"></span>
-                    {feature}
+              <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Key Features</h5>
+              <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2 text-xs sm:text-sm text-gray-300">
+                {keyFeatures.slice(0, 6).map((feature, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-cyan-400 rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-2"></span>
+                    <span className="leading-tight">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -143,12 +143,12 @@ const ProjectDialog: React.FC<{
             <hr className="border-gray-700" />
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-2 sm:gap-3">
+            <div className="flex flex-col gap-2 sm:gap-3 pt-2">
               <a
                 href={projectData.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base"
+                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-xs sm:text-sm lg:text-base"
               >
                 View Live Project
               </a>
@@ -156,7 +156,7 @@ const ProjectDialog: React.FC<{
                 href={projectData.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base"
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-xs sm:text-sm lg:text-base"
               >
                 View Code
               </a>
@@ -260,7 +260,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         >
           <CarouselContent className="h-full -ml-0">
             {showcaseProjects.map((project) => (
-              <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full min-w-0">
+              <CarouselItem key={project.id} className="pl-0 basis-full md:basis-1/2 lg:basis-1/3 h-full min-w-0">
                 {project.id === 2 || project.id === 3 ? (
                   // Non-clickable version for projects 2 and 3
                   <div className="w-full h-full bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group relative overflow-hidden cursor-not-allowed">
@@ -279,8 +279,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
                       {/* Overlaid title text */}
-                      <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-3 z-20">
-                        <h3 className="text-lg font-black text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                      <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
+                        <h3 className="text-base sm:text-lg md:text-xl font-black text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
                           {project.name}
                         </h3>
                       </div>
@@ -310,8 +310,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
                           {/* Overlaid title text */}
-                          <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-3 z-20">
-                            <h3 className="text-lg font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                          <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
+                            <h3 className="text-base sm:text-lg md:text-xl font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
                               {project.name}
                             </h3>
                           </div>
@@ -327,9 +327,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             ))}
           </CarouselContent>
 
-          {/* Navigation buttons - invisible by default, 80% opaque on hover, full height */}
-          <CarouselPrevious className="absolute left-0 top-0 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
-          <CarouselNext className="absolute right-0 top-0 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
+          {/* Navigation buttons - responsive sizing and visibility */}
+          <CarouselPrevious className="absolute left-1 sm:left-2 lg:left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-8 sm:h-10 lg:h-full w-8 sm:w-10 lg:w-12 bg-gray-800/60 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-80 lg:opacity-0 hover:opacity-100 flex items-center justify-center" />
+          <CarouselNext className="absolute right-1 sm:right-2 lg:right-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-8 sm:h-10 lg:h-full w-8 sm:w-10 lg:w-12 bg-gray-800/60 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-80 lg:opacity-0 hover:opacity-100 flex items-center justify-center" />
         </Carousel>
       </div>
     );
