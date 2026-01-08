@@ -435,22 +435,36 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     ];
 
     return (
-      <div className={`project-card ${size} rounded-lg border border-purple-500 border-opacity-50 p-4 flex flex-col justify-start relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)] h-full hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(147,51,234,0.4)] hover:border-opacity-80`}>
+      <div className={`project-card ${size} rounded-lg border border-purple-500 border-opacity-50 p-3 flex flex-col justify-start relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)] h-full hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(147,51,234,0.4)] hover:border-opacity-80`}>
         <div className="card-content relative z-[2] text-white w-full">
-          <h3 className="card-title font-bold mb-3 leading-tight text-lg text-purple-300">{title}</h3>
+          <h3 className="card-title font-bold mb-2 leading-tight text-base text-purple-300">{title}</h3>
           
-          <div className="references-list space-y-2 text-xs">
-            {references.map((ref, index) => (
-              <div key={index} className="reference-item bg-white/5 rounded p-2 border border-white/10">
-                <div className="font-semibold text-purple-200 text-sm">{ref.name}</div>
-                <div className="text-purple-300 text-xs">{ref.title}</div>
-                <div className="text-gray-300 text-xs">{ref.company}</div>
-                <div className="text-gray-400 text-xs mt-1">
-                  <div>{ref.email}</div>
-                  <div>{ref.phone}</div>
-                </div>
+          {/* Three-column grid layout for references with first column empty */}
+          <div className="references-grid grid grid-cols-3 gap-2 text-xs">
+            {/* Empty first column */}
+            <div className="reference-item"></div>
+            
+            {/* Second column: Prof. Joseph Cartagenas */}
+            <div className="reference-item bg-white/5 rounded p-2 border border-white/10 flex flex-col h-full">
+              <div className="font-semibold text-purple-200 text-xs mb-1 leading-tight">{references[0].name}</div>
+              <div className="text-purple-300 text-xs mb-1">{references[0].title}</div>
+              <div className="text-gray-300 text-xs mb-1 leading-tight">{references[0].company}</div>
+              <div className="text-gray-400 text-xs mt-auto space-y-0.5">
+                <div className="break-all text-xs">{references[0].email}</div>
+                <div className="text-xs">{references[0].phone}</div>
               </div>
-            ))}
+            </div>
+            
+            {/* Third column: Ms. Kier Panollera */}
+            <div className="reference-item bg-white/5 rounded p-2 border border-white/10 flex flex-col h-full">
+              <div className="font-semibold text-purple-200 text-xs mb-1 leading-tight">{references[1].name}</div>
+              <div className="text-purple-300 text-xs mb-1">{references[1].title}</div>
+              <div className="text-gray-300 text-xs mb-1 leading-tight">{references[1].company}</div>
+              <div className="text-gray-400 text-xs mt-auto space-y-0.5">
+                <div className="break-all text-xs">{references[1].email}</div>
+                <div className="text-xs">{references[1].phone}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
