@@ -370,7 +370,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     return (
       <div className={`project-card ${size} personal-section flex items-center justify-center text-center rounded-lg border border-purple-500 border-opacity-50 p-5 md:p-3.5`}>
         <div className="personal-content relative z-[2] text-white p-5 md:p-3.5">
-          <h2 className="personal-name text-3xl font-bold mb-4 leading-tight text-purple-300 md:text-2xl md:mb-3">{personalName || "Your Name"}</h2>
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold text-cyan-300">{personalName || "Your Name"}</h2>
+          </div>
           <p className="personal-summary text-base leading-relaxed opacity-90 text-purple-100 m-0 md:text-sm">{personalSummary || "Brief personal summary goes here."}</p>
         </div>
       </div>
@@ -385,7 +387,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       trigger={
         <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md`}>
           <div className="card-content relative z-[2] text-white">
-            <h3 className={`card-title font-bold mb-3 leading-tight ${size === 'large-vertical' ? 'text-3xl mb-4 md:text-lg' : size === 'small-square' ? 'text-xl mb-2.5 md:text-lg' : 'text-2xl'} md:text-lg md:mb-2`}>{title}</h3>
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold text-cyan-300">{title}</h2>
+            </div>
             <p className={`card-description leading-relaxed opacity-90 ${size === 'large-vertical' ? 'text-lg mb-6 md:text-sm' : size === 'small-square' ? 'text-sm mb-3.5 md:text-sm' : 'text-base mb-5'} md:text-sm md:mb-3`}>{description}</p>
             <span className="card-link text-cyan-300 no-underline font-semibold text-sm inline-flex items-center transition-all duration-300 border-b border-transparent hover:border-cyan-300 hover:translate-x-1 hover:text-cyan-100 md:text-xs">
               View Project →

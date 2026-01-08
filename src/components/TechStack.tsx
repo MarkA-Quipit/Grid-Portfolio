@@ -33,7 +33,9 @@ const TechStack: React.FC<TechStackProps> = ({
     <TooltipProvider>
       <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-start relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md">
         <div className="tech-content relative z-[2] text-white text-left">
-          <h3 className="tech-title font-bold mb-4 leading-tight text-2xl md:text-lg md:mb-3">{title}</h3>
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold text-cyan-300">{title}</h2>
+          </div>
           {description && (
             <p className="tech-description leading-relaxed opacity-90 text-base mb-6 md:text-sm md:mb-4">{description}</p>
           )}
