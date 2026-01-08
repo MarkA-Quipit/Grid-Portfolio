@@ -14,6 +14,7 @@ interface Project {
   personalName?: string;
   personalSummary?: string;
   isProjectShowcase?: boolean;
+  isTechShowcase?: boolean;
 }
 
 const ProjectGrid: React.FC = () => {
@@ -53,20 +54,14 @@ const ProjectGrid: React.FC = () => {
     },
     {
       id: 5,
-      title: "Mobile Game",
-      description: "HTML5 canvas game with touch controls and leaderboard",
+      title: "Tech Stack",
+      description: "",
       link: "#",
-      size: "small-square"
+      size: "wide-horizontal",
+      isTechShowcase: true
     },
     {
       id: 6,
-      title: "Data Visualization Platform",
-      description: "Interactive charts and analytics dashboard for business intelligence with real-time data processing",
-      link: "#",
-      size: "wide-horizontal"
-    },
-    {
-      id: 7,
       title: "Inventory Management System",
       description: "Comprehensive inventory tracking with automated reordering and supplier management",
       link: "#",
@@ -89,6 +84,7 @@ const ProjectGrid: React.FC = () => {
           personalName={project.personalName}
           personalSummary={project.personalSummary}
           isProjectShowcase={project.isProjectShowcase}
+          isTechShowcase={project.isTechShowcase}
         />
       ))}
     </div>

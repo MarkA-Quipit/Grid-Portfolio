@@ -16,6 +16,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip"
 
 // Custom Project Dialog with External Info Card
 const ProjectDialog: React.FC<{
@@ -280,6 +286,7 @@ interface ProjectCardProps {
   personalName?: string;
   personalSummary?: string;
   isProjectShowcase?: boolean;
+  isTechShowcase?: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -292,7 +299,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   isPersonalSection,
   personalName,
   personalSummary,
-  isProjectShowcase
+  isProjectShowcase,
+  isTechShowcase
 }) => {
 
   if (isProjectShowcase) {
@@ -349,6 +357,51 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <CarouselNext className="absolute right-0 top-32 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
         </Carousel>
       </div>
+    );
+  }
+
+  if (isTechShowcase) {
+    const technologies = [
+      { name: 'Laravel', logo: 'L', color: 'text-red-400 bg-red-900/30' },
+      { name: 'React', logo: 'R', color: 'text-blue-400 bg-blue-900/30' },
+      { name: 'Inertia.js', logo: 'I', color: 'text-purple-400 bg-purple-900/30' },
+      { name: 'HTML', logo: 'H', color: 'text-orange-400 bg-orange-900/30' },
+      { name: 'CSS', logo: 'C', color: 'text-blue-300 bg-blue-900/30' },
+      { name: 'JavaScript', logo: 'JS', color: 'text-yellow-400 bg-yellow-900/30' },
+      { name: 'Tailwind CSS', logo: 'TW', color: 'text-cyan-400 bg-cyan-900/30' },
+      { name: 'PHP', logo: 'P', color: 'text-indigo-400 bg-indigo-900/30' },
+      { name: 'SQL', logo: 'S', color: 'text-green-400 bg-green-900/30' },
+      { name: 'Git', logo: 'G', color: 'text-orange-300 bg-orange-900/30' },
+      { name: 'GitHub', logo: 'GH', color: 'text-gray-300 bg-gray-900/30' }
+    ];
+
+    return (
+      <TooltipProvider>
+        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-center relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md`}>
+          <div className="card-content relative z-[2] text-white">
+            <h3 className="card-title font-bold mb-4 leading-tight text-2xl md:text-lg md:mb-3">{title}</h3>
+            {description && (
+              <p className="card-description leading-relaxed opacity-90 text-base mb-6 md:text-sm md:mb-4">{description}</p>
+            )}
+            
+            {/* Technology logos in horizontal line */}
+            <div className="flex items-center justify-center gap-2 mb-4 overflow-hidden">
+              {technologies.map((tech, index) => (
+                <Tooltip key={index}>
+                  <TooltipTrigger asChild>
+                    <div className={`w-8 h-8 rounded-lg ${tech.color} border border-current/20 hover:scale-110 transition-transform duration-200 cursor-pointer flex items-center justify-center text-xs font-bold flex-shrink-0`}>
+                      {tech.logo}
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{tech.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </div>
+        </div>
+      </TooltipProvider>
     );
   }
 
