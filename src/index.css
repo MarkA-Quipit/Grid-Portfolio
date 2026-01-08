@@ -1,9 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
   scroll-behavior: smooth;
 }
 
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -16,6 +31,43 @@ code {
     monospace;
 }
 
-* {
-  box-sizing: border-box;
+/* Responsive utilities for desktop single-page layout */
+@media (min-width: 1024px) {
+  .responsive-grid-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+/* Mobile and tablet allow scrolling */
+@media (max-width: 1023px) {
+  html, body, #root {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .responsive-grid-container {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .responsive-grid-container {
+    padding: 1rem !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .responsive-grid-container {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .responsive-grid-container {
+    padding: 2rem !important;
+  }
 }
