@@ -30,39 +30,46 @@ const TechStack: React.FC<TechStackProps> = ({
   ];
 
   return (
-    <TooltipProvider>
-      <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-start relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md">
-        <div className="tech-content relative z-[2] text-white text-left">
-          <div className="mb-4">
+    <TooltipProvider delayDuration={300}>
+      <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
+        <div className="tech-content relative z-[2] text-white h-full flex flex-col items-center justify-center text-center">
+          {/* Title - Centered */}
+          <div className="mb-3">
             <h2 className="text-2xl font-bold text-cyan-300">{title}</h2>
           </div>
           {description && (
-            <p className="tech-description leading-relaxed opacity-90 text-base mb-6 md:text-sm md:mb-4">{description}</p>
+            <p className="tech-description leading-relaxed opacity-90 text-base mb-4 md:text-sm md:mb-3">{description}</p>
           )}
           
-          {/* Technology logos in horizontal line */}
-          <div className="flex items-center justify-start gap-4 overflow-hidden">
-            {technologies.map((tech, index) => (
-              <Tooltip key={index}>
-                <TooltipTrigger asChild>
-                  <div className="w-14 h-14 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
-                    <img
-                      src={tech.icon}
-                      alt={tech.name}
-                      className="w-8 h-8 object-contain"
-                      onError={(e) => {
-                        // Fallback to a generic icon if the image fails to load
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.parentElement!.innerHTML = `<span class="text-sm font-bold text-white">${tech.name.charAt(0)}</span>`;
-                      }}
-                    />
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{tech.name}</p>
-                </TooltipContent>
-              </Tooltip>
-            ))}
+          {/* Technology logos - Centered horizontally within container */}
+          <div className="flex items-center justify-center px-2 py-2">
+            <div className="flex items-center justify-center gap-3 flex-wrap max-w-full">
+              {technologies.map((tech, index) => (
+                <Tooltip key={index}>
+                  <TooltipTrigger asChild>
+                    <div className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="w-7 h-7 object-contain"
+                        onError={(e) => {
+                          // Fallback to a generic icon if the image fails to load
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement!.innerHTML = `<span class="text-xs font-bold text-white">${tech.name.charAt(0)}</span>`;
+                        }}
+                      />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent 
+                    side="top" 
+                    sideOffset={8}
+                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
+                  >
+                    <p className="font-medium">{tech.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
           </div>
         </div>
       </div>
