@@ -344,9 +344,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             ))}
           </CarouselContent>
 
-          {/* Navigation buttons with tech styling */}
-          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800/90 border border-gray-600 text-gray-300 w-8 h-8 rounded hover:bg-gray-700 hover:border-cyan-500 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 backdrop-blur-sm" />
-          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800/90 border border-gray-600 text-gray-300 w-8 h-8 rounded hover:bg-gray-700 hover:border-cyan-500 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 backdrop-blur-sm" />
+          {/* Navigation buttons - invisible by default, 80% opaque on hover, full height */}
+          <CarouselPrevious className="absolute left-0 top-32 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
+          <CarouselNext className="absolute right-0 top-32 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
         </Carousel>
       </div>
     );
