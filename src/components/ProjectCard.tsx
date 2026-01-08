@@ -188,9 +188,9 @@ const ProjectDialog: React.FC<{
 const showcaseProjects = [
   {
     id: 1,
-    name: "E-Commerce Platform",
+    name: "Agricultural E-commerce System",
     image: "/images/smmc-front.png",
-    description: "A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, inventory management, and admin dashboard.",
+    description: "Developed an agricultural eCommerce platform that connects farmers, customers, and logistics staff. The system features multi-role access, product management, order tracking, and secure transactions. I handled both the frontend and backend development using React and Laravel, creating a user-friendly and responsive interface while ensuring smooth database operations with MySQL. The platform streamlines the buying and selling of perishable goods, improving efficiency for both sellers and buyers.",
     technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redux"],
     liveUrl: "https://smmc-ecommerce.onrender.com",
     githubUrl: "https://github.com/anyunyay/ITB13-capstone.git"
@@ -277,37 +277,68 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <CarouselContent className="h-full -ml-0">
             {showcaseProjects.map((project) => (
               <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full">
-                <ProjectDialog
-                  project={project}
-                  trigger={
-                    <div className="w-full h-full bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                      {/* Subtle glow effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
+                {project.id === 2 || project.id === 3 ? (
+                  // Non-clickable version for projects 2 and 3
+                  <div className="w-full h-full bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group relative overflow-hidden cursor-not-allowed">
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
 
-                      {/* Full height image */}
-                      <div className="w-full h-full overflow-hidden bg-gray-800 relative">
-                        <img
-                          src={project.image}
-                          alt={project.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
+                    {/* Full height image */}
+                    <div className="w-full h-full overflow-hidden bg-gray-800 relative">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
 
-                        {/* Dark overlay for text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                      {/* Dark overlay for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
-                        {/* Overlaid title text */}
-                        <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-3 z-20">
-                          <h3 className="text-lg font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        {/* Accent border on hover */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
+                      {/* Overlaid title text */}
+                      <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-3 z-20">
+                        <h3 className="text-lg font-black text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                          {project.name}
+                        </h3>
                       </div>
+
+                      {/* Accent border on hover */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
                     </div>
-                  }
-                />
+                  </div>
+                ) : (
+                  // Clickable version for other projects
+                  <ProjectDialog
+                    project={project}
+                    trigger={
+                      <div className="w-full h-full bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                        {/* Subtle glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
+
+                        {/* Full height image */}
+                        <div className="w-full h-full overflow-hidden bg-gray-800 relative">
+                          <img
+                            src={project.image}
+                            alt={project.name}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+
+                          {/* Dark overlay for text readability */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+
+                          {/* Overlaid title text */}
+                          <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-3 z-20">
+                            <h3 className="text-lg font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                              {project.name}
+                            </h3>
+                          </div>
+
+                          {/* Accent border on hover */}
+                          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
+                        </div>
+                      </div>
+                    }
+                  />
+                )}
               </CarouselItem>
             ))}
           </CarouselContent>
