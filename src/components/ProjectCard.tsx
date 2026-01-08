@@ -67,12 +67,12 @@ const ProjectDialog: React.FC<{
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
-        <div className="flex">
-          {/* Main Project Content - Left Side */}
+      <DialogContent className="max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+          {/* Main Project Content - Top on mobile, Left on desktop */}
           <div className="flex-1">
-            {/* Project Image - Enlarged and emphasized */}
-            <div className="w-full h-96 overflow-hidden bg-gray-800">
+            {/* Project Image - Responsive height */}
+            <div className="w-full h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden bg-gray-800">
               <img
                 src={projectData.image}
                 alt={projectData.name}
@@ -81,22 +81,22 @@ const ProjectDialog: React.FC<{
             </div>
 
             {/* Main Content */}
-            <div className="p-6">
-              <DialogHeader className="mb-6">
-                <DialogTitle className="text-2xl font-bold text-cyan-300 mb-3">
+            <div className="p-3 sm:p-4 lg:p-6">
+              <DialogHeader className="mb-4 sm:mb-6">
+                <DialogTitle className="text-lg sm:text-xl lg:text-2xl font-bold text-cyan-300 mb-2 sm:mb-3">
                   {projectData.name}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300 text-base leading-relaxed mb-6">
+                <DialogDescription className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
                   {projectData.description}
                 </DialogDescription>
               </DialogHeader>
 
-              {/* Technologies Used - Moved below description */}
-              <div className="mb-6">
-                <h5 className="text-lg font-semibold text-cyan-300 mb-3">Technologies Used:</h5>
-                <div className="flex flex-wrap gap-2">
+              {/* Technologies Used - Responsive spacing */}
+              <div className="mb-4 sm:mb-6">
+                <h5 className="text-base sm:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Technologies Used:</h5>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {technologiesUsed.map((tech, index) => (
-                    <span key={index} className="bg-gray-800 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-500/30">
+                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm border border-cyan-500/30">
                       {tech}
                     </span>
                   ))}
@@ -106,21 +106,21 @@ const ProjectDialog: React.FC<{
             </div>
           </div>
 
-          {/* Project Details Card - Right Side */}
-          <div className="w-80 bg-gray-800 border-l border-cyan-500/30 p-6 space-y-4 relative">
-            {/* Close button in top-right corner of Project Details card */}
-            <DialogClose className="absolute top-4 right-4 w-6 h-6 rounded-full bg-gray-700 hover:bg-gray-600 border border-gray-600 hover:border-gray-500 text-gray-400 hover:text-white transition-all duration-200 flex items-center justify-center text-sm font-bold">
+          {/* Project Details Card - Bottom on mobile, Right on desktop */}
+          <div className="w-full lg:w-80 bg-gray-800 border-t lg:border-t-0 lg:border-l border-cyan-500/30 p-4 sm:p-6 space-y-3 sm:space-y-4 relative">
+            {/* Close button - Responsive positioning */}
+            <DialogClose className="absolute top-3 sm:top-4 right-3 sm:right-4 w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-gray-700 hover:bg-gray-600 border border-gray-600 hover:border-gray-500 text-gray-400 hover:text-white transition-all duration-200 flex items-center justify-center text-sm font-bold">
               ×
             </DialogClose>
             
-            <h4 className="text-xl font-bold text-cyan-300 mb-4">Project Details</h4>
+            <h4 className="text-lg sm:text-xl font-bold text-cyan-300 mb-3 sm:mb-4">Project Details</h4>
 
             {/* Project Stats */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {projectStats.map((stat, index) => (
                 <div key={index} className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm">{stat.label}:</span>
-                  <span className={`${stat.color} text-sm font-medium`}>{stat.value}</span>
+                  <span className="text-gray-400 text-xs sm:text-sm">{stat.label}:</span>
+                  <span className={`${stat.color} text-xs sm:text-sm font-medium`}>{stat.value}</span>
                 </div>
               ))}
             </div>
@@ -129,11 +129,11 @@ const ProjectDialog: React.FC<{
 
             {/* Key Features */}
             <div>
-              <h5 className="text-lg font-semibold text-cyan-300 mb-3">Key Features</h5>
-              <ul className="space-y-2 text-sm text-gray-300">
+              <h5 className="text-base sm:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Key Features</h5>
+              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-300">
                 {keyFeatures.map((feature, index) => (
                   <li key={index} className="flex items-center">
-                    <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-cyan-400 rounded-full mr-2 sm:mr-3 flex-shrink-0"></span>
                     {feature}
                   </li>
                 ))}
@@ -143,12 +143,12 @@ const ProjectDialog: React.FC<{
             <hr className="border-gray-700" />
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2 sm:gap-3">
               <a
                 href={projectData.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
+                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base"
               >
                 View Live Project
               </a>
@@ -156,7 +156,7 @@ const ProjectDialog: React.FC<{
                 href={projectData.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center"
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base"
               >
                 View Code
               </a>
@@ -249,7 +249,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isProjectShowcase) {
     return (
-      <div className={`project-card ${size} project-showcase relative overflow-hidden`}>
+      <div className={`project-card ${size} project-showcase relative overflow-hidden w-full h-full`}>
         <Carousel
           className="w-full h-full"
           opts={{
@@ -260,7 +260,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         >
           <CarouselContent className="h-full -ml-0">
             {showcaseProjects.map((project) => (
-              <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full">
+              <CarouselItem key={project.id} className="pl-0 basis-1/3 h-full min-w-0">
                 {project.id === 2 || project.id === 3 ? (
                   // Non-clickable version for projects 2 and 3
                   <div className="w-full h-full bg-gray-900 border-r border-cyan-500/30 last:border-r-0 hover:bg-gray-800 transition-all duration-300 group relative overflow-hidden cursor-not-allowed">
@@ -328,8 +328,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </CarouselContent>
 
           {/* Navigation buttons - invisible by default, 80% opaque on hover, full height */}
-          <CarouselPrevious className="absolute left-0 top-32 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
-          <CarouselNext className="absolute right-0 top-32 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
+          <CarouselPrevious className="absolute left-0 top-0 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
+          <CarouselNext className="absolute right-0 top-0 h-full w-12 bg-gray-800/0 border-0 text-gray-300 rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-0 hover:opacity-100 flex items-center justify-center" />
         </Carousel>
       </div>
     );
@@ -337,21 +337,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isImagePlaceholder) {
     return (
-      <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative`}>
-        {/* Outside Bubbles - Larger bubbles floating around the photo */}
+      <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative w-full h-full`}>
+        {/* Outside Bubbles - Responsive sizing */}
         <div className="absolute inset-0 pointer-events-none overflow-visible z-20">
-          {/* Large Outside Bubbles */}
-          <div className="absolute -top-8 -left-6 w-12 h-12 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-100 group-hover:animate-[float_4s_ease-in-out_infinite]"></div>
+          {/* Large Outside Bubbles - Responsive sizes */}
+          <div className="absolute -top-4 sm:-top-6 lg:-top-8 -left-3 sm:-left-4 lg:-left-6 w-6 sm:w-8 lg:w-12 h-6 sm:h-8 lg:h-12 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-100 group-hover:animate-[float_4s_ease-in-out_infinite]"></div>
           
-          <div className="absolute -top-4 -right-8 w-10 h-10 bg-gradient-to-br from-purple-400/40 to-pink-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1200 delay-300 group-hover:animate-[float_3.5s_ease-in-out_infinite_0.5s]"></div>
+          <div className="absolute -top-2 sm:-top-3 lg:-top-4 -right-4 sm:-right-6 lg:-right-8 w-5 sm:w-7 lg:w-10 h-5 sm:h-7 lg:h-10 bg-gradient-to-br from-purple-400/40 to-pink-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1200 delay-300 group-hover:animate-[float_3.5s_ease-in-out_infinite_0.5s]"></div>
           
-          <div className="absolute -bottom-6 -left-8 w-14 h-14 bg-gradient-to-br from-teal-400/25 to-cyan-500/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-200 group-hover:animate-[float_4.5s_ease-in-out_infinite_1s]"></div>
+          <div className="absolute -bottom-3 sm:-bottom-4 lg:-bottom-6 -left-4 sm:-left-6 lg:-left-8 w-7 sm:w-10 lg:w-14 h-7 sm:h-10 lg:h-14 bg-gradient-to-br from-teal-400/25 to-cyan-500/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-200 group-hover:animate-[float_4.5s_ease-in-out_infinite_1s]"></div>
           
-          <div className="absolute -bottom-8 -right-4 w-8 h-8 bg-gradient-to-br from-indigo-400/35 to-purple-500/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1100 delay-400 group-hover:animate-[float_3s_ease-in-out_infinite_1.5s]"></div>
+          <div className="absolute -bottom-4 sm:-bottom-6 lg:-bottom-8 -right-2 sm:-right-3 lg:-right-4 w-4 sm:w-6 lg:w-8 h-4 sm:h-6 lg:h-8 bg-gradient-to-br from-indigo-400/35 to-purple-500/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1100 delay-400 group-hover:animate-[float_3s_ease-in-out_infinite_1.5s]"></div>
           
-          <div className="absolute top-1/2 -left-10 w-6 h-6 bg-gradient-to-br from-sky-400/40 to-blue-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-150 group-hover:animate-[float_3.8s_ease-in-out_infinite_0.8s]"></div>
+          <div className="absolute top-1/2 -left-5 sm:-left-7 lg:-left-10 w-3 sm:w-4 lg:w-6 h-3 sm:h-4 lg:h-6 bg-gradient-to-br from-sky-400/40 to-blue-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-150 group-hover:animate-[float_3.8s_ease-in-out_infinite_0.8s]"></div>
           
-          <div className="absolute top-1/4 -right-6 w-9 h-9 bg-gradient-to-br from-violet-400/30 to-purple-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-350 group-hover:animate-[float_4.2s_ease-in-out_infinite_0.3s]"></div>
+          <div className="absolute top-1/4 -right-3 sm:-right-4 lg:-right-6 w-4 sm:w-6 lg:w-9 h-4 sm:h-6 lg:h-9 bg-gradient-to-br from-violet-400/30 to-purple-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-350 group-hover:animate-[float_4.2s_ease-in-out_infinite_0.3s]"></div>
         </div>
 
         <div className="image-container w-full h-full flex items-center justify-center overflow-hidden relative">
@@ -359,44 +359,44 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <img
               key={index}
               src={photo}
-              alt={`Mark Quipit Photo ${index + 1}`}
+              alt={`Mark Quipit ${index + 1}`}
               className={`absolute inset-0 w-full h-full object-cover rounded-lg transition-opacity duration-1000 ease-in-out ${
                 index === currentImageIndex ? 'opacity-100' : 'opacity-0'
               }`}
             />
           ))}
           
-          {/* Inside Bubbles - Smaller, subtle bubbles within the photo */}
+          {/* Inside Bubbles - Responsive sizes */}
           <div className="absolute inset-0 pointer-events-none z-10">
-            {/* Small Inside Bubbles */}
-            <div className="absolute top-[15%] left-[20%] w-2 h-2 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-200 group-hover:animate-pulse"></div>
+            {/* Small Inside Bubbles - Responsive sizes */}
+            <div className="absolute top-[15%] left-[20%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-200 group-hover:animate-pulse"></div>
             
-            <div className="absolute top-[25%] right-[25%] w-3 h-3 bg-cyan-300/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-400 group-hover:animate-bounce"></div>
+            <div className="absolute top-[25%] right-[25%] w-1.5 sm:w-2 lg:w-3 h-1.5 sm:h-2 lg:h-3 bg-cyan-300/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-400 group-hover:animate-bounce"></div>
             
-            <div className="absolute bottom-[35%] left-[30%] w-1.5 h-1.5 bg-blue-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 group-hover:animate-ping"></div>
+            <div className="absolute bottom-[35%] left-[30%] w-1 sm:w-1.5 lg:w-1.5 h-1 sm:h-1.5 lg:h-1.5 bg-blue-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 group-hover:animate-ping"></div>
             
-            <div className="absolute top-[60%] right-[15%] w-2.5 h-2.5 bg-purple-300/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-500 group-hover:animate-pulse"></div>
+            <div className="absolute top-[60%] right-[15%] w-1.5 sm:w-2 lg:w-2.5 h-1.5 sm:h-2 lg:h-2.5 bg-purple-300/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-500 group-hover:animate-pulse"></div>
             
-            <div className="absolute bottom-[25%] right-[35%] w-2 h-2 bg-teal-300/45 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-250 group-hover:animate-bounce"></div>
+            <div className="absolute bottom-[25%] right-[35%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-teal-300/45 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-250 group-hover:animate-bounce"></div>
             
-            <div className="absolute top-[45%] left-[15%] w-1 h-1 bg-sky-300/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-350 group-hover:animate-ping"></div>
+            <div className="absolute top-[45%] left-[15%] w-0.5 sm:w-1 lg:w-1 h-0.5 sm:h-1 lg:h-1 bg-sky-300/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-350 group-hover:animate-ping"></div>
             
-            <div className="absolute top-[35%] right-[45%] w-2 h-2 bg-indigo-300/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-150 group-hover:animate-pulse"></div>
+            <div className="absolute top-[35%] right-[45%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-indigo-300/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-150 group-hover:animate-pulse"></div>
             
-            <div className="absolute bottom-[50%] left-[45%] w-1.5 h-1.5 bg-violet-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-450 group-hover:animate-bounce"></div>
+            <div className="absolute bottom-[50%] left-[45%] w-1 sm:w-1.5 lg:w-1.5 h-1 sm:h-1.5 lg:h-1.5 bg-violet-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-450 group-hover:animate-bounce"></div>
             
-            {/* Floating subtle bubbles */}
-            <div className="absolute top-[20%] left-[60%] w-2 h-2 bg-gradient-to-br from-cyan-300/20 to-blue-400/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-100 group-hover:animate-[float_2.5s_ease-in-out_infinite]"></div>
+            {/* Floating subtle bubbles - Responsive sizes */}
+            <div className="absolute top-[20%] left-[60%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-gradient-to-br from-cyan-300/20 to-blue-400/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-100 group-hover:animate-[float_2.5s_ease-in-out_infinite]"></div>
             
-            <div className="absolute bottom-[40%] right-[20%] w-1.5 h-1.5 bg-gradient-to-br from-purple-300/25 to-pink-400/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-300 group-hover:animate-[float_3s_ease-in-out_infinite_0.5s]"></div>
+            <div className="absolute bottom-[40%] right-[20%] w-1 sm:w-1.5 lg:w-1.5 h-1 sm:h-1.5 lg:h-1.5 bg-gradient-to-br from-purple-300/25 to-pink-400/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-300 group-hover:animate-[float_3s_ease-in-out_infinite_0.5s]"></div>
           </div>
           
-          {/* Photo indicators */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
+          {/* Photo indicators - Responsive positioning */}
+          <div className="absolute bottom-2 sm:bottom-3 lg:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-30">
             {markQuipitPhotos.map((_, index) => (
               <div
                 key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-1.5 sm:w-2 lg:w-2 h-1.5 sm:h-2 lg:h-2 rounded-full transition-all duration-300 ${
                   index === currentImageIndex 
                     ? 'bg-cyan-400 shadow-lg' 
                     : 'bg-white/50 hover:bg-white/70'
@@ -411,23 +411,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isPersonalSection) {
     return (
-      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900`}>
+      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
         <div className="card-content relative z-[2] text-white">
-          {/* Name and Download CV Button - Aligned horizontally */}
-          <div className="flex items-center mb-4 gap-4">
-            <h2 className="text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
+          {/* Name and Download CV Button - Responsive layout */}
+          <div className="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-4 lg:gap-2 xl:gap-3 2xl:gap-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
             <a
               href="/file/MarkAldrin-Quipit-CV.pdf"
               download="MarkAldrin-Quipit-CV.pdf"
-              className="bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-2 flex-shrink-0"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white text-xs sm:text-sm lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 flex-shrink-0 self-start sm:self-auto"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 sm:w-4 lg:w-3 xl:w-4 h-3 sm:h-4 lg:h-3 xl:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Download CV
             </a>
           </div>
-          <p className="card-description leading-relaxed opacity-90 text-md mb-5 md:text-md md:mb-3">
+          <p className="card-description leading-relaxed opacity-90 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5">
             I am a <span className="text-cyan-300 font-bold">full-stack developer</span> with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems.
           </p>
         </div>
@@ -441,13 +441,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       description={description}
       link={link}
       trigger={
-        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900`}>
+        <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
           <div className="card-content relative z-[2] text-white">
-            <div className="mb-4">
-              <h2 className="text-2xl font-bold text-cyan-300">{title}</h2>
+            <div className="mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">
+              <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-cyan-300">{title}</h2>
             </div>
-            <p className={`card-description leading-relaxed opacity-90 ${size === 'large-vertical' ? 'text-lg mb-6 md:text-sm' : size === 'small-square' ? 'text-sm mb-3.5 md:text-sm' : 'text-base mb-5'} md:text-sm md:mb-3`}>{description}</p>
-            <span className="card-link text-cyan-300 no-underline font-semibold text-sm inline-flex items-center transition-all duration-300 border-b border-transparent hover:border-cyan-300 hover:translate-x-1 hover:text-cyan-100 md:text-xs">
+            <p className={`card-description leading-relaxed opacity-90 ${size === 'large-vertical' ? 'text-sm sm:text-base lg:text-sm xl:text-base 2xl:text-lg mb-4 sm:mb-5 lg:mb-3 xl:mb-4 2xl:mb-6' : size === 'small-square' ? 'text-xs sm:text-sm lg:text-xs xl:text-sm mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3' : 'text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5'}`}>{description}</p>
+            <span className="card-link text-cyan-300 no-underline font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm inline-flex items-center transition-all duration-300 border-b border-transparent hover:border-cyan-300 hover:translate-x-1 hover:text-cyan-100">
               View Project →
             </span>
           </div>

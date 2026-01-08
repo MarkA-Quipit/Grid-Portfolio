@@ -14,6 +14,10 @@ module.exports = {
         'neon-purple': '#bf00ff',
         'neon-green': '#00ff41',
       },
+      screens: {
+        'xs': '475px',
+        '3xl': '1600px',
+      },
       backdropBlur: {
         '10': '10px',
       },

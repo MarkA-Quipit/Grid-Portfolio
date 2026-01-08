@@ -53,11 +53,6 @@
   display: none;
 }
 
-/* Wide horizontal card content width */
-.project-card.wide-horizontal .card-content {
-  max-width: 60%;
-}
-
 /* Enhanced Floating bubble animation keyframes */
 @keyframes float {
   0%, 100% {
@@ -135,8 +130,60 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Responsive adjustments */
+@media (max-width: 1024px) {
   .project-card.wide-horizontal .card-content {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    min-height: 200px;
+  }
+  
+  .project-card.project-showcase {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-card {
+    min-height: 180px;
+  }
+  
+  .project-card.project-showcase {
+    min-height: 200px;
+  }
+}
+
+/* Desktop optimizations for single-page layout */
+@media (min-width: 1024px) and (max-height: 768px) {
+  /* Compact layout for shorter screens */
+  .project-card {
+    font-size: 0.9rem;
+  }
+  
+  .project-card h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .project-card .card-description {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  /* Larger screens can handle more spacing */
+  .project-card {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  /* Extra large screens */
+  .project-card {
+    font-size: 1.1rem;
   }
 }

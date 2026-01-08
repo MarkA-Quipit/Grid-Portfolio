@@ -56,62 +56,118 @@ const SocialFooter: React.FC = () => {
     <>
       <style dangerouslySetInnerHTML={{ __html: blinkStyle }} />
       <TooltipProvider delayDuration={300}>
-      <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 md:p-3.5 md:rounded-md bg-gray-900">
-        <div className="social-content relative z-[2] text-white w-full grid grid-cols-4 gap-4 items-center">
-          {/* Column 1: Decorative Lines */}
-          <div className="flex flex-col items-start justify-center gap-3 w-full">
-            <div className="h-px w-full bg-gradient-to-r from-transparent to-cyan-400/50"></div>
-            <div className="h-px w-3/4 bg-gradient-to-r from-transparent to-cyan-400/30"></div>
-          </div>
-          
-          {/* Column 2: Connect with me text */}
-          <div className="text-left">
-            <h3 className="text-xl font-bold text-cyan-300 mb-1">Connect with me:</h3>
-            <p className="text-sm text-gray-300 opacity-90">
-              Feel free to reach out via email or check my GitHub/LinkedIn.
-            </p>
-          </div>
-          
-          {/* Column 3: Social Icons */}
-          <div className="flex items-center gap-4 justify-center">
-            {socialLinks.map((link, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a
-                      href={link.name === 'Email' ? '#' : link.url}
-                      target={link.name === 'Email' ? '_self' : '_blank'}
-                      rel={link.name === 'Email' ? '' : 'noopener noreferrer'}
-                      onClick={link.name === 'Email' ? handleEmailClick : undefined}
-                      className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
+      <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
+        <div className="social-content relative z-[2] text-white w-full">
+          {/* Mobile Layout (below lg) */}
+          <div className="lg:hidden flex flex-col space-y-3 sm:space-y-4">
+            {/* Connect text */}
+            <div className="text-center">
+              <h3 className="text-lg sm:text-xl font-bold text-cyan-300 mb-1 sm:mb-2">Connect with me:</h3>
+              <p className="text-xs sm:text-sm text-gray-300 opacity-90">
+                Feel free to reach out via email or check my GitHub/LinkedIn.
+              </p>
+            </div>
+            
+            {/* Social Icons */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
+              {socialLinks.map((link, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={link.name === 'Email' ? '#' : link.url}
+                        target={link.name === 'Email' ? '_self' : '_blank'}
+                        rel={link.name === 'Email' ? '' : 'noopener noreferrer'}
+                        onClick={link.name === 'Email' ? handleEmailClick : undefined}
+                        className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
+                      >
+                        {link.icon}
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      sideOffset={8}
+                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
                     >
-                      {link.icon}
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent 
-                    side="top" 
-                    sideOffset={8}
-                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
-                  >
-                    <p className="font-medium">{link.name}</p>
-                  </TooltipContent>
-                </Tooltip>
-                {link.name === 'Email' && (
-                  <div className="flex flex-col text-sm text-cyan-300 font-medium whitespace-nowrap">
-                    <span>Got work for me?</span>
-                    <span className="text-xs text-gray-300 opacity-80">Email me</span>
-                  </div>
-                )}
-              </div>
-            ))}
+                      <p className="font-medium">{link.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  {link.name === 'Email' && (
+                    <div className="flex flex-col text-xs sm:text-sm text-cyan-300 font-medium whitespace-nowrap">
+                      <span>Got work for me?</span>
+                      <span className="text-xs text-gray-300 opacity-80">Email me</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Copyright */}
+            <div className="text-center">
+              <p className="text-xs sm:text-sm text-gray-300 opacity-90 flex items-center justify-center">
+                © 2026 Mark Aldrin Quipit
+                <span className="inline-block w-0.5 h-3 sm:h-4 bg-cyan-300 animate-[blink_1s_infinite] ml-1"></span>
+              </p>
+            </div>
           </div>
-          
-          {/* Column 4: Copyright with blinking cursor */}
-          <div className="text-right">
-            <p className="text-sm text-gray-300 opacity-90 flex items-center justify-end">
-              © 2026 Mark Aldrin Quipit
-              <span className="inline-block w-0.5 h-4 bg-cyan-300 animate-[blink_1s_infinite]"></span>
-            </p>
+
+          {/* Desktop Layout (lg and above) */}
+          <div className="hidden lg:grid lg:grid-cols-4 lg:gap-4 lg:items-center">
+            {/* Column 1: Decorative Lines */}
+            <div className="flex flex-col items-start justify-center gap-3 w-full">
+              <div className="h-px w-full bg-gradient-to-r from-transparent to-cyan-400/50"></div>
+              <div className="h-px w-3/4 bg-gradient-to-r from-transparent to-cyan-400/30"></div>
+            </div>
+            
+            {/* Column 2: Connect with me text */}
+            <div className="text-left">
+              <h3 className="text-xl font-bold text-cyan-300 mb-1">Connect with me:</h3>
+              <p className="text-sm text-gray-300 opacity-90">
+                Feel free to reach out via email or check my GitHub/LinkedIn.
+              </p>
+            </div>
+            
+            {/* Column 3: Social Icons */}
+            <div className="flex items-center gap-4 justify-center">
+              {socialLinks.map((link, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={link.name === 'Email' ? '#' : link.url}
+                        target={link.name === 'Email' ? '_self' : '_blank'}
+                        rel={link.name === 'Email' ? '' : 'noopener noreferrer'}
+                        onClick={link.name === 'Email' ? handleEmailClick : undefined}
+                        className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
+                      >
+                        {link.icon}
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      sideOffset={8}
+                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
+                    >
+                      <p className="font-medium">{link.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  {link.name === 'Email' && (
+                    <div className="flex flex-col text-sm text-cyan-300 font-medium whitespace-nowrap">
+                      <span>Got work for me?</span>
+                      <span className="text-xs text-gray-300 opacity-80">Email me</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Column 4: Copyright with blinking cursor */}
+            <div className="text-right">
+              <p className="text-sm text-gray-300 opacity-90 flex items-center justify-end">
+                © 2026 Mark Aldrin Quipit
+                <span className="inline-block w-0.5 h-4 bg-cyan-300 animate-[blink_1s_infinite]"></span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -88,9 +88,9 @@ ${formData.message}`;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-gray-900 border border-cyan-500/40 text-white z-[9999]">
+      <DialogContent className="sm:max-w-md max-w-[95vw] bg-gray-900 border border-cyan-500/40 text-white z-[9999] mx-4">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-cyan-300 mb-2">
+          <DialogTitle className="text-lg sm:text-xl font-bold text-cyan-300 mb-2">
             Get in Touch
           </DialogTitle>
           <DialogDescription className="text-sm text-gray-300 mb-4">
