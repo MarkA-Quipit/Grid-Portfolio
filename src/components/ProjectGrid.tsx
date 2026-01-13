@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import TechStack from './TechStack';
+import FigmaProjects from './FigmaProjects';
 import References from './References';
 import SocialFooter from './SocialFooter';
 import './ProjectGrid.css';
@@ -79,6 +80,12 @@ const ProjectGrid: React.FC = () => {
           description=""
         />
         
+        {/* Figma Projects - Independent Component */}
+        <FigmaProjects 
+          title="Figma Projects"
+          description=""
+        />
+        
         {/* Social Footer - Independent Component */}
         <SocialFooter />
       </div>
@@ -132,7 +139,15 @@ const ProjectGrid: React.FC = () => {
           />
         </div>
 
-        {/* References - Fifth on mobile */}
+        {/* Figma Projects - Fifth on mobile */}
+        <div className="w-full flex-shrink-0">
+          <FigmaProjects 
+            title="Figma Projects"
+            description=""
+          />
+        </div>
+
+        {/* References - Sixth on mobile */}
         <div className="w-full flex-shrink-0">
           <References />
         </div>

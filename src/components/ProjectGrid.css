@@ -28,11 +28,17 @@
 
   /* Tech Stack - Independent Component (5th position) */
   .tech-stack {
-    grid-column: 3 / 7;
+    grid-column: 3 / 5;
     grid-row: 5 / 6;
   }
 
-  /* Social Footer - Independent Component (6th position) */
+  /* Figma Projects - Independent Component (6th position) */
+  .figma-projects {
+    grid-column: 5 / 7;
+    grid-row: 5 / 6;
+  }
+
+  /* Social Footer - Independent Component (7th position) */
   .social-footer {
     grid-column: 1 / 7;
     grid-row: 6 / 7;
@@ -46,6 +52,7 @@
   .project-card:nth-child(3),
   .references-section,
   .tech-stack,
+  .figma-projects,
   .social-footer {
     grid-column: unset;
     grid-row: unset;
