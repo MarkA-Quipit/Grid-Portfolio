@@ -1,11 +1,5 @@
 import React from 'react';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip"
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -118,60 +112,58 @@ const FigmaProjects: React.FC<FigmaProjectsProps> = ({
   ];
 
   return (
-    <TooltipProvider delayDuration={300}>
-      <div className="figma-projects rounded-lg border border-purple-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
-        <div className="figma-content relative z-[2] text-white h-full flex flex-col">
-          {/* Title with horizontal lines on both sides */}
-          <div className="mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 flex items-center w-full">
-            <div className="flex-1 h-px bg-gradient-to-l from-purple-400/50 to-transparent"></div>
-            <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-purple-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4">{title}</h2>
-            <div className="flex-1 h-px bg-gradient-to-r from-purple-400/50 to-transparent"></div>
-          </div>
-          {description && (
-            <p className="figma-description leading-relaxed opacity-90 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
-          )}
-          
-          {/* Figma projects carousel */}
-          <div className="flex-1 relative min-h-0">
-            <Carousel
-              className="w-full h-full"
-              opts={{
-                align: "start",
-                loop: true,
-                slidesToScroll: 1,
-              }}
-            >
-              <CarouselContent className="h-full">
-                {figmaProjects.slice(0, 6).map((project) => (
-                  <CarouselItem key={project.id} className="basis-full lg:basis-1/2 h-full">
-                    <div className="w-full h-full bg-gray-800 border border-purple-500/30 rounded-lg hover:bg-gray-700 transition-all duration-300 group cursor-pointer relative overflow-hidden p-4 flex flex-col justify-center items-center text-center">
-                      {/* Figma icon */}
-                      <div className="w-16 h-16 bg-purple-400 rounded-lg flex items-center justify-center mb-4">
-                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M15.5 2A8.5 8.5 0 0 0 7 10.5v3A8.5 8.5 0 0 0 15.5 22h3A8.5 8.5 0 0 0 27 13.5v-3A8.5 8.5 0 0 0 18.5 2h-3zM15.5 4h3A6.5 6.5 0 0 1 25 10.5v3A6.5 6.5 0 0 1 18.5 20h-3A6.5 6.5 0 0 1 9 13.5v-3A6.5 6.5 0 0 1 15.5 4z"/>
-                        </svg>
-                      </div>
-                      
-                      {/* Project info */}
-                      <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors duration-300 mb-2">
-                        {project.name}
-                      </h3>
-                      <p className="text-sm text-gray-300 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed">
-                        {project.description}
-                      </p>
+    <div className="figma-projects rounded-lg border border-purple-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full max-h-full">
+      <div className="figma-content relative z-[2] text-white h-full flex flex-col max-h-full">
+        {/* Title with horizontal lines on both sides */}
+        <div className="mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 flex items-center w-full flex-shrink-0">
+          <div className="flex-1 h-px bg-gradient-to-l from-purple-400/50 to-transparent"></div>
+          <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-purple-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4 whitespace-nowrap">{title}</h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-purple-400/50 to-transparent"></div>
+        </div>
+        {description && (
+          <p className="figma-description leading-relaxed opacity-90 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 flex-shrink-0">{description}</p>
+        )}
+        
+        {/* Figma projects carousel - constrained to remaining space */}
+        <div className="flex-1 relative min-h-0 max-h-full overflow-hidden">
+          <Carousel
+            className="w-full h-full"
+            opts={{
+              align: "start",
+              loop: true,
+              slidesToScroll: 1,
+            }}
+          >
+            <CarouselContent className="h-full">
+              {figmaProjects.slice(0, 6).map((project) => (
+                <CarouselItem key={project.id} className="basis-full lg:basis-1/2 h-full">
+                  <div className="w-full h-full bg-gray-800 border border-purple-500/30 rounded-lg hover:bg-gray-700 transition-all duration-300 group cursor-pointer relative overflow-hidden p-3 lg:p-2 xl:p-3 flex flex-col justify-center items-center text-center">
+                    {/* Figma icon - responsive sizing */}
+                    <div className="w-12 h-12 lg:w-10 lg:h-10 xl:w-12 xl:h-12 bg-purple-400 rounded-lg flex items-center justify-center mb-2 lg:mb-1 xl:mb-2 flex-shrink-0">
+                      <svg className="w-6 h-6 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.5 2A8.5 8.5 0 0 0 7 10.5v3A8.5 8.5 0 0 0 15.5 22h3A8.5 8.5 0 0 0 27 13.5v-3A8.5 8.5 0 0 0 18.5 2h-3zM15.5 4h3A6.5 6.5 0 0 1 25 10.5v3A6.5 6.5 0 0 1 18.5 20h-3A6.5 6.5 0 0 1 9 13.5v-3A6.5 6.5 0 0 1 15.5 4z"/>
+                      </svg>
                     </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
+                    
+                    {/* Project info - responsive text sizing */}
+                    <h3 className="text-base lg:text-sm xl:text-base font-bold text-white group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1 leading-tight">
+                      {project.name}
+                    </h3>
+                    <p className="text-xs lg:text-xs xl:text-sm text-gray-300 group-hover:text-gray-200 transition-colors duration-300 leading-tight line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
 
-              {/* Navigation buttons */}
-              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 bg-gray-800/80 border border-gray-600 text-gray-300 rounded-full hover:bg-gray-700 hover:text-purple-300 transition-all duration-300" />
-              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 bg-gray-800/80 border border-gray-600 text-gray-300 rounded-full hover:bg-gray-700 hover:text-purple-300 transition-all duration-300" />
-            </Carousel>
-          </div>
+            {/* Navigation buttons - positioned to stay within bounds */}
+            <CarouselPrevious className="absolute left-1 lg:left-0.5 xl:left-1 top-1/2 -translate-y-1/2 h-8 w-8 lg:h-6 lg:w-6 xl:h-8 xl:w-8 bg-gray-800/80 border border-gray-600 text-gray-300 rounded-full hover:bg-gray-700 hover:text-purple-300 transition-all duration-300 z-10" />
+            <CarouselNext className="absolute right-1 lg:right-0.5 xl:right-1 top-1/2 -translate-y-1/2 h-8 w-8 lg:h-6 lg:w-6 xl:h-8 xl:w-8 bg-gray-800/80 border border-gray-600 text-gray-300 rounded-full hover:bg-gray-700 hover:text-purple-300 transition-all duration-300 z-10" />
+          </Carousel>
         </div>
       </div>
-    </TooltipProvider>
+    </div>
   );
 };
 
