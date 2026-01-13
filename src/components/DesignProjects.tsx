@@ -36,7 +36,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
       tools: ['Figma', 'Auto Layout', 'Components', 'Animated', 'Prototyping'],
       duration: '2 Months',
       status: 'Completed',
-      thumbnail: '/images/figma-dashboard.jpg',
+      thumbnail: '/images/Mango-Avenue-Logo.png',
       link: 'https://www.figma.com/design/e8rp8CUkahuw9V4Z49q8L5/HCI-HI-FI?node-id=0-1&t=Qr8SB6UcBGbdbys6-1',
       prototypeLink: 'https://www.figma.com/proto/e8rp8CUkahuw9V4Z49q8L5/HCI-HI-FI?node-id=0-1&t=Qr8SB6UcBGbdbys6-1'
     },
@@ -48,7 +48,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
       tools: ['Figma', 'Auto Layout', 'Components', 'Prototyping'],
       duration: '1 month',
       status: 'Completed',
-      thumbnail: '/images/figma-ecommerce.jpg',
+      thumbnail: '/images/SMMC-Logo.png',
       link: 'https://www.figma.com/design/btTxWyahoxnDvU35iCJeDe/Capstone-UI?node-id=0-1&t=y8IOpHej7uXN4Zf3-1',
       prototypeLink: 'https://www.figma.com/proto/btTxWyahoxnDvU35iCJeDe/Capstone-UI?node-id=0-1&t=y8IOpHej7uXN4Zf3-1'
     }
@@ -74,11 +74,13 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
               <PopoverTrigger asChild>
                 <button className="design-project-card bg-gray-800 rounded-md border border-cyan-500/20 p-2 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left group">
                   <div className="flex items-center space-x-2 lg:space-x-1.5 xl:space-x-2 w-full">
-                    {/* Design icon */}
-                    <div className="w-8 h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8 bg-cyan-400 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-300 transition-colors duration-300">
-                      <svg className="w-4 h-4 lg:w-3 lg:h-3 xl:w-4 xl:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5zM21 15a2 2 0 00-2-2h-4a2 2 0 00-2 2v2a4 4 0 004 4h2a2 2 0 002-2v-2z" />
-                      </svg>
+                    {/* Project logo */}
+                    <div className="w-8 h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+                      <img
+                        src={project.thumbnail}
+                        alt={`${project.name} logo`}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     
                     {/* Project info */}
@@ -100,11 +102,23 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                 className="w-72 sm:w-80 bg-gray-800 border border-cyan-500/30 text-white p-3 sm:p-4 shadow-lg z-50"
               >
                 <div className="space-y-2 sm:space-y-3">
-                  <div className="space-y-0">
-                    <h5 className="text-xl sm:text-2xl font-semibold text-white leading-tight">{project.name}</h5>
-                    <h6 className="text-cyan-300 font-medium text-lg leading-tight">
-                      {project.category}
-                    </h6>
+                  {/* Header with title/subtitle on left and thumbnail on right */}
+                  <div className="flex items-start gap-3">
+                    <div className="flex-1 space-y-0">
+                      <h5 className="text-xl sm:text-2xl font-semibold text-white leading-tight">{project.name}</h5>
+                      <h6 className="text-cyan-300 font-medium text-lg leading-tight">
+                        {project.category}
+                      </h6>
+                    </div>
+                    
+                    {/* Project thumbnail on the right */}
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
+                      <img
+                        src={project.thumbnail}
+                        alt={`${project.name} logo`}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
                   </div>
                   
                   <div className="space-y-2">
