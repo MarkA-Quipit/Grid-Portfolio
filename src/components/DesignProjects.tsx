@@ -75,7 +75,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                 <button className="design-project-card bg-gray-800 rounded-md border border-cyan-500/20 p-2 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left group">
                   <div className="flex items-center space-x-2 lg:space-x-1.5 xl:space-x-2 w-full">
                     {/* Project logo */}
-                    <div className="w-8 h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+                    <div className="w-8 h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-white group-hover:bg-gray-100 transition-colors duration-300">
                       <img
                         src={project.thumbnail}
                         alt={`${project.name} logo`}
@@ -112,7 +112,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                     </div>
                     
                     {/* Project thumbnail on the right */}
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-700 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
                       <img
                         src={project.thumbnail}
                         alt={`${project.name} logo`}
