@@ -406,15 +406,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isPersonalSection) {
     return (
-      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
+      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-3 xl:p-4 2xl:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
         <div className="card-content relative z-[2] text-white">
           {/* Name and Download CV Button - Responsive layout */}
-          <div className="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-4 lg:gap-2 xl:gap-3 2xl:gap-4">
-            <h3 className="text-3xl sm:text-4xl lg:text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h3>
+          <div className="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-5 lg:mb-2 xl:mb-3 2xl:mb-4 gap-3 sm:gap-5 lg:gap-1 xl:gap-2 2xl:gap-3">
+            <h1 className="text-4xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h1>
             <a
               href="/file/MarkAldrin-Quipit-CV.pdf"
               download="MarkAldrin-Quipit-CV.pdf"
-              className="bg-cyan-600 hover:bg-cyan-700 text-white text-sm sm:text-base lg:text-sm xl:text-base font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 flex-shrink-0 self-start sm:self-auto leading-snug"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white text-sm sm:text-base lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 lg:gap-1 xl:gap-2 flex-shrink-0 self-start sm:self-auto leading-snug"
             >
               <svg className="w-3 sm:w-4 lg:w-3 xl:w-4 h-3 sm:h-4 lg:h-3 xl:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -422,7 +422,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               Download CV
             </a>
           </div>
-          <p className="card-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-xl mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5">
+          <p className="card-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-3 sm:mb-4 lg:mb-1 xl:mb-2 2xl:mb-3">
             I am a <span className="text-cyan-300 font-bold">full-stack developer</span> with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems.
           </p>
         </div>
