@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import TechStack from './TechStack';
+import DesignProjects from './DesignProjects';
 import References from './References';
 import SocialFooter from './SocialFooter';
 import './ProjectGrid.css';
@@ -12,10 +13,8 @@ interface Project {
   link: string;
   size: 'large-vertical' | 'medium-horizontal' | 'small-square' | 'wide-horizontal';
   isImagePlaceholder?: boolean;
-  imageSrc?: string;
   isPersonalSection?: boolean;
   personalName?: string;
-  personalSummary?: string;
   isProjectShowcase?: boolean;
 }
 
@@ -27,8 +26,7 @@ const ProjectGrid: React.FC = () => {
       description: "Full-stack React application with payment integration and admin dashboard",
       link: "#",
       size: "large-vertical",
-      isImagePlaceholder: true,
-      imageSrc: "/images/473652273_1272421347381392_8984096361405809779_n.jpg"
+      isImagePlaceholder: true
     },
     {
       id: 2,
@@ -37,8 +35,7 @@ const ProjectGrid: React.FC = () => {
       link: "#",
       size: "medium-horizontal",
       isPersonalSection: true,
-      personalName: "Mark Aldrin M. Quipit",
-      personalSummary: "I am a full-stack developer with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems."
+      personalName: "Mark Aldrin M. Quipit"
     },
     {
       id: 3,
@@ -62,10 +59,8 @@ const ProjectGrid: React.FC = () => {
             link={project.link}
             size={project.size}
             isImagePlaceholder={project.isImagePlaceholder}
-            imageSrc={project.imageSrc}
             isPersonalSection={project.isPersonalSection}
             personalName={project.personalName}
-            personalSummary={project.personalSummary}
             isProjectShowcase={project.isProjectShowcase}
           />
         ))}
@@ -76,6 +71,12 @@ const ProjectGrid: React.FC = () => {
         {/* Tech Stack - Independent Component */}
         <TechStack 
           title="Tech Stack"
+          description=""
+        />
+        
+        {/* Design Projects - Independent Component */}
+        <DesignProjects 
+          title="Design Projects"
           description=""
         />
         
@@ -95,7 +96,6 @@ const ProjectGrid: React.FC = () => {
             size="wide-horizontal"
             isPersonalSection={projects[1].isPersonalSection}
             personalName={projects[1].personalName}
-            personalSummary={projects[1].personalSummary}
           />
         </div>
 
@@ -108,7 +108,6 @@ const ProjectGrid: React.FC = () => {
             link={projects[0].link}
             size="small-square"
             isImagePlaceholder={projects[0].isImagePlaceholder}
-            imageSrc={projects[0].imageSrc}
           />
         </div>
 
@@ -132,7 +131,15 @@ const ProjectGrid: React.FC = () => {
           />
         </div>
 
-        {/* References - Fifth on mobile */}
+        {/* Design Projects - Fifth on mobile */}
+        <div className="w-full flex-shrink-0">
+          <DesignProjects 
+            title="Design Projects"
+            description=""
+          />
+        </div>
+
+        {/* References - Sixth on mobile */}
         <div className="w-full flex-shrink-0">
           <References />
         </div>
