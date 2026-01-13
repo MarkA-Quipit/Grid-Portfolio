@@ -83,12 +83,12 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                     
                     {/* Project info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg sm:text-xl lg:text-base xl:text-lg font-bold text-white leading-tight group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1 truncate">
+                      <h5 className="text-lg sm:text-xl lg:text-base xl:text-lg font-semibold text-white leading-tight group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1 truncate">
                         {project.name}
-                      </h3>
-                      <p className="text-base sm:text-lg lg:text-sm xl:text-base text-purple-300 font-medium leading-snug">
+                      </h5>
+                      <h6 className="text-base sm:text-lg lg:text-sm xl:text-base text-purple-300 font-medium leading-snug">
                         {project.category}
-                      </p>
+                      </h6>
                     </div>
                   </div>
                 </button>
@@ -101,10 +101,10 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
               >
                 <div className="space-y-2 sm:space-y-3">
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">{project.name}</h3>
-                    <p className="text-purple-300 font-medium text-lg leading-snug">
+                    <h5 className="text-xl sm:text-2xl font-semibold text-white leading-tight">{project.name}</h5>
+                    <h6 className="text-purple-300 font-medium text-lg leading-snug">
                       {project.category}
-                    </p>
+                    </h6>
                   </div>
                   
                   <div className="space-y-2">

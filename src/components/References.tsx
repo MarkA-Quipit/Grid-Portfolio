@@ -40,14 +40,14 @@ const References: React.FC = () => {
       </div>
 
       {/* Responsive layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-1.5 xl:gap-2 2xl:gap-4 flex-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-2 xl:gap-2 2xl:gap-3 flex-1">
         {references.map((reference, index) => (
           <Popover key={index}>
             <PopoverTrigger asChild>
-              <button className="reference-card bg-gray-800 rounded-md border border-cyan-500/20 p-2 sm:p-3 lg:p-1.5 xl:p-2 2xl:p-3 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left">
+              <button className="reference-card bg-gray-800 rounded-md border border-cyan-500/20 p-2 sm:p-3 lg:p-2 xl:p-2 2xl:p-3 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left h-full flex flex-col justify-center">
                 <div className="space-y-1 lg:space-y-0.5 xl:space-y-1">
-                  <h3 className="text-lg sm:text-xl lg:text-base xl:text-lg font-bold text-white leading-tight">{reference.name}</h3>
-                  <p className="text-cyan-300 font-medium text-base sm:text-lg lg:text-sm xl:text-base leading-snug">{reference.title}</p>
+                  <h5 className="text-lg sm:text-xl lg:text-base xl:text-lg 2xl:text-xl font-semibold text-white leading-tight">{reference.name}</h5>
+                  <h6 className="text-cyan-300 font-medium text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-lg leading-snug">{reference.title}</h6>
                 </div>
               </button>
             </PopoverTrigger>
@@ -59,10 +59,10 @@ const References: React.FC = () => {
             >
               <div className="space-y-2 sm:space-y-3">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">{reference.name}</h3>
-                  <p className="text-cyan-300 font-medium text-lg leading-snug">
+                  <h5 className="text-xl sm:text-2xl font-semibold text-white leading-tight">{reference.name}</h5>
+                  <h6 className="text-cyan-300 font-medium text-lg leading-snug">
                     {reference.title}
-                  </p>
+                  </h6>
                 </div>
                 
                 <div className="space-y-2">

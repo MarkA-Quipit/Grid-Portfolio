@@ -200,10 +200,8 @@ interface ProjectCardProps {
   link: string;
   size: 'large-vertical' | 'medium-horizontal' | 'small-square' | 'wide-horizontal';
   isImagePlaceholder?: boolean;
-  imageSrc?: string;
   isPersonalSection?: boolean;
   personalName?: string;
-  personalSummary?: string;
   isProjectShowcase?: boolean;
 }
 
@@ -213,10 +211,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   link,
   size,
   isImagePlaceholder,
-  imageSrc,
   isPersonalSection,
   personalName,
-  personalSummary,
   isProjectShowcase
 }) => {
   // Array of Mark Quipit photos for cycling animation
