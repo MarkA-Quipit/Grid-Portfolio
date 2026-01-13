@@ -83,7 +83,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                     
                     {/* Project info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm font-bold text-white leading-tight group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1">
+                      <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm font-bold text-white leading-tight group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1 truncate">
                         {project.name}
                       </h3>
                       <p className="text-xs lg:text-xs xl:text-xs text-purple-300 font-medium">
