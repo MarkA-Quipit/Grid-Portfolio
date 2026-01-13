@@ -15,6 +15,7 @@ interface FigmaProject {
   status: string;
   thumbnail: string;
   link: string;
+  prototypeLink: string;
 }
 
 interface FigmaProjectsProps {
@@ -36,7 +37,8 @@ const FigmaProjects: React.FC<FigmaProjectsProps> = ({
       duration: '6 weeks',
       status: 'Completed',
       thumbnail: '/images/figma-ecommerce.jpg',
-      link: 'https://figma.com/file/ecommerce-platform'
+      link: 'https://figma.com/file/ecommerce-platform',
+      prototypeLink: 'https://figma.com/proto/ecommerce-platform'
     },
     {
       id: 2,
@@ -47,7 +49,8 @@ const FigmaProjects: React.FC<FigmaProjectsProps> = ({
       duration: '4 weeks',
       status: 'Completed',
       thumbnail: '/images/figma-dashboard.jpg',
-      link: 'https://figma.com/file/saas-dashboard'
+      link: 'https://figma.com/file/saas-dashboard',
+      prototypeLink: 'https://figma.com/proto/saas-dashboard'
     },
     {
       id: 3,
@@ -58,7 +61,8 @@ const FigmaProjects: React.FC<FigmaProjectsProps> = ({
       duration: '8 weeks',
       status: 'In Progress',
       thumbnail: '/images/figma-banking.jpg',
-      link: 'https://figma.com/file/mobile-banking'
+      link: 'https://figma.com/file/mobile-banking',
+      prototypeLink: 'https://figma.com/proto/mobile-banking'
     },
     {
       id: 4,
@@ -69,7 +73,8 @@ const FigmaProjects: React.FC<FigmaProjectsProps> = ({
       duration: '5 weeks',
       status: 'Completed',
       thumbnail: '/images/figma-food-delivery.jpg',
-      link: 'https://figma.com/file/food-delivery'
+      link: 'https://figma.com/file/food-delivery',
+      prototypeLink: 'https://figma.com/proto/food-delivery'
     }
   ];
 
@@ -161,12 +166,20 @@ const FigmaProjects: React.FC<FigmaProjectsProps> = ({
                     </div>
                   </div>
                   
-                  <div className="pt-2">
+                  <div className="pt-2 space-y-2">
+                    <a
+                      href={project.prototypeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-sm inline-block"
+                    >
+                      View Prototype
+                    </a>
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-sm inline-block"
+                      className="w-full bg-gray-700 hover:bg-gray-600 border border-purple-500/30 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-sm inline-block flex items-center justify-center gap-2"
                     >
                       View in Figma
                     </a>
