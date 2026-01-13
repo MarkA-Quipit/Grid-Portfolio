@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import TechStack from './TechStack';
-import DesignProjects from './FigmaProjects';
+import DesignProjects from './DesignProjects';
 import References from './References';
 import SocialFooter from './SocialFooter';
 import './ProjectGrid.css';
