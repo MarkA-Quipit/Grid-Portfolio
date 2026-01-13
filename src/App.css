@@ -1,5 +1,35 @@
 /* Only keeping complex/unique CSS that can't be easily replicated with Tailwind */
 
+/* Subtle animated grid background */
+.animated-grid-bg {
+  position: relative;
+}
+
+.animated-grid-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridMove 5s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(30px, 30px);
+  }
+}
+
 /* Custom gradient backgrounds for project cards */
 .project-card:nth-child(1) {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
