@@ -410,7 +410,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="card-content relative z-[2] text-white">
           {/* Name and Download CV Button - Responsive layout */}
           <div className="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-4 lg:gap-2 xl:gap-3 2xl:gap-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
+            <h3 className="text-3xl sm:text-4xl lg:text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h3>
             <a
               href="/file/MarkAldrin-Quipit-CV.pdf"
               download="MarkAldrin-Quipit-CV.pdf"
@@ -439,7 +439,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
           <div className="card-content relative z-[2] text-white">
             <div className="mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">
-              <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-cyan-300 leading-tight">{title}</h2>
+              <h3 className="text-2xl sm:text-3xl lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-cyan-300 leading-tight">{title}</h3>
             </div>
             <p className={`card-description leading-relaxed opacity-90 ${size === 'large-vertical' ? 'text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-xl mb-4 sm:mb-5 lg:mb-3 xl:mb-4 2xl:mb-6' : size === 'small-square' ? 'text-sm sm:text-base lg:text-sm xl:text-base mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3' : 'text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-xl mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5'}`}>{description}</p>
             <span className="card-link text-cyan-300 no-underline font-semibold text-base sm:text-lg lg:text-base xl:text-lg inline-flex items-center transition-all duration-300 border-b border-transparent hover:border-cyan-300 hover:translate-x-1 hover:text-cyan-100 leading-snug">
