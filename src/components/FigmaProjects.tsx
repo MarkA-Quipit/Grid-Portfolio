@@ -24,57 +24,33 @@ interface FigmaProjectsProps {
 }
 
 const FigmaProjects: React.FC<FigmaProjectsProps> = ({
-  title = "Figma Projects",
+  title = "Design Projects",
   description = ""
 }) => {
   const figmaProjects: FigmaProject[] = [
     {
       id: 1,
-      name: 'E-Commerce Platform',
-      description: 'Complete design system for online shopping with product catalogs, checkout flows, and user dashboards',
-      category: 'Web Design',
-      tools: ['Figma', 'Auto Layout', 'Components', 'Prototyping'],
-      duration: '6 weeks',
+      name: 'Mango Avenue',
+      description: 'Complete Figma mobile design for Mango Avenue, featuring fully interactable screens for browsing, product selection, and checkout flows.',
+      category: 'Mobile App Design',
+      tools: ['Figma'],
+      duration: '2 Months',
       status: 'Completed',
-      thumbnail: '/images/figma-ecommerce.jpg',
-      link: 'https://figma.com/file/ecommerce-platform',
-      prototypeLink: 'https://figma.com/proto/ecommerce-platform'
+      thumbnail: '/images/figma-dashboard.jpg',
+      link: 'https://www.figma.com/design/e8rp8CUkahuw9V4Z49q8L5/HCI-HI-FI?node-id=0-1&t=Qr8SB6UcBGbdbys6-1',
+      prototypeLink: 'https://www.figma.com/proto/e8rp8CUkahuw9V4Z49q8L5/HCI-HI-FI?node-id=0-1&t=Qr8SB6UcBGbdbys6-1'
     },
     {
       id: 2,
-      name: 'SaaS Dashboard',
-      description: 'Modern admin dashboard with data visualization, analytics charts, and user management interfaces',
-      category: 'Dashboard Design',
-      tools: ['Figma', 'Data Visualization', 'Design System', 'Responsive Design'],
-      duration: '4 weeks',
+      name: 'Agricultural E-Commerce System – Initial Design',
+      description: 'Complete Figma design system for an agricultural e-commerce platform, featuring admin and customer dashboards, product catalogs, order placement and tracking, and checkout flows.',
+      category: 'Web Design',
+      tools: ['Figma', 'Auto Layout', 'Components', 'Prototyping'],
+      duration: '1 month',
       status: 'Completed',
-      thumbnail: '/images/figma-dashboard.jpg',
-      link: 'https://figma.com/file/saas-dashboard',
-      prototypeLink: 'https://figma.com/proto/saas-dashboard'
-    },
-    {
-      id: 3,
-      name: 'Mobile Banking App',
-      description: 'iOS and Android banking app with secure authentication, transaction history, and payment features',
-      category: 'Mobile App Design',
-      tools: ['Figma', 'Mobile UI', 'Prototyping', 'User Flow'],
-      duration: '8 weeks',
-      status: 'In Progress',
-      thumbnail: '/images/figma-banking.jpg',
-      link: 'https://figma.com/file/mobile-banking',
-      prototypeLink: 'https://figma.com/proto/mobile-banking'
-    },
-    {
-      id: 4,
-      name: 'Food Delivery App',
-      description: 'Restaurant discovery and food ordering app with real-time tracking and payment integration',
-      category: 'Mobile App Design',
-      tools: ['Figma', 'Interactive Prototypes', 'Micro-interactions', 'User Testing'],
-      duration: '5 weeks',
-      status: 'Completed',
-      thumbnail: '/images/figma-food-delivery.jpg',
-      link: 'https://figma.com/file/food-delivery',
-      prototypeLink: 'https://figma.com/proto/food-delivery'
+      thumbnail: '/images/figma-ecommerce.jpg',
+      link: 'https://www.figma.com/design/btTxWyahoxnDvU35iCJeDe/Capstone-UI?node-id=0-1&t=y8IOpHej7uXN4Zf3-1',
+      prototypeLink: 'https://www.figma.com/proto/btTxWyahoxnDvU35iCJeDe/Capstone-UI?node-id=0-1&t=y8IOpHej7uXN4Zf3-1'
     }
   ];
 
