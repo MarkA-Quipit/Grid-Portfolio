@@ -56,7 +56,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
 
   return (
     <div className="design-projects rounded-lg border border-purple-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
-      <div className="design-content relative z-[2] text-white h-full flex flex-col items-center justify-center text-center">
+      <div className="design-content relative z-[2] text-white h-full flex flex-col text-center min-h-0">
       {/* Title with horizontal lines on both sides */}
       <div className="mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 flex items-center w-full">
         <div className="flex-1 h-px bg-gradient-to-l from-purple-400/50 to-transparent"></div>
@@ -68,12 +68,12 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
           )}
 
         {/* Design projects grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-1.5 xl:gap-2 2xl:gap-4 flex-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-1.5 xl:gap-2 2xl:gap-4 flex-1 w-full items-start">
           {designProjects.map((project) => (
             <Popover key={project.id}>
               <PopoverTrigger asChild>
                 <button className="design-project-card bg-gray-800 rounded-md border border-purple-500/20 p-2 sm:p-3 lg:p-1.5 xl:p-2 2xl:p-3 hover:border-purple-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left group">
-                  <div className="flex items-start space-x-2 lg:space-x-1.5 xl:space-x-2">
+                  <div className="flex items-center space-x-2 lg:space-x-1.5 xl:space-x-2 w-full">
                     {/* Design icon */}
                     <div className="w-8 h-8 lg:w-6 lg:h-6 xl:w-8 xl:h-8 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-purple-300 transition-colors duration-300">
                       <svg className="w-4 h-4 lg:w-3 lg:h-3 xl:w-4 xl:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
