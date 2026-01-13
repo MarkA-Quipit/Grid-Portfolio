@@ -82,20 +82,20 @@ const ProjectDialog: React.FC<{
             {/* Main Content */}
             <div className="p-3 sm:p-4 lg:p-5 xl:p-6">
               <DialogHeader className="mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
-                <DialogTitle className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl font-bold text-cyan-300 mb-2 sm:mb-3">
+                <DialogTitle className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-cyan-300 mb-2 sm:mb-3 leading-tight">
                   {projectData.name}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300 text-xs sm:text-sm md:text-sm lg:text-base leading-relaxed mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
+                <DialogDescription className="text-gray-300 text-base sm:text-lg md:text-lg lg:text-xl leading-relaxed mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
                   {projectData.description}
                 </DialogDescription>
               </DialogHeader>
 
               {/* Technologies Used - Responsive spacing */}
               <div className="mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
-                <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Technologies Used:</h5>
+                <h5 className="text-lg sm:text-xl lg:text-2xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
                 <div className="flex flex-wrap gap-1 sm:gap-1.5 lg:gap-2">
                   {technologiesUsed.map((tech, index) => (
-                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm border border-cyan-500/30">
+                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
                       {tech}
                     </span>
                   ))}
@@ -108,14 +108,14 @@ const ProjectDialog: React.FC<{
           {/* Project Details Card - Bottom on mobile/tablet, Right on desktop */}
           <div className="w-full xl:w-80 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 p-3 sm:p-4 lg:p-5 xl:p-6 space-y-2 sm:space-y-3 lg:space-y-4 relative overflow-y-auto xl:max-h-[90vh]">
             
-            <h4 className="text-base sm:text-lg lg:text-xl font-bold text-cyan-300 mb-2 sm:mb-3 lg:mb-4">Project Details</h4>
+            <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-300 mb-2 sm:mb-3 lg:mb-4 leading-tight">Project Details</h4>
 
             {/* Project Stats */}
             <div className="space-y-2 sm:space-y-3 lg:space-y-4">
               {projectStats.map((stat, index) => (
                 <div key={index} className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs sm:text-sm">{stat.label}:</span>
-                  <span className={`${stat.color} text-xs sm:text-sm font-medium`}>{stat.value}</span>
+                  <span className="text-gray-400 text-sm sm:text-base leading-tight">{stat.label}:</span>
+                  <span className={`${stat.color} text-sm sm:text-base font-medium leading-snug`}>{stat.value}</span>
                 </div>
               ))}
             </div>
@@ -124,12 +124,12 @@ const ProjectDialog: React.FC<{
 
             {/* Key Features */}
             <div>
-              <h5 className="text-sm sm:text-base lg:text-lg font-semibold text-cyan-300 mb-2 sm:mb-3">Key Features</h5>
-              <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2 text-xs sm:text-sm text-gray-300">
+              <h5 className="text-lg sm:text-xl lg:text-2xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Key Features</h5>
+              <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2 text-sm sm:text-base text-gray-300">
                 {keyFeatures.slice(0, 6).map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <span className="w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-cyan-400 rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-2"></span>
-                    <span className="leading-tight">{feature}</span>
+                    <span className="leading-snug">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -143,7 +143,7 @@ const ProjectDialog: React.FC<{
                 href={projectData.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-xs sm:text-sm lg:text-base"
+                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-base sm:text-lg lg:text-xl leading-snug"
               >
                 View Live Project
               </a>
@@ -151,7 +151,7 @@ const ProjectDialog: React.FC<{
                 href={projectData.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-xs sm:text-sm lg:text-base"
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-base sm:text-lg lg:text-xl leading-snug"
               >
                 View Code
               </a>
@@ -275,7 +275,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
                       {/* Overlaid title text */}
                       <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
-                        <h3 className="text-base sm:text-lg lg:text-xl font-black text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
                           {project.name}
                         </h3>
                       </div>
@@ -306,7 +306,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
                           {/* Overlaid title text */}
                           <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
-                            <h3 className="text-base sm:text-lg lg:text-xl font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                            <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
                               {project.name}
                             </h3>
                           </div>
@@ -410,11 +410,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="card-content relative z-[2] text-white">
           {/* Name and Download CV Button - Responsive layout */}
           <div className="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-4 lg:gap-2 xl:gap-3 2xl:gap-4">
-            <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h2>
             <a
               href="/file/MarkAldrin-Quipit-CV.pdf"
               download="MarkAldrin-Quipit-CV.pdf"
-              className="bg-cyan-600 hover:bg-cyan-700 text-white text-xs sm:text-sm lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 flex-shrink-0 self-start sm:self-auto"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white text-sm sm:text-base lg:text-sm xl:text-base font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 flex-shrink-0 self-start sm:self-auto leading-snug"
             >
               <svg className="w-3 sm:w-4 lg:w-3 xl:w-4 h-3 sm:h-4 lg:h-3 xl:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -422,7 +422,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               Download CV
             </a>
           </div>
-          <p className="card-description leading-relaxed opacity-90 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5">
+          <p className="card-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-xl mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5">
             I am a <span className="text-cyan-300 font-bold">full-stack developer</span> with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems.
           </p>
         </div>
@@ -439,10 +439,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className={`project-card ${size} rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
           <div className="card-content relative z-[2] text-white">
             <div className="mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">
-              <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-cyan-300">{title}</h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-cyan-300 leading-tight">{title}</h2>
             </div>
-            <p className={`card-description leading-relaxed opacity-90 ${size === 'large-vertical' ? 'text-sm sm:text-base lg:text-sm xl:text-base 2xl:text-lg mb-4 sm:mb-5 lg:mb-3 xl:mb-4 2xl:mb-6' : size === 'small-square' ? 'text-xs sm:text-sm lg:text-xs xl:text-sm mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3' : 'text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5'}`}>{description}</p>
-            <span className="card-link text-cyan-300 no-underline font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm inline-flex items-center transition-all duration-300 border-b border-transparent hover:border-cyan-300 hover:translate-x-1 hover:text-cyan-100">
+            <p className={`card-description leading-relaxed opacity-90 ${size === 'large-vertical' ? 'text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-xl mb-4 sm:mb-5 lg:mb-3 xl:mb-4 2xl:mb-6' : size === 'small-square' ? 'text-sm sm:text-base lg:text-sm xl:text-base mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3' : 'text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-xl mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-5'}`}>{description}</p>
+            <span className="card-link text-cyan-300 no-underline font-semibold text-base sm:text-lg lg:text-base xl:text-lg inline-flex items-center transition-all duration-300 border-b border-transparent hover:border-cyan-300 hover:translate-x-1 hover:text-cyan-100 leading-snug">
               View Project →
             </span>
           </div>

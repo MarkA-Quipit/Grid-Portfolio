@@ -36,11 +36,11 @@ const TechStack: React.FC<TechStackProps> = ({
           {/* Title with horizontal lines on both sides */}
           <div className="mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 flex items-center w-full">
             <div className="flex-1 h-px bg-gradient-to-l from-cyan-400/50 to-transparent"></div>
-            <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-cyan-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4">{title}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-cyan-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4 leading-tight">{title}</h2>
             <div className="flex-1 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"></div>
           </div>
           {description && (
-            <p className="tech-description leading-relaxed opacity-90 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
+            <p className="tech-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
           )}
           
           {/* Technology logos - Responsive grid */}
@@ -65,7 +65,7 @@ const TechStack: React.FC<TechStackProps> = ({
                   <TooltipContent 
                     side="top" 
                     sideOffset={8}
-                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
+                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg leading-tight"
                   >
                     <p className="font-medium">{tech.name}</p>
                   </TooltipContent>

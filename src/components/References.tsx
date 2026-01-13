@@ -35,7 +35,7 @@ const References: React.FC = () => {
     <div className="references-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
       {/* Title with horizontal line */}
       <div className="mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 flex items-center">
-        <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-cyan-300 mr-2 sm:mr-4 lg:mr-2 xl:mr-3 2xl:mr-4">References</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-cyan-300 mr-2 sm:mr-4 lg:mr-2 xl:mr-3 2xl:mr-4 leading-tight">References</h2>
         <div className="flex-1 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"></div>
       </div>
 
@@ -46,8 +46,8 @@ const References: React.FC = () => {
             <PopoverTrigger asChild>
               <button className="reference-card bg-gray-800 rounded-md border border-cyan-500/20 p-2 sm:p-3 lg:p-1.5 xl:p-2 2xl:p-3 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left">
                 <div className="space-y-1 lg:space-y-0.5 xl:space-y-1">
-                  <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm font-bold text-white leading-tight">{reference.name}</h3>
-                  <p className="text-cyan-300 font-medium text-xs lg:text-xs xl:text-xs">{reference.title}</p>
+                  <h3 className="text-lg sm:text-xl lg:text-base xl:text-lg font-bold text-white leading-tight">{reference.name}</h3>
+                  <p className="text-cyan-300 font-medium text-base sm:text-lg lg:text-sm xl:text-base leading-snug">{reference.title}</p>
                 </div>
               </button>
             </PopoverTrigger>
@@ -59,33 +59,33 @@ const References: React.FC = () => {
             >
               <div className="space-y-2 sm:space-y-3">
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-white">{reference.name}</h3>
-                  <p className="text-cyan-300 font-medium text-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">{reference.name}</h3>
+                  <p className="text-cyan-300 font-medium text-lg leading-snug">
                     {reference.title}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
                   <div>
-                    <p className="text-gray-400 text-xs uppercase tracking-wide">Organization</p>
-                    <p className="text-white text-sm">{reference.company}</p>
+                    <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Organization</p>
+                    <p className="text-white text-base leading-snug">{reference.company}</p>
                   </div>
                   
                   <div>
-                    <p className="text-gray-400 text-xs uppercase tracking-wide">Email</p>
+                    <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Email</p>
                     <a
                       href={`mailto:${reference.email}`}
-                      className="text-cyan-300 hover:text-cyan-200 transition-colors duration-200 text-sm underline"
+                      className="text-cyan-300 hover:text-cyan-200 transition-colors duration-200 text-base underline leading-snug"
                     >
                       {reference.email}
                     </a>
                   </div>
                   
                   <div>
-                    <p className="text-gray-400 text-xs uppercase tracking-wide">Phone</p>
+                    <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Phone</p>
                     <a
                       href={`tel:${reference.phone}`}
-                      className="text-cyan-300 hover:text-cyan-200 transition-colors duration-200 text-sm underline"
+                      className="text-cyan-300 hover:text-cyan-200 transition-colors duration-200 text-base underline leading-snug"
                     >
                       {reference.phone}
                     </a>

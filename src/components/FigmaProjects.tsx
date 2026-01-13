@@ -60,11 +60,11 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
       {/* Title with horizontal lines on both sides */}
       <div className="mb-2 sm:mb-3 lg:mb-1 xl:mb-2 2xl:mb-3 flex items-center w-full">
         <div className="flex-1 h-px bg-gradient-to-l from-purple-400/50 to-transparent"></div>
-        <h2 className="text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-purple-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4">{title}</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-purple-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4 leading-tight">{title}</h2>
         <div className="flex-1 h-px bg-gradient-to-r from-purple-400/50 to-transparent"></div>
       </div>
           {description && (
-            <p className="design-description leading-relaxed opacity-90 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
+            <p className="design-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
           )}
 
         {/* Design projects grid */}
@@ -83,10 +83,10 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                     
                     {/* Project info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm font-bold text-white leading-tight group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1 truncate">
+                      <h3 className="text-lg sm:text-xl lg:text-base xl:text-lg font-bold text-white leading-tight group-hover:text-purple-300 transition-colors duration-300 mb-1 lg:mb-0.5 xl:mb-1 truncate">
                         {project.name}
                       </h3>
-                      <p className="text-xs lg:text-xs xl:text-xs text-purple-300 font-medium">
+                      <p className="text-base sm:text-lg lg:text-sm xl:text-base text-purple-300 font-medium leading-snug">
                         {project.category}
                       </p>
                     </div>
@@ -101,23 +101,23 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
               >
                 <div className="space-y-2 sm:space-y-3">
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-white">{project.name}</h3>
-                    <p className="text-purple-300 font-medium text-sm">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">{project.name}</h3>
+                    <p className="text-purple-300 font-medium text-lg leading-snug">
                       {project.category}
                     </p>
                   </div>
                   
                   <div className="space-y-2">
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wide">Description</p>
-                      <p className="text-white text-sm leading-relaxed">{project.description}</p>
+                      <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Description</p>
+                      <p className="text-white text-base leading-relaxed">{project.description}</p>
                     </div>
                     
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wide">Tools Used</p>
+                      <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Tools Used</p>
                       <div className="flex flex-wrap gap-1 mt-1">
                         {project.tools.map((tool, index) => (
-                          <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full text-xs border border-purple-500/30">
+                          <span key={index} className="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full text-sm border border-purple-500/30 leading-tight">
                             {tool}
                           </span>
                         ))}
@@ -126,13 +126,13 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-gray-400 text-xs uppercase tracking-wide">Duration</p>
-                        <p className="text-white text-sm">{project.duration}</p>
+                        <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Duration</p>
+                        <p className="text-white text-base leading-snug">{project.duration}</p>
                       </div>
                       
                       <div>
-                        <p className="text-gray-400 text-xs uppercase tracking-wide">Status</p>
-                        <p className={`text-sm font-medium ${
+                        <p className="text-gray-400 text-xs uppercase tracking-wide leading-tight">Status</p>
+                        <p className={`text-base font-medium leading-snug ${
                           project.status === 'Completed' ? 'text-green-400' : 
                           project.status === 'In Progress' ? 'text-yellow-400' : 'text-gray-400'
                         }`}>
@@ -146,7 +146,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                         href={project.prototypeLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-sm inline-block"
+                        className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-base leading-snug inline-block"
                       >
                         View Prototype
                       </a>
@@ -154,7 +154,7 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full bg-gray-700 hover:bg-gray-600 border border-purple-500/30 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-sm inline-block flex items-center justify-center gap-2"
+                        className="w-full bg-gray-700 hover:bg-gray-600 border border-purple-500/30 text-white font-semibold py-2 px-3 rounded-lg transition-colors duration-300 text-center text-base leading-snug inline-block flex items-center justify-center gap-2"
                       >
                         View Design File
                       </a>

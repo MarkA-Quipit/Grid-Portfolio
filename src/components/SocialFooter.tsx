@@ -62,8 +62,8 @@ const SocialFooter: React.FC = () => {
           <div className="lg:hidden flex flex-col space-y-3 sm:space-y-4">
             {/* Connect text */}
             <div className="text-center">
-              <h3 className="text-lg sm:text-xl font-bold text-cyan-300 mb-1 sm:mb-2">Connect with me:</h3>
-              <p className="text-xs sm:text-sm text-gray-300 opacity-90">
+              <h3 className="text-2xl sm:text-3xl font-bold text-cyan-300 mb-1 sm:mb-2 leading-tight">Connect with me:</h3>
+              <p className="text-base sm:text-lg text-gray-300 opacity-90 leading-relaxed">
                 Feel free to reach out via email or check my GitHub/LinkedIn.
               </p>
             </div>
@@ -87,15 +87,15 @@ const SocialFooter: React.FC = () => {
                     <TooltipContent 
                       side="top" 
                       sideOffset={8}
-                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
+                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg leading-tight"
                     >
                       <p className="font-medium">{link.name}</p>
                     </TooltipContent>
                   </Tooltip>
                   {link.name === 'Email' && (
-                    <div className="flex flex-col text-xs sm:text-sm text-cyan-300 font-medium whitespace-nowrap">
+                    <div className="flex flex-col text-base sm:text-lg text-cyan-300 font-medium whitespace-nowrap leading-snug">
                       <span>Got work for me?</span>
-                      <span className="text-xs text-gray-300 opacity-80">Email me</span>
+                      <span className="text-sm text-gray-300 opacity-80 leading-tight">Email me</span>
                     </div>
                   )}
                 </div>
@@ -104,7 +104,7 @@ const SocialFooter: React.FC = () => {
             
             {/* Copyright */}
             <div className="text-center">
-              <p className="text-xs sm:text-sm text-gray-300 opacity-90 flex items-center justify-center">
+              <p className="text-sm sm:text-base text-gray-300 opacity-90 flex items-center justify-center leading-tight">
                 © 2026 Mark Aldrin Quipit
                 <span className="inline-block w-0.5 h-3 sm:h-4 bg-cyan-300 animate-[blink_1s_infinite] ml-1"></span>
               </p>
@@ -121,8 +121,8 @@ const SocialFooter: React.FC = () => {
             
             {/* Column 2: Connect with me text */}
             <div className="text-left">
-              <h3 className="text-xl font-bold text-cyan-300 mb-1">Connect with me:</h3>
-              <p className="text-sm text-gray-300 opacity-90">
+              <h3 className="text-2xl font-bold text-cyan-300 mb-1 leading-tight">Connect with me:</h3>
+              <p className="text-lg text-gray-300 opacity-90 leading-relaxed">
                 Feel free to reach out via email or check my GitHub/LinkedIn.
               </p>
             </div>
@@ -146,15 +146,15 @@ const SocialFooter: React.FC = () => {
                     <TooltipContent 
                       side="top" 
                       sideOffset={8}
-                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg"
+                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg leading-tight"
                     >
                       <p className="font-medium">{link.name}</p>
                     </TooltipContent>
                   </Tooltip>
                   {link.name === 'Email' && (
-                    <div className="flex flex-col text-sm text-cyan-300 font-medium whitespace-nowrap">
+                    <div className="flex flex-col text-lg text-cyan-300 font-medium whitespace-nowrap leading-snug">
                       <span>Got work for me?</span>
-                      <span className="text-xs text-gray-300 opacity-80">Email me</span>
+                      <span className="text-sm text-gray-300 opacity-80 leading-tight">Email me</span>
                     </div>
                   )}
                 </div>
@@ -163,7 +163,7 @@ const SocialFooter: React.FC = () => {
             
             {/* Column 4: Copyright with blinking cursor */}
             <div className="text-right">
-              <p className="text-sm text-gray-300 opacity-90 flex items-center justify-end">
+              <p className="text-lg text-gray-300 opacity-90 flex items-center justify-end leading-tight">
                 © 2026 Mark Aldrin Quipit
                 <span className="inline-block w-0.5 h-4 bg-cyan-300 animate-[blink_1s_infinite]"></span>
               </p>
