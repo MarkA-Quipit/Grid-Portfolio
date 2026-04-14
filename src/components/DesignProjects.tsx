@@ -68,14 +68,14 @@ const DesignProjects: React.FC<DesignProjectsProps> = ({
         )}
 
         {/* Design projects grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2 sm:gap-2.5 md:gap-3 lg:gap-2 xl:gap-2 2xl:gap-2.5 flex-1 w-full items-start min-h-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-2 sm:gap-2.5 md:gap-3 lg:gap-2 xl:gap-2 2xl:gap-2.5 flex-1 w-full items-start min-h-0">
           {designProjects.map((project) => (
             <Popover key={project.id}>
               <PopoverTrigger asChild>
                 <button className="design-project-card bg-gray-800 rounded-md border border-cyan-500/20 p-2 sm:p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer hover:bg-gray-750 w-full text-left group min-h-0">
-                  <div className="flex items-center space-x-2 lg:space-x-1.5 xl:space-x-2 w-full">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-1.5 xl:space-x-2 w-full">
                     {/* Project logo */}
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-7 lg:h-7 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-white group-hover:bg-gray-100 transition-colors duration-300">
+                    <div className="w-12 h-12 sm:w-9 sm:h-9 lg:w-7 lg:h-7 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-white group-hover:bg-gray-100 transition-colors duration-300">
                       <img
                         src={project.thumbnail}
                         alt={`${project.name} logo`}
