@@ -4,7 +4,7 @@ import './App.css';
 
 const App: React.FC = () => {
   return (
-    <div className="h-screen w-full font-system antialiased text-cyan-100 bg-gray-900 overflow-hidden animated-grid-bg">
+    <div className="h-screen w-full font-system antialiased text-cyan-100 bg-gray-900 overflow-x-hidden lg:overflow-hidden animated-grid-bg">
       <ProjectGrid />
     </div>
   );

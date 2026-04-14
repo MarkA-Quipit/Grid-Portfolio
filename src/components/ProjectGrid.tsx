@@ -48,7 +48,7 @@ const ProjectGrid: React.FC = () => {
   ];
 
   return (
-    <div className="responsive-grid-container w-full h-screen overflow-hidden p-4 sm:p-6 md:p-8 lg:p-8 xl:p-12 2xl:p-16">
+    <div className="responsive-grid-container w-full h-screen overflow-hidden p-3 sm:p-4 md:p-6 lg:p-6 xl:p-10 2xl:p-14">
       {/* Desktop Grid Layout (lg and above) - Fixed viewport height */}
       <div className="hidden lg:grid lg:grid-cols-6 lg:grid-rows-6 lg:gap-2 xl:gap-2.5 2xl:gap-3 lg:w-full lg:h-full">
         {projects.map((project) => (
@@ -85,9 +85,9 @@ const ProjectGrid: React.FC = () => {
       </div>
 
       {/* Mobile and Tablet Layout (below lg) - Scrollable */}
-      <div className="lg:hidden flex flex-col gap-4 sm:gap-6 w-full h-full overflow-y-auto">
+      <div className="lg:hidden flex flex-col gap-3 sm:gap-4 md:gap-5 w-full pb-4">
         {/* Personal Section - First on mobile */}
-        <div className="w-full flex-shrink-0">
+        <div className="w-full flex-shrink-0 min-h-[280px] sm:min-h-[320px]">
           <ProjectCard
             key={projects[1].id}
             title={projects[1].title}
@@ -100,7 +100,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Image Placeholder - Second on mobile */}
-        <div className="w-full aspect-square sm:aspect-[4/3] md:aspect-[3/2] flex-shrink-0">
+        <div className="w-full aspect-square sm:aspect-[4/3] flex-shrink-0">
           <ProjectCard
             key={projects[0].id}
             title={projects[0].title}
@@ -112,7 +112,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Project Showcase - Third on mobile */}
-        <div className="w-full aspect-[16/9] sm:aspect-[2/1] min-h-[200px] flex-shrink-0">
+        <div className="w-full min-h-[250px] sm:min-h-[300px] flex-shrink-0">
           <ProjectCard
             key={projects[2].id}
             title={projects[2].title}
@@ -124,7 +124,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Tech Stack - Fourth on mobile */}
-        <div className="w-full flex-shrink-0">
+        <div className="w-full min-h-[200px] flex-shrink-0">
           <TechStack 
             title="Tech Stack"
             description=""
@@ -132,7 +132,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Design Projects - Fifth on mobile */}
-        <div className="w-full flex-shrink-0">
+        <div className="w-full min-h-[220px] flex-shrink-0">
           <DesignProjects 
             title="Design Projects"
             description=""
@@ -140,12 +140,12 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* References - Sixth on mobile */}
-        <div className="w-full flex-shrink-0">
+        <div className="w-full min-h-[180px] flex-shrink-0">
           <References />
         </div>
 
         {/* Social Footer - Last on mobile */}
-        <div className="w-full flex-shrink-0">
+        <div className="w-full min-h-[160px] flex-shrink-0">
           <SocialFooter />
         </div>
       </div>

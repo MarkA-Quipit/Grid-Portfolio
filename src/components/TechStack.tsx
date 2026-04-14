@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Tooltip,
   TooltipContent,
@@ -18,7 +18,7 @@ const TechStack: React.FC<TechStackProps> = ({
   const technologies = [
     { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg' },
     { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
-    { name: 'Inertia.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg' }, // Using Nuxt as closest alternative
+    { name: 'Inertia.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nuxtjs/nuxtjs-original.svg' },
     { name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
     { name: 'CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
     { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
@@ -29,33 +29,52 @@ const TechStack: React.FC<TechStackProps> = ({
     { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' }
   ];
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldScroll, setShouldScroll] = useState(false);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (containerRef.current) {
+        const container = containerRef.current;
+        const hasOverflow = container.scrollWidth > container.clientWidth;
+        setShouldScroll(hasOverflow);
+      }
+    };
+
+    checkOverflow();
+    window.addEventListener('resize', checkOverflow);
+    return () => window.removeEventListener('resize', checkOverflow);
+  }, []);
+
   return (
     <TooltipProvider delayDuration={300}>
-      <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
+      <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 pt-3 px-3 pb-0 sm:pt-4 sm:px-4 sm:pb-0 md:pt-5 md:px-5 md:pb-0 lg:pt-3 lg:px-3 lg:pb-0 xl:pt-4 xl:px-4 xl:pb-0 2xl:pt-5 2xl:px-5 2xl:pb-0 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
         <div className="tech-content relative z-[2] text-white h-full flex flex-col text-center min-h-0">
           {/* Title with horizontal lines on both sides */}
-          <div className="mb-2 flex items-center w-full">
+          <div className="mb-2 flex items-center w-full flex-shrink-0">
             <div className="flex-1 h-px bg-gradient-to-l from-cyan-400/50 to-transparent"></div>
-            <h3 className="text-2xl sm:text-3xl lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-cyan-300 mx-2 sm:mx-4 lg:mx-2 xl:mx-3 2xl:mx-4 leading-tight">{title}</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-cyan-300 mx-2 sm:mx-3 lg:mx-2 xl:mx-2 2xl:mx-3 leading-tight whitespace-nowrap">{title}</h3>
             <div className="flex-1 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"></div>
           </div>
           {description && (
-            <p className="tech-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
+            <p className="tech-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-2 sm:mb-3 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
           )}
           
-          {/* Technology logos - Responsive grid */}
-          <div className="flex items-center justify-center py-1 flex-1">
-            <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-11 gap-2 sm:gap-3 lg:gap-1.5 xl:gap-2 2xl:gap-3 max-w-full">
-              {technologies.map((tech, index) => (
-                <Tooltip key={index}>
+          {/* Technology logos - Centered with auto-scroll */}
+          <div className="flex items-center justify-center flex-1 overflow-hidden min-h-0 relative">
+            <div 
+              ref={containerRef}
+              className={`flex gap-2 sm:gap-2.5 md:gap-3 lg:gap-2 xl:gap-2 2xl:gap-2.5 ${shouldScroll ? 'animate-scroll' : ''}`}
+            >
+              {(shouldScroll ? [...technologies, ...technologies] : technologies).map((tech, index) => (
+                <Tooltip key={`${tech.name}-${index}`}>
                   <TooltipTrigger asChild>
-                    <div className="w-8 sm:w-10 lg:w-8 xl:w-10 2xl:w-12 h-8 sm:h-10 lg:h-8 xl:h-10 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                    <div className="w-10 sm:w-11 md:w-12 lg:w-10 xl:w-11 2xl:w-12 h-10 sm:h-11 md:h-12 lg:h-10 xl:h-11 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                       <img
                         src={tech.icon}
                         alt={tech.name}
-                        className="w-5 sm:w-6 lg:w-5 xl:w-6 2xl:w-7 h-5 sm:h-6 lg:h-5 xl:h-6 2xl:h-7 object-contain"
+                        className="w-6 sm:w-7 md:w-8 lg:w-6 xl:w-7 2xl:w-7 h-6 sm:h-7 md:h-8 lg:h-6 xl:h-7 2xl:h-7 object-contain"
                         onError={(e) => {
-                          // Fallback to a generic icon if the image fails to load
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.parentElement!.innerHTML = `<span class="text-xs font-bold text-white">${tech.name.charAt(0)}</span>`;
                         }}
@@ -65,7 +84,7 @@ const TechStack: React.FC<TechStackProps> = ({
                   <TooltipContent 
                     side="top" 
                     sideOffset={8}
-                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-sm rounded shadow-lg leading-tight"
+                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-xs sm:text-sm rounded shadow-lg leading-tight"
                   >
                     <p className="font-medium">{tech.name}</p>
                   </TooltipContent>

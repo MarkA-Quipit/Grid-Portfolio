@@ -67,11 +67,11 @@ const ProjectDialog: React.FC<{
         {trigger}
       </DialogTrigger>
       <DialogContent className="w-[95vw] max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-4xl max-h-[90vh] bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
-        <div className="flex flex-col xl:flex-row max-h-[90vh]">
+        <div className="flex flex-col xl:flex-row max-h-[90vh] overflow-y-auto xl:overflow-y-hidden">
           {/* Main Project Content - Top on mobile/tablet, Left on desktop */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto xl:max-h-[90vh]">
             {/* Project Image - Responsive height */}
-            <div className="w-full h-32 xs:h-40 sm:h-48 md:h-56 lg:h-64 xl:h-80 2xl:h-96 overflow-hidden bg-gray-800 flex-shrink-0">
+            <div className="w-full h-40 xs:h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 overflow-hidden bg-gray-800 flex-shrink-0">
               <img
                 src={projectData.image}
                 alt={projectData.name}
@@ -80,22 +80,22 @@ const ProjectDialog: React.FC<{
             </div>
 
             {/* Main Content */}
-            <div className="p-3 sm:p-4 lg:p-5 xl:p-6">
-              <DialogHeader className="mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
+            <div className="p-4 sm:p-5 lg:p-6 xl:p-7">
+              <DialogHeader className="mb-4 sm:mb-5 lg:mb-6">
                 <DialogTitle className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-cyan-300 mb-2 sm:mb-3 leading-tight">
                   {projectData.name}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300 text-base sm:text-lg md:text-lg lg:text-xl leading-relaxed mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
+                <DialogDescription className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed mb-4 sm:mb-5 lg:mb-6">
                   {projectData.description}
                 </DialogDescription>
               </DialogHeader>
 
               {/* Technologies Used - Responsive spacing */}
-              <div className="mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
-                <h5 className="text-lg sm:text-xl lg:text-2xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
-                <div className="flex flex-wrap gap-1 sm:gap-1.5 lg:gap-2">
+              <div className="mb-4 sm:mb-5 lg:mb-6">
+                <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {technologiesUsed.map((tech, index) => (
-                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
+                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm border border-cyan-500/30 leading-snug">
                       {tech}
                     </span>
                   ))}
@@ -106,16 +106,16 @@ const ProjectDialog: React.FC<{
           </div>
 
           {/* Project Details Card - Bottom on mobile/tablet, Right on desktop */}
-          <div className="w-full xl:w-80 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 p-3 sm:p-4 lg:p-5 xl:p-6 space-y-2 sm:space-y-3 lg:space-y-4 relative overflow-y-auto xl:max-h-[90vh]">
+          <div className="w-full xl:w-80 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 p-4 sm:p-5 lg:p-6 space-y-3 sm:space-y-4 relative overflow-y-auto xl:max-h-[90vh]">
             
-            <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-300 mb-2 sm:mb-3 lg:mb-4 leading-tight">Project Details</h4>
+            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-cyan-300 mb-3 sm:mb-4 leading-tight">Project Details</h4>
 
             {/* Project Stats */}
-            <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+            <div className="space-y-2 sm:space-y-3">
               {projectStats.map((stat, index) => (
                 <div key={index} className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm sm:text-base leading-tight">{stat.label}:</span>
-                  <span className={`${stat.color} text-sm sm:text-base font-medium leading-snug`}>{stat.value}</span>
+                  <span className="text-gray-400 text-xs sm:text-sm leading-tight">{stat.label}:</span>
+                  <span className={`${stat.color} text-xs sm:text-sm font-medium leading-snug`}>{stat.value}</span>
                 </div>
               ))}
             </div>
@@ -124,11 +124,11 @@ const ProjectDialog: React.FC<{
 
             {/* Key Features */}
             <div>
-              <h5 className="text-lg sm:text-xl lg:text-2xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Key Features</h5>
-              <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2 text-sm sm:text-base text-gray-300">
+              <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Key Features</h5>
+              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-300">
                 {keyFeatures.slice(0, 6).map((feature, index) => (
                   <li key={index} className="flex items-start">
-                    <span className="w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-cyan-400 rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-2"></span>
+                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2 flex-shrink-0 mt-1.5"></span>
                     <span className="leading-snug">{feature}</span>
                   </li>
                 ))}
@@ -143,7 +143,7 @@ const ProjectDialog: React.FC<{
                 href={projectData.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-base sm:text-lg lg:text-xl leading-snug"
+                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
               >
                 View Live Project
               </a>
@@ -151,7 +151,7 @@ const ProjectDialog: React.FC<{
                 href={projectData.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg transition-colors duration-300 text-center text-base sm:text-lg lg:text-xl leading-snug"
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
               >
                 View Code
               </a>
@@ -319,8 +319,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </CarouselContent>
 
           {/* Navigation buttons - responsive sizing and visibility */}
-          <CarouselPrevious className="absolute left-1 sm:left-2 lg:left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-8 sm:h-10 lg:h-full w-8 sm:w-10 lg:w-12 bg-gray-800/60 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-80 lg:opacity-0 hover:opacity-100 flex items-center justify-center" />
-          <CarouselNext className="absolute right-1 sm:right-2 lg:right-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-8 sm:h-10 lg:h-full w-8 sm:w-10 lg:w-12 bg-gray-800/60 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/80 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-80 lg:opacity-0 hover:opacity-100 flex items-center justify-center" />
+          <CarouselPrevious className="absolute left-2 sm:left-3 lg:left-1 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-10" />
+          <CarouselNext className="absolute right-2 sm:right-3 lg:right-1 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-10" />
         </Carousel>
       </div>
     );
@@ -402,15 +402,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   if (isPersonalSection) {
     return (
-      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-3 xl:p-4 2xl:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
+      <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 md:p-5 lg:p-3 xl:p-4 2xl:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
         <div className="card-content relative z-[2] text-white">
           {/* Name and Download CV Button - Responsive layout */}
-          <div className="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-5 lg:mb-2 xl:mb-3 2xl:mb-4 gap-3 sm:gap-5 lg:gap-1 xl:gap-2 2xl:gap-3">
-            <h1 className="text-4xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-3 lg:gap-1 xl:gap-2 2xl:gap-3">
+            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h1>
             <a
               href="/file/MarkAldrin-Quipit-CV.pdf"
               download="MarkAldrin-Quipit-CV.pdf"
-              className="bg-cyan-600 hover:bg-cyan-700 text-white text-sm sm:text-base lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 lg:gap-1 xl:gap-2 flex-shrink-0 self-start sm:self-auto leading-snug"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white text-xs sm:text-sm lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 lg:gap-1 xl:gap-2 flex-shrink-0 self-start sm:self-auto leading-snug whitespace-nowrap"
             >
               <svg className="w-3 sm:w-4 lg:w-3 xl:w-4 h-3 sm:h-4 lg:h-3 xl:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -418,7 +418,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               Download CV
             </a>
           </div>
-          <p className="card-description leading-relaxed opacity-90 text-base sm:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-3 sm:mb-4 lg:mb-1 xl:mb-2 2xl:mb-3">
+          <p className="card-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-0">
             I am a <span className="text-cyan-300 font-bold">full-stack developer</span> with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems.
           </p>
         </div>

@@ -135,11 +135,15 @@
   .project-card.wide-horizontal .card-content {
     max-width: 100%;
   }
+  
+  .project-card {
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 768px) {
   .project-card {
-    min-height: 200px;
+    min-height: 180px;
   }
   
   .project-card.project-showcase {
@@ -149,7 +153,7 @@
 
 @media (max-width: 640px) {
   .project-card {
-    min-height: 180px;
+    min-height: 160px;
   }
   
   .project-card.project-showcase {
