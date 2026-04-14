@@ -30,6 +30,7 @@ const ProjectDialog: React.FC<{
   // Dynamic project details configuration
   const projectStats = [
     { label: "Status", value: "Completed", color: "text-green-400" },
+    { label: "Role", value: "Full Stack Developer", color: "text-cyan-300" },
     { label: "Duration", value: project ? "6 ½ months" : "6 months", color: "text-gray-300" },
     { label: "Team Size", value: project ? "3 developers" : "Solo project", color: "text-gray-300" },
     { label: "Platform", value: project ? "Web (Desktop & Mobile)" : "Web", color: "text-gray-300" }
@@ -39,11 +40,7 @@ const ProjectDialog: React.FC<{
     "Secure authentication and authorization",
     project ? "Multi-role dashboards (Farmers, Customers, Admin, Logistics)" : "Performance Optimized",
     "Order placement, tracking, and management system",
-    project ? "Product management and inventory tracking" : "SEO Friendly",
-    "Reporting and analytics for admins to monitor sales, deliveries, and user activity",
-    project ? "Data export reports in PDF and CSV formats for easy record-keeping and analysis" : "SEO Friendly",
-    "Responsive design for seamless desktop and mobile use",
-    project ? "Efficient handling of perishable goods" : "SEO Friendly"
+    project ? "Product management and inventory tracking" : "SEO Friendly"
   ];
 
   const technologiesUsed = [
@@ -59,16 +56,16 @@ const ProjectDialog: React.FC<{
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="w-[95vw] max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-4xl max-h-[90vh] bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
-        <div className="flex flex-col xl:flex-row max-h-[90vh] overflow-y-auto xl:overflow-y-hidden">
+      <DialogContent className="w-[95vw] max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-3xl xl:max-w-5xl max-h-[90vh] bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
+        <div className="flex flex-col xl:flex-row h-full max-h-[90vh]">
           {/* Main Project Content - Top on mobile/tablet, Left on desktop */}
-          <div className="flex-1 overflow-y-auto xl:max-h-[90vh]">
-            {/* Project Image - Responsive height */}
-            <div className="w-full h-40 xs:h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 overflow-hidden bg-gray-800 flex-shrink-0">
+          <div className="flex-1 overflow-y-auto xl:h-[90vh]">
+            {/* Project Image - Optimized height */}
+            <div className="w-full h-40 sm:h-48 md:h-52 lg:h-56 xl:h-64 overflow-hidden bg-gray-800 flex-shrink-0">
               <img
                 src={projectData.image}
                 alt={projectData.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
@@ -78,17 +75,17 @@ const ProjectDialog: React.FC<{
                 <DialogTitle className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-cyan-300 mb-2 sm:mb-3 leading-tight">
                   {projectData.name}
                 </DialogTitle>
-                <DialogDescription className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed mb-4 sm:mb-5 lg:mb-6">
+                <DialogDescription className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed">
                   {projectData.description}
                 </DialogDescription>
               </DialogHeader>
 
-              {/* Technologies Used - Responsive spacing */}
-              <div className="mb-4 sm:mb-5 lg:mb-6">
+              {/* Technologies Used - Compact spacing */}
+              <div>
                 <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                <div className="flex flex-wrap gap-2 sm:gap-2.5">
                   {technologiesUsed.map((tech, index) => (
-                    <span key={index} className="bg-gray-800 text-cyan-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm border border-cyan-500/30 leading-snug">
+                    <span key={index} className="bg-gray-800 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
                       {tech}
                     </span>
                   ))}
@@ -99,55 +96,58 @@ const ProjectDialog: React.FC<{
           </div>
 
           {/* Project Details Card - Bottom on mobile/tablet, Right on desktop */}
-          <div className="w-full xl:w-80 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 p-4 sm:p-5 lg:p-6 space-y-3 sm:space-y-4 relative overflow-y-auto xl:max-h-[90vh]">
+          <div className="w-full xl:w-96 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 flex flex-col xl:h-[90vh]">
             
-            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-cyan-300 mb-3 sm:mb-4 leading-tight">Project Details</h4>
+            {/* Scrollable content area */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-5 lg:p-6 space-y-3 sm:space-y-4">
+              <h4 className="text-xl sm:text-2xl font-bold text-cyan-300 leading-tight">Project Details</h4>
 
-            {/* Project Stats */}
-            <div className="space-y-2 sm:space-y-3">
-              {projectStats.map((stat, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <span className="text-gray-400 text-xs sm:text-sm leading-tight">{stat.label}:</span>
-                  <span className={`${stat.color} text-xs sm:text-sm font-medium leading-snug`}>{stat.value}</span>
-                </div>
-              ))}
-            </div>
-
-            <hr className="border-gray-700" />
-
-            {/* Key Features */}
-            <div>
-              <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Key Features</h5>
-              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-300">
-                {keyFeatures.slice(0, 6).map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2 flex-shrink-0 mt-1.5"></span>
-                    <span className="leading-snug">{feature}</span>
-                  </li>
+              {/* Project Stats */}
+              <div className="space-y-2.5 sm:space-y-3">
+                {projectStats.map((stat, index) => (
+                  <div key={index} className="flex justify-between items-center">
+                    <span className="text-gray-400 text-sm sm:text-base leading-tight">{stat.label}:</span>
+                    <span className={`${stat.color} text-sm sm:text-base font-medium leading-snug`}>{stat.value}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
+              <hr className="border-gray-700 my-3" />
+
+              {/* Key Features - All 4 items visible */}
+              <div>
+                <h5 className="text-lg sm:text-xl font-semibold text-cyan-300 mb-2.5 sm:mb-3 leading-tight">Key Features</h5>
+                <ul className="space-y-2 text-sm sm:text-base text-gray-300">
+                  {keyFeatures.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3 flex-shrink-0 mt-1.5"></span>
+                      <span className="leading-relaxed">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <hr className="border-gray-700" />
-
-            {/* Action Buttons */}
-            <div className="flex flex-col gap-2 sm:gap-3 pt-2">
-              <a
-                href={projectData.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
-              >
-                View Live Project
-              </a>
-              <a
-                href={projectData.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
-              >
-                View Code
-              </a>
+            {/* Fixed Action Buttons at bottom */}
+            <div className="flex-shrink-0 p-4 sm:p-5 lg:p-6 border-t border-gray-700 bg-gray-800">
+              <div className="flex flex-col gap-2.5">
+                <a
+                  href={projectData.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
+                >
+                  View Live Project
+                </a>
+                <a
+                  href={projectData.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
+                >
+                  View Code
+                </a>
+              </div>
             </div>
           </div>
         </div>
