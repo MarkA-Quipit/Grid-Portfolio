@@ -8,6 +8,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip"
 
 // Custom Project Dialog with External Info Card
 const ProjectDialog: React.FC<{
@@ -18,6 +24,8 @@ const ProjectDialog: React.FC<{
   link?: string;
   technologies?: string[];
 }> = ({ trigger, project, title, description, link, technologies = ["React", "TypeScript", "Tailwind CSS", "Node.js"] }) => {
+  const [showDetails, setShowDetails] = useState(false);
+  
   const projectData = project || {
     name: title,
     description,
@@ -56,48 +64,109 @@ const ProjectDialog: React.FC<{
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="w-[95vw] max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-3xl xl:max-w-5xl max-h-[90vh] bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden">
-        <div className="flex flex-col xl:flex-row h-full max-h-[90vh]">
+      <DialogContent className="w-[95vw] max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-3xl xl:max-w-5xl max-h-[90vh] bg-gray-900 border border-cyan-500/30 text-white p-0 overflow-hidden rounded-xl sm:rounded-2xl">
+        <div className="flex flex-col xl:flex-row h-full max-h-[90vh] relative">
           {/* Main Project Content - Top on mobile/tablet, Left on desktop */}
-          <div className="flex-1 overflow-y-auto xl:h-[90vh]">
-            {/* Project Image - Optimized height */}
-            <div className="w-full h-40 sm:h-48 md:h-52 lg:h-56 xl:h-64 overflow-hidden bg-gray-800 flex-shrink-0">
-              <img
-                src={projectData.image}
-                alt={projectData.name}
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-
-            {/* Main Content */}
-            <div className="p-4 sm:p-5 lg:p-6 xl:p-7">
-              <DialogHeader className="mb-4 sm:mb-5 lg:mb-6">
-                <DialogTitle className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-cyan-300 mb-2 sm:mb-3 leading-tight">
-                  {projectData.name}
-                </DialogTitle>
-                <DialogDescription className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed">
-                  {projectData.description}
-                </DialogDescription>
-              </DialogHeader>
-
-              {/* Technologies Used - Compact spacing */}
-              <div>
-                <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
-                <div className="flex flex-wrap gap-2 sm:gap-2.5">
-                  {technologiesUsed.map((tech, index) => (
-                    <span key={index} className="bg-gray-800 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+          <div className={`flex-1 flex flex-col xl:h-[90vh] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] xl:translate-y-0 ${
+            showDetails 
+              ? 'absolute inset-0 -translate-y-full xl:relative xl:flex' 
+              : 'relative translate-y-0 flex'
+          }`}>
+            <div className="flex-1 overflow-y-auto">
+              {/* Project Image - Optimized height */}
+              <div className="w-full h-40 sm:h-48 md:h-52 lg:h-56 xl:h-64 overflow-hidden bg-gray-800 flex-shrink-0 rounded-t-xl sm:rounded-t-2xl xl:rounded-tl-2xl xl:rounded-tr-none">
+                <img
+                  src={projectData.image}
+                  alt={projectData.name}
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
 
+              {/* Main Content */}
+              <div className="p-4 sm:p-5 lg:p-6 xl:p-7">
+                <DialogHeader className="mb-4 sm:mb-5 lg:mb-6 text-left">
+                  <DialogTitle className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-cyan-300 mb-2 sm:mb-3 leading-tight text-left">
+                    {projectData.name}
+                  </DialogTitle>
+                  <DialogDescription className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed text-left">
+                    {projectData.description}
+                  </DialogDescription>
+                </DialogHeader>
+
+                {/* Technologies Used - Compact spacing */}
+                <div>
+                  <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
+                  <div className="flex flex-wrap gap-2 sm:gap-2.5">
+                    {/* Show first 3 technologies on mobile, all on larger screens */}
+                    {technologiesUsed.slice(0, 3).map((tech, index) => (
+                      <span key={index} className="bg-gray-800 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
+                        {tech}
+                      </span>
+                    ))}
+                    
+                    {/* Show remaining technologies on larger screens */}
+                    {technologiesUsed.slice(3).map((tech, index) => (
+                      <span key={index + 3} className="hidden sm:inline-block bg-gray-800 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
+                        {tech}
+                      </span>
+                    ))}
+                    
+                    {/* Show +N more badge on mobile if there are more than 3 */}
+                    {technologiesUsed.length > 3 && (
+                      <TooltipProvider>
+                        <Tooltip delayDuration={0}>
+                          <TooltipTrigger asChild>
+                            <button className="sm:hidden bg-cyan-600/30 text-cyan-300 px-3 py-1.5 rounded-full text-sm border border-cyan-500/50 leading-snug hover:bg-cyan-600/40 transition-colors">
+                              +{technologiesUsed.length - 3}
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent side="top" sideOffset={8} className="z-[100] bg-gray-800 border-cyan-500/50 max-w-[200px] p-2">
+                            <div className="flex flex-wrap gap-1.5">
+                              {technologiesUsed.slice(3).map((tech, index) => (
+                                <span key={index} className="text-xs text-cyan-300 bg-gray-700 px-2 py-0.5 rounded">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {/* Toggle button for mobile - Show Details - Fixed at bottom */}
+            <button
+              onClick={() => setShowDetails(true)}
+              className="xl:hidden w-full bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-300 py-3.5 flex items-center justify-center gap-2 transition-all duration-300 border-t border-cyan-500/30 flex-shrink-0 rounded-b-xl sm:rounded-b-2xl"
+            >
+              <span className="font-semibold text-base">View Project Details</span>
+              <svg className="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
 
           {/* Project Details Card - Bottom on mobile/tablet, Right on desktop */}
-          <div className="w-full xl:w-96 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 flex flex-col xl:h-[90vh]">
+          <div className={`w-full xl:w-96 bg-gray-800 border-t xl:border-t-0 xl:border-l border-cyan-500/30 flex flex-col xl:h-[90vh] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] xl:translate-y-0 rounded-b-xl sm:rounded-b-2xl xl:rounded-bl-none xl:rounded-tr-2xl xl:rounded-br-2xl ${
+            showDetails 
+              ? 'relative translate-y-0 flex' 
+              : 'absolute inset-0 translate-y-full xl:relative xl:flex'
+          }`}>
             
+            {/* Toggle button for mobile - Back to Main */}
+            <button
+              onClick={() => setShowDetails(false)}
+              className="xl:hidden w-full bg-gray-700 hover:bg-gray-600 text-cyan-300 py-3.5 flex items-center justify-center gap-2 transition-all duration-300 border-b border-cyan-500/30 flex-shrink-0 rounded-t-xl sm:rounded-t-2xl"
+            >
+              <svg className="w-5 h-5 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+              <span className="font-semibold text-base">Back to Overview</span>
+            </button>
+
             {/* Scrollable content area */}
             <div className="flex-1 overflow-y-auto p-4 sm:p-5 lg:p-6 space-y-3 sm:space-y-4">
               <h4 className="text-xl sm:text-2xl font-bold text-cyan-300 leading-tight">Project Details</h4>
