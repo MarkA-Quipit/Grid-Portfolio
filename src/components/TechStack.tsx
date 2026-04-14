@@ -31,8 +31,10 @@ const TechStack: React.FC<TechStackProps> = ({
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll effect
   useEffect(() => {
@@ -43,13 +45,13 @@ const TechStack: React.FC<TechStackProps> = ({
     let scrollSpeed = 0.5; // pixels per frame
 
     const autoScroll = () => {
-      if (!isDragging && scrollContainer) {
+      if (!isDragging && !isHovering && scrollContainer) {
         scrollContainer.scrollLeft += scrollSpeed;
         
-        // Reset to beginning when reaching halfway (seamless loop)
-        const maxScroll = scrollContainer.scrollWidth / 2;
-        if (scrollContainer.scrollLeft >= maxScroll) {
-          scrollContainer.scrollLeft = 0;
+        // Seamless infinite loop - reset when reaching 1/3 of the way
+        const itemWidth = scrollContainer.scrollWidth / 3;
+        if (scrollContainer.scrollLeft >= itemWidth) {
+          scrollContainer.scrollLeft -= itemWidth;
         }
       }
       animationId = requestAnimationFrame(autoScroll);
@@ -58,7 +60,40 @@ const TechStack: React.FC<TechStackProps> = ({
     animationId = requestAnimationFrame(autoScroll);
 
     return () => cancelAnimationFrame(animationId);
-  }, [isDragging]);
+  }, [isDragging, isHovering]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (leaveTimeoutRef.current) {
+        clearTimeout(leaveTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleIconMouseEnter = () => {
+    // Clear any pending leave timeout
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    
+    // Stop scrolling immediately
+    setIsHovering(true);
+  };
+
+  const handleIconMouseLeave = () => {
+    // Clear any existing leave timeout
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+    }
+    
+    // Wait 1 second before resuming scroll
+    leaveTimeoutRef.current = setTimeout(() => {
+      setIsHovering(false);
+      leaveTimeoutRef.current = null;
+    }, 1000);
+  };
 
   // Mouse drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -108,8 +143,8 @@ const TechStack: React.FC<TechStackProps> = ({
 
   return (
     <TooltipProvider delayDuration={300}>
-      <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 pt-3 px-3 pb-0 sm:pt-4 sm:px-4 sm:pb-0 md:pt-5 md:px-5 md:pb-0 lg:pt-3 lg:px-3 lg:pb-0 xl:pt-4 xl:px-4 xl:pb-0 2xl:pt-5 2xl:px-5 2xl:pb-0 flex flex-col relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
-        <div className="tech-content relative z-[2] text-white h-full flex flex-col text-center min-h-0">
+      <div className="tech-stack rounded-lg border border-cyan-500 border-opacity-40 pt-3 px-3 pb-0 sm:pt-4 sm:px-4 sm:pb-0 md:pt-5 md:px-5 md:pb-0 lg:pt-3 lg:px-3 lg:pb-0 xl:pt-4 xl:px-4 xl:pb-0 2xl:pt-5 2xl:px-5 2xl:pb-0 flex flex-col relative transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full" style={{ overflow: 'visible' }}>
+        <div className="tech-content relative z-[2] text-white h-full flex flex-col text-center min-h-0" style={{ overflow: 'visible' }}>
           {/* Title with horizontal lines on both sides */}
           <div className="mb-2 flex items-center w-full flex-shrink-0">
             <div className="flex-1 h-px bg-gradient-to-l from-cyan-400/50 to-transparent"></div>
@@ -121,7 +156,7 @@ const TechStack: React.FC<TechStackProps> = ({
           )}
           
           {/* Technology logos */}
-          <div className="flex items-center justify-center flex-1 overflow-hidden min-h-0 relative">
+          <div className="flex items-center justify-center flex-1 min-h-0 relative" style={{ overflow: 'visible' }}>
             {/* Mobile/Tablet: Wrapped grid */}
             <div className="lg:hidden flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 justify-center items-center py-1">
               {technologies.map((tech, index) => (
@@ -142,9 +177,18 @@ const TechStack: React.FC<TechStackProps> = ({
                   <TooltipContent 
                     side="top" 
                     sideOffset={8}
-                    className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-xs sm:text-sm rounded shadow-lg leading-tight"
+                    className="z-[99999] bg-gray-800 border border-cyan-500/30 text-white p-3 rounded-lg shadow-xl"
                   >
-                    <p className="font-medium">{tech.name}</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          className="w-6 h-6 object-contain"
+                        />
+                      </div>
+                      <p className="font-semibold text-base leading-tight">{tech.name}</p>
+                    </div>
                   </TooltipContent>
                 </Tooltip>
               ))}
@@ -167,7 +211,11 @@ const TechStack: React.FC<TechStackProps> = ({
                 {infiniteTechnologies.map((tech, index) => (
                   <Tooltip key={`${tech.name}-${index}`}>
                     <TooltipTrigger asChild>
-                      <div className="w-10 xl:w-11 2xl:w-12 h-10 xl:h-11 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm select-none">
+                      <div 
+                        className="w-10 xl:w-11 2xl:w-12 h-10 xl:h-11 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm select-none"
+                        onMouseEnter={handleIconMouseEnter}
+                        onMouseLeave={handleIconMouseLeave}
+                      >
                         <img
                           src={tech.icon}
                           alt={tech.name}
@@ -183,9 +231,18 @@ const TechStack: React.FC<TechStackProps> = ({
                     <TooltipContent 
                       side="top" 
                       sideOffset={8}
-                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-xs sm:text-sm rounded shadow-lg leading-tight"
+                      className="z-[99999] bg-gray-800 border border-cyan-500/30 text-white p-3 rounded-lg shadow-xl"
                     >
-                      <p className="font-medium">{tech.name}</p>
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+                          <img
+                            src={tech.icon}
+                            alt={tech.name}
+                            className="w-6 h-6 object-contain"
+                          />
+                        </div>
+                        <p className="font-semibold text-base leading-tight">{tech.name}</p>
+                      </div>
                     </TooltipContent>
                   </Tooltip>
                 ))}
