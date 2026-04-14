@@ -29,22 +29,82 @@ const TechStack: React.FC<TechStackProps> = ({
     { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' }
   ];
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldScroll, setShouldScroll] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
+  // Auto-scroll effect
   useEffect(() => {
-    const checkOverflow = () => {
-      if (containerRef.current) {
-        const container = containerRef.current;
-        const hasOverflow = container.scrollWidth > container.clientWidth;
-        setShouldScroll(hasOverflow);
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer || window.innerWidth < 1024) return;
+
+    let animationId: number;
+    let scrollSpeed = 0.5; // pixels per frame
+
+    const autoScroll = () => {
+      if (!isDragging && scrollContainer) {
+        scrollContainer.scrollLeft += scrollSpeed;
+        
+        // Reset to beginning when reaching halfway (seamless loop)
+        const maxScroll = scrollContainer.scrollWidth / 2;
+        if (scrollContainer.scrollLeft >= maxScroll) {
+          scrollContainer.scrollLeft = 0;
+        }
       }
+      animationId = requestAnimationFrame(autoScroll);
     };
 
-    checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-    return () => window.removeEventListener('resize', checkOverflow);
-  }, []);
+    animationId = requestAnimationFrame(autoScroll);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isDragging]);
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll speed multiplier
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  // Touch drag handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  // Triple the technologies for seamless infinite scroll
+  const infiniteTechnologies = [...technologies, ...technologies, ...technologies];
 
   return (
     <TooltipProvider delayDuration={300}>
@@ -60,20 +120,18 @@ const TechStack: React.FC<TechStackProps> = ({
             <p className="tech-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-2 sm:mb-3 lg:mb-2 xl:mb-3 2xl:mb-4">{description}</p>
           )}
           
-          {/* Technology logos - Centered with auto-scroll */}
+          {/* Technology logos */}
           <div className="flex items-center justify-center flex-1 overflow-hidden min-h-0 relative">
-            <div 
-              ref={containerRef}
-              className={`flex gap-2 sm:gap-2.5 md:gap-3 lg:gap-2 xl:gap-2 2xl:gap-2.5 ${shouldScroll ? 'animate-scroll' : ''}`}
-            >
-              {(shouldScroll ? [...technologies, ...technologies] : technologies).map((tech, index) => (
-                <Tooltip key={`${tech.name}-${index}`}>
+            {/* Mobile/Tablet: Wrapped grid */}
+            <div className="lg:hidden flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 justify-center items-center py-1">
+              {technologies.map((tech, index) => (
+                <Tooltip key={index}>
                   <TooltipTrigger asChild>
-                    <div className="w-10 sm:w-11 md:w-12 lg:w-10 xl:w-11 2xl:w-12 h-10 sm:h-11 md:h-12 lg:h-10 xl:h-11 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                    <div className="w-10 sm:w-11 md:w-12 h-10 sm:h-11 md:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                       <img
                         src={tech.icon}
                         alt={tech.name}
-                        className="w-6 sm:w-7 md:w-8 lg:w-6 xl:w-7 2xl:w-7 h-6 sm:h-7 md:h-8 lg:h-6 xl:h-7 2xl:h-7 object-contain"
+                        className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 object-contain"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.parentElement!.innerHTML = `<span class="text-xs font-bold text-white">${tech.name.charAt(0)}</span>`;
@@ -90,6 +148,48 @@ const TechStack: React.FC<TechStackProps> = ({
                   </TooltipContent>
                 </Tooltip>
               ))}
+            </div>
+
+            {/* Desktop: Infinite scrolling carousel with drag */}
+            <div 
+              ref={scrollRef}
+              className={`hidden lg:flex overflow-x-auto scrollbar-hide ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div className="flex gap-2 xl:gap-2 2xl:gap-2.5 py-1">
+                {infiniteTechnologies.map((tech, index) => (
+                  <Tooltip key={`${tech.name}-${index}`}>
+                    <TooltipTrigger asChild>
+                      <div className="w-10 xl:w-11 2xl:w-12 h-10 xl:h-11 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-105 hover:bg-white/20 transition-all duration-200 cursor-pointer flex items-center justify-center flex-shrink-0 backdrop-blur-sm select-none">
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          className="w-6 xl:w-7 2xl:w-7 h-6 xl:h-7 2xl:h-7 object-contain pointer-events-none"
+                          draggable="false"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.parentElement!.innerHTML = `<span class="text-xs font-bold text-white">${tech.name.charAt(0)}</span>`;
+                          }}
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      sideOffset={8}
+                      className="z-[9999] bg-gray-800 border border-gray-600 text-white px-2 py-1 text-xs sm:text-sm rounded shadow-lg leading-tight"
+                    >
+                      <p className="font-medium">{tech.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
             </div>
           </div>
         </div>
