@@ -85,9 +85,9 @@ const ProjectGrid: React.FC = () => {
       </div>
 
       {/* Mobile and Tablet Layout (below lg) - Scrollable */}
-      <div className="lg:hidden flex flex-col gap-3 sm:gap-4 md:gap-5 w-full pb-4">
+      <div className="lg:hidden flex flex-col gap-3 sm:gap-3 md:gap-4 w-full pb-4">
         {/* Personal Section - First on mobile */}
-        <div className="w-full flex-shrink-0 min-h-[280px] sm:min-h-[320px]">
+        <div className="w-full flex-shrink-0">
           <ProjectCard
             key={projects[1].id}
             title={projects[1].title}
@@ -112,7 +112,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Project Showcase - Third on mobile */}
-        <div className="w-full min-h-[250px] sm:min-h-[300px] flex-shrink-0">
+        <div className="w-full flex-shrink-0">
           <ProjectCard
             key={projects[2].id}
             title={projects[2].title}
@@ -124,7 +124,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Tech Stack - Fourth on mobile */}
-        <div className="w-full min-h-[200px] flex-shrink-0">
+        <div className="w-full flex-shrink-0">
           <TechStack 
             title="Tech Stack"
             description=""
@@ -132,7 +132,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Design Projects - Fifth on mobile */}
-        <div className="w-full min-h-[220px] flex-shrink-0">
+        <div className="w-full flex-shrink-0">
           <DesignProjects 
             title="Design Projects"
             description=""
@@ -140,12 +140,12 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* References - Sixth on mobile */}
-        <div className="w-full min-h-[180px] flex-shrink-0">
+        <div className="w-full flex-shrink-0">
           <References />
         </div>
 
         {/* Social Footer - Last on mobile */}
-        <div className="w-full min-h-[160px] flex-shrink-0">
+        <div className="w-full flex-shrink-0">
           <SocialFooter />
         </div>
       </div>
