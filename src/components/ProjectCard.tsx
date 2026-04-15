@@ -277,29 +277,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   personalName,
   isProjectShowcase
 }) => {
-  // Array of Mark Quipit photos for cycling animation
-  const markQuipitPhotos = [
-    "/images/Mark-Quipit-Photo1.jpg",
-    "/images/Mark-Quipit-Photo2.jpg",
-    "/images/Mark-Quipit-Photo3.jpg"
-  ];
+  const photo = "/images/Mark-Quipit-Photo2.jpg";
 
   // Always call hooks at the top level
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobileBubblesActive, setIsMobileBubblesActive] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Only set up the interval if this is an image placeholder
-    if (isImagePlaceholder) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => 
-          (prevIndex + 1) % markQuipitPhotos.length
-        );
-      }, 5000); // Change image every 5 seconds
-
-      return () => clearInterval(interval);
-    }
-  }, [isImagePlaceholder, markQuipitPhotos.length]);
 
   // Auto-scroll for project showcase
   useEffect(() => {
@@ -469,73 +451,63 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   }
 
   if (isImagePlaceholder) {
+    const handleMobileClick = () => {
+      // Only toggle on mobile (below lg breakpoint)
+      if (window.innerWidth < 1024) {
+        setIsMobileBubblesActive(!isMobileBubblesActive);
+      }
+    };
+
     return (
-      <div className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative w-full h-full`}>
-        {/* Outside Bubbles - Responsive sizing */}
-        <div className="absolute inset-0 pointer-events-none overflow-visible z-20">
+      <div 
+        className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative w-full h-full ${isMobileBubblesActive ? 'mobile-bubbles-active' : ''}`}
+        onClick={handleMobileClick}
+      >
+        {/* Outside Bubbles - Positioned outside the card */}
+        <div className="absolute inset-0 pointer-events-none z-30">
           {/* Large Outside Bubbles - Responsive sizes */}
-          <div className="absolute -top-4 sm:-top-6 lg:-top-8 -left-3 sm:-left-4 lg:-left-6 w-6 sm:w-8 lg:w-12 h-6 sm:h-8 lg:h-12 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-100 group-hover:animate-[float_4s_ease-in-out_infinite]"></div>
+          <div className={`absolute -top-4 sm:-top-6 lg:-top-8 -left-3 sm:-left-4 lg:-left-6 w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-full transition-all duration-1000 delay-100 ${isMobileBubblesActive ? 'opacity-100 animate-[float_4s_ease-in-out_infinite] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_4s_ease-in-out_infinite]`}></div>
           
-          <div className="absolute -top-2 sm:-top-3 lg:-top-4 -right-4 sm:-right-6 lg:-right-8 w-5 sm:w-7 lg:w-10 h-5 sm:h-7 lg:h-10 bg-gradient-to-br from-purple-400/40 to-pink-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1200 delay-300 group-hover:animate-[float_3.5s_ease-in-out_infinite_0.5s]"></div>
+          <div className={`absolute -top-2 sm:-top-3 lg:-top-4 -right-4 sm:-right-6 lg:-right-8 w-7 sm:w-9 lg:w-10 h-7 sm:h-9 lg:h-10 bg-gradient-to-br from-purple-400/40 to-pink-500/40 rounded-full transition-all duration-1200 delay-300 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3.5s_ease-in-out_infinite_0.5s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3.5s_ease-in-out_infinite_0.5s]`}></div>
           
-          <div className="absolute -bottom-3 sm:-bottom-4 lg:-bottom-6 -left-4 sm:-left-6 lg:-left-8 w-7 sm:w-10 lg:w-14 h-7 sm:h-10 lg:h-14 bg-gradient-to-br from-teal-400/25 to-cyan-500/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-200 group-hover:animate-[float_4.5s_ease-in-out_infinite_1s]"></div>
+          <div className={`absolute -bottom-3 sm:-bottom-4 lg:-bottom-6 -left-4 sm:-left-6 lg:-left-8 w-10 sm:w-12 lg:w-14 h-10 sm:h-12 lg:h-14 bg-gradient-to-br from-teal-400/25 to-cyan-500/25 rounded-full transition-all duration-900 delay-200 ${isMobileBubblesActive ? 'opacity-100 animate-[float_4.5s_ease-in-out_infinite_1s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_4.5s_ease-in-out_infinite_1s]`}></div>
           
-          <div className="absolute -bottom-4 sm:-bottom-6 lg:-bottom-8 -right-2 sm:-right-3 lg:-right-4 w-4 sm:w-6 lg:w-8 h-4 sm:h-6 lg:h-8 bg-gradient-to-br from-indigo-400/35 to-purple-500/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1100 delay-400 group-hover:animate-[float_3s_ease-in-out_infinite_1.5s]"></div>
+          <div className={`absolute -bottom-4 sm:-bottom-6 lg:-bottom-8 -right-2 sm:-right-3 lg:-right-4 w-6 sm:w-8 lg:w-8 h-6 sm:h-8 lg:h-8 bg-gradient-to-br from-indigo-400/35 to-purple-500/35 rounded-full transition-all duration-1100 delay-400 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3s_ease-in-out_infinite_1.5s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3s_ease-in-out_infinite_1.5s]`}></div>
           
-          <div className="absolute top-1/2 -left-5 sm:-left-7 lg:-left-10 w-3 sm:w-4 lg:w-6 h-3 sm:h-4 lg:h-6 bg-gradient-to-br from-sky-400/40 to-blue-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-150 group-hover:animate-[float_3.8s_ease-in-out_infinite_0.8s]"></div>
+          <div className={`absolute top-1/2 -left-5 sm:-left-7 lg:-left-10 w-5 sm:w-6 lg:w-6 h-5 sm:h-6 lg:h-6 bg-gradient-to-br from-sky-400/40 to-blue-500/40 rounded-full transition-all duration-800 delay-150 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3.8s_ease-in-out_infinite_0.8s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3.8s_ease-in-out_infinite_0.8s]`}></div>
           
-          <div className="absolute top-1/4 -right-3 sm:-right-4 lg:-right-6 w-4 sm:w-6 lg:w-9 h-4 sm:h-6 lg:h-9 bg-gradient-to-br from-violet-400/30 to-purple-500/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-350 group-hover:animate-[float_4.2s_ease-in-out_infinite_0.3s]"></div>
+          <div className={`absolute top-1/4 -right-3 sm:-right-4 lg:-right-6 w-6 sm:w-8 lg:w-9 h-6 sm:h-8 lg:h-9 bg-gradient-to-br from-violet-400/30 to-purple-500/30 rounded-full transition-all duration-1000 delay-350 ${isMobileBubblesActive ? 'opacity-100 animate-[float_4.2s_ease-in-out_infinite_0.3s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_4.2s_ease-in-out_infinite_0.3s]`}></div>
         </div>
 
-        <div className="image-container w-full h-full flex items-center justify-center overflow-hidden relative">
-          {markQuipitPhotos.map((photo, index) => (
-            <img
-              key={index}
-              src={photo}
-              alt={`Mark Quipit ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover rounded-lg transition-opacity duration-1000 ease-in-out ${
-                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
+        <div className="image-container w-full h-full flex items-center justify-center overflow-hidden relative touch-none select-none">
+          <img
+            src={photo}
+            alt="Mark Quipit's Photo"
+            className="absolute inset-0 w-full h-full object-cover rounded-lg"
+            draggable="false"
+          />
           
           {/* Inside Bubbles - Responsive sizes */}
-          <div className="absolute inset-0 pointer-events-none z-10">
+          <div className="absolute inset-0 pointer-events-none z-30">
             {/* Small Inside Bubbles - Responsive sizes */}
-            <div className="absolute top-[15%] left-[20%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-200 group-hover:animate-pulse"></div>
+            <div className={`absolute top-[15%] left-[20%] w-2 sm:w-3 lg:w-2 h-2 sm:h-3 lg:h-2 bg-white/40 rounded-full transition-all duration-600 delay-200 ${isMobileBubblesActive ? 'opacity-100 animate-[float_2.5s_ease-in-out_infinite] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_2.5s_ease-in-out_infinite]`}></div>
             
-            <div className="absolute top-[25%] right-[25%] w-1.5 sm:w-2 lg:w-3 h-1.5 sm:h-2 lg:h-3 bg-cyan-300/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-400 group-hover:animate-bounce"></div>
+            <div className={`absolute top-[25%] right-[25%] w-2.5 sm:w-3.5 lg:w-3 h-2.5 sm:h-3.5 lg:h-3 bg-cyan-300/30 rounded-full transition-all duration-800 delay-400 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3s_ease-in-out_infinite_0.3s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3s_ease-in-out_infinite_0.3s]`}></div>
             
-            <div className="absolute bottom-[35%] left-[30%] w-1 sm:w-1.5 lg:w-1.5 h-1 sm:h-1.5 lg:h-1.5 bg-blue-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 group-hover:animate-ping"></div>
+            <div className={`absolute bottom-[35%] left-[30%] w-2 sm:w-3 lg:w-1.5 h-2 sm:h-3 lg:h-1.5 bg-blue-300/50 rounded-full transition-all duration-500 delay-300 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3.5s_ease-in-out_infinite_0.5s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3.5s_ease-in-out_infinite_0.5s]`}></div>
             
-            <div className="absolute top-[60%] right-[15%] w-1.5 sm:w-2 lg:w-2.5 h-1.5 sm:h-2 lg:h-2.5 bg-purple-300/35 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-500 group-hover:animate-pulse"></div>
+            <div className={`absolute top-[60%] right-[15%] w-2.5 sm:w-3.5 lg:w-2.5 h-2.5 sm:h-3.5 lg:h-2.5 bg-purple-300/35 rounded-full transition-all duration-700 delay-500 ${isMobileBubblesActive ? 'opacity-100 animate-[float_2.8s_ease-in-out_infinite_0.7s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_2.8s_ease-in-out_infinite_0.7s]`}></div>
             
-            <div className="absolute bottom-[25%] right-[35%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-teal-300/45 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-250 group-hover:animate-bounce"></div>
+            <div className={`absolute bottom-[25%] right-[35%] w-2 sm:w-3 lg:w-2 h-2 sm:h-3 lg:h-2 bg-teal-300/45 rounded-full transition-all duration-600 delay-250 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3.2s_ease-in-out_infinite_0.4s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3.2s_ease-in-out_infinite_0.4s]`}></div>
             
-            <div className="absolute top-[45%] left-[15%] w-0.5 sm:w-1 lg:w-1 h-0.5 sm:h-1 lg:h-1 bg-sky-300/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-350 group-hover:animate-ping"></div>
+            <div className={`absolute top-[45%] left-[15%] w-1.5 sm:w-2 lg:w-1 h-1.5 sm:h-2 lg:h-1 bg-sky-300/60 rounded-full transition-all duration-500 delay-350 ${isMobileBubblesActive ? 'opacity-100 animate-[float_2.7s_ease-in-out_infinite_0.6s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_2.7s_ease-in-out_infinite_0.6s]`}></div>
             
-            <div className="absolute top-[35%] right-[45%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-indigo-300/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-150 group-hover:animate-pulse"></div>
-            
-            <div className="absolute bottom-[50%] left-[45%] w-1 sm:w-1.5 lg:w-1.5 h-1 sm:h-1.5 lg:h-1.5 bg-violet-300/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-450 group-hover:animate-bounce"></div>
+            <div className={`absolute bottom-[50%] left-[45%] w-2 sm:w-3 lg:w-1.5 h-2 sm:h-3 lg:h-1.5 bg-violet-300/50 rounded-full transition-all duration-600 delay-450 ${isMobileBubblesActive ? 'opacity-100 animate-[float_2.9s_ease-in-out_infinite_0.8s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_2.9s_ease-in-out_infinite_0.8s]`}></div>
             
             {/* Floating subtle bubbles - Responsive sizes */}
-            <div className="absolute top-[20%] left-[60%] w-1 sm:w-1.5 lg:w-2 h-1 sm:h-1.5 lg:h-2 bg-gradient-to-br from-cyan-300/20 to-blue-400/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-900 delay-100 group-hover:animate-[float_2.5s_ease-in-out_infinite]"></div>
+            <div className={`absolute top-[20%] left-[60%] w-2 sm:w-3 lg:w-2 h-2 sm:h-3 lg:h-2 bg-gradient-to-br from-cyan-300/20 to-blue-400/20 rounded-full transition-all duration-900 delay-100 ${isMobileBubblesActive ? 'opacity-100 animate-[float_2.5s_ease-in-out_infinite] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_2.5s_ease-in-out_infinite]`}></div>
             
-            <div className="absolute bottom-[40%] right-[20%] w-1 sm:w-1.5 lg:w-1.5 h-1 sm:h-1.5 lg:h-1.5 bg-gradient-to-br from-purple-300/25 to-pink-400/25 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 delay-300 group-hover:animate-[float_3s_ease-in-out_infinite_0.5s]"></div>
-          </div>
-          
-          {/* Photo indicators - Responsive positioning */}
-          <div className="absolute bottom-2 sm:bottom-3 lg:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2 z-30">
-            {markQuipitPhotos.map((_, index) => (
-              <div
-                key={index}
-                className={`w-1.5 sm:w-2 lg:w-2 h-1.5 sm:h-2 lg:h-2 rounded-full transition-all duration-300 ${
-                  index === currentImageIndex 
-                    ? 'bg-cyan-400 shadow-lg' 
-                    : 'bg-white/50 hover:bg-white/70'
-                }`}
-              />
-            ))}
+            <div className={`absolute bottom-[40%] right-[20%] w-2 sm:w-3 lg:w-1.5 h-2 sm:h-3 lg:h-1.5 bg-gradient-to-br from-purple-300/25 to-pink-400/25 rounded-full transition-all duration-800 delay-300 ${isMobileBubblesActive ? 'opacity-100 animate-[float_3s_ease-in-out_infinite_0.5s] lg:opacity-0' : 'opacity-0'} lg:group-hover:opacity-100 lg:group-hover:animate-[float_3s_ease-in-out_infinite_0.5s]`}></div>
           </div>
         </div>
       </div>
