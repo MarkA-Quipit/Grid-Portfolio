@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   Dialog,
   DialogContent,
@@ -36,25 +37,33 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose }) => {
     setSubmitStatus('idle');
 
     try {
-      // Create mailto link with form data
-      const subject = `Contact from ${formData.name}`;
-      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-      const mailtoLink = `mailto:quipit.ma@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // EmailJS configuration\
+      const serviceId = 'service_9hpartu';
+      const templateId = 'template_j84nhvn';
+      const publicKey = 'hHQXeKwzZpabjqSuN';
+
+      // Send email using EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'quipit.ma@gmail.com',
+        },
+        publicKey
+      );
+
+      setSubmitStatus('success');
       
-      // Try to open email client
-      const link = document.createElement('a');
-      link.href = mailtoLink;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // Wait a bit to see if email client opens
+      // Reset form after successful submission
       setTimeout(() => {
-        setSubmitStatus('success');
-      }, 500);
+        setFormData({ name: '', email: '', message: '' });
+      }, 2000);
       
     } catch (error) {
-      console.error('Error opening email client:', error);
+      console.error('Error sending email:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -99,26 +108,45 @@ ${formData.message}`;
         </DialogHeader>
         
         {submitStatus === 'success' ? (
-          <div className="text-center py-4 sm:py-6">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
-              <svg className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <div className="text-center py-6 sm:py-8">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-5 rounded-full bg-gradient-to-br from-green-500/30 to-cyan-500/30 flex items-center justify-center animate-[pulse_2s_ease-in-out]">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-sm sm:text-base text-green-400 font-medium mb-2">Email client should open!</p>
-            <p className="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4">If your email client didn't open, you can:</p>
-            <div className="space-y-2">
-              <button
-                onClick={handleCopyMessage}
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base bg-cyan-600 hover:bg-cyan-700 text-white rounded-md transition-colors duration-200 flex items-center justify-center gap-2"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                Copy message to clipboard
-              </button>
-              <p className="text-xs text-gray-400">Then manually email: quipit.ma@gmail.com</p>
+            <h3 className="text-lg sm:text-xl font-bold text-green-400 mb-2">Message Sent! 🎉</h3>
+            <p className="text-sm sm:text-base text-gray-300 mb-1">Thanks for reaching out!</p>
+            <p className="text-xs sm:text-sm text-gray-400 mb-6">I'll get back to you within 24-48 hours.</p>
+            
+            <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 sm:p-4 mb-6">
+              <p className="text-xs sm:text-sm text-cyan-300 mb-2">
+                <span className="font-semibold">What's next?</span>
+              </p>
+              <ul className="text-xs sm:text-sm text-gray-300 space-y-1 text-left">
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-400 mt-0.5">✓</span>
+                  <span>Check your email for a confirmation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-400 mt-0.5">✓</span>
+                  <span>I'll review your message carefully</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-400 mt-0.5">✓</span>
+                  <span>Expect a reply soon!</span>
+                </li>
+              </ul>
             </div>
+
+            <button
+              onClick={() => {
+                onClose();
+                setSubmitStatus('idle');
+              }}
+              className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-medium rounded-md transition-all duration-200 shadow-lg hover:shadow-cyan-500/50"
+            >
+              Close
+            </button>
           </div>
         ) : submitStatus === 'copied' ? (
           <div className="text-center py-6 sm:py-8">
@@ -183,8 +211,8 @@ ${formData.message}`;
 
             {submitStatus === 'error' && (
               <div className="text-red-400 text-xs sm:text-sm bg-red-500/10 border border-red-500/20 rounded-md p-2 sm:p-3">
-                <p className="font-medium mb-2">Email client couldn't open</p>
-                <p className="mb-2 sm:mb-3">Please copy your message and email me directly:</p>
+                <p className="font-medium mb-2">Oops! Something went wrong</p>
+                <p className="mb-2 sm:mb-3">Don't worry, you can still reach me. Copy your message:</p>
                 <button
                   type="button"
                   onClick={handleCopyMessage}
