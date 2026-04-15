@@ -547,22 +547,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 md:p-5 lg:p-3 xl:p-4 2xl:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
         <div className="card-content relative z-[2] text-white">
           {/* Name and Download CV Button - Responsive layout */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-3 lg:gap-1 xl:gap-2 2xl:gap-3">
+          <div className="flex flex-row items-center justify-between mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 gap-2 sm:gap-3 lg:gap-1 xl:gap-2 2xl:gap-3">
             <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h1>
             <a
               href="/file/MarkAldrin-Quipit-CV.pdf"
               download="MarkAldrin-Quipit-CV.pdf"
-              className="bg-cyan-600 hover:bg-cyan-700 text-white text-xs sm:text-sm lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 lg:gap-1 xl:gap-2 flex-shrink-0 self-start sm:self-auto leading-snug whitespace-nowrap"
+              className="bg-cyan-600 hover:bg-cyan-700 text-white text-xs sm:text-sm lg:text-xs xl:text-sm font-semibold px-3 sm:px-4 lg:px-2 xl:px-3 2xl:px-4 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 2xl:py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-1 sm:gap-2 lg:gap-1 xl:gap-2 flex-shrink-0 leading-snug whitespace-nowrap"
             >
               <svg className="w-3 sm:w-4 lg:w-3 xl:w-4 h-3 sm:h-4 lg:h-3 xl:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Download CV
+              <span className="hidden sm:inline">Download </span>CV
             </a>
           </div>
-          <p className="card-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-0">
-            I am a <span className="text-cyan-300 font-bold">full-stack developer</span> with hands-on experience building web applications using modern technologies such as React, Laravel, and MySQL. I enjoy building practical, user-centered applications and have created projects like eCommerce platforms, multi-role dashboards, and task management systems. I am also intrigued by AI engineering and continuously explore ways to enhance software solutions. I value clean code, structured development, and lifelong learning, using tools including AI responsibly—to improve productivity and problem-solving. I am adaptable, detail-oriented, and motivated to grow as a developer while contributing meaningful solutions to real-world problems.
-          </p>
+          <div className="card-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-0 space-y-3 sm:space-y-4 lg:space-y-2 xl:space-y-3">
+            <p>
+              I am an <span className="text-cyan-300 font-bold">undergraduate Information Technology student</span> and full-stack developer with hands-on experience building user-centered web applications using technologies such as React, TypeScript, Node.js, and PostgreSQL.
+            </p>
+            <p>
+              I am committed to writing clean, structured code and continuously improving system design and development practices. I also explore areas such as AI and cloud computing, and I strive to grow as a developer while contributing meaningful, real-world solutions through technology.
+            </p>
+          </div>
         </div>
       </div>
     );
