@@ -162,7 +162,7 @@ const TechStack: React.FC<TechStackProps> = ({
           {/* Technology logos */}
           <div className="flex items-center justify-center flex-1 min-h-0 relative" style={{ overflow: 'visible' }}>
             {/* Mobile/Tablet: Wrapped grid */}
-            <div className="lg:hidden flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 justify-center items-center py-1">
+            <div className="lg:hidden flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 justify-center items-center py-1 pb-3">
               {technologies.map((tech, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
