@@ -24,8 +24,17 @@ const SocialFooter: React.FC = () => {
   };
   const socialLinks = [
     {
-      name: 'GitHub',
+      name: 'GitHub (School)',
       url: 'https://github.com/Mark-Quipit',
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+      )
+    },
+    {
+      name: 'GitHub (Work)',
+      url: 'https://github.com/MarkA-Quipit',
       icon: (
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -56,20 +65,20 @@ const SocialFooter: React.FC = () => {
     <>
       <style dangerouslySetInnerHTML={{ __html: blinkStyle }} />
       <TooltipProvider delayDuration={300}>
-      <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 lg:p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
+      <div className="social-footer rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 md:p-5 lg:p-3 xl:p-4 2xl:p-5 flex items-center justify-between relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full">
         <div className="social-content relative z-[2] text-white w-full">
           {/* Mobile Layout (below lg) */}
-          <div className="lg:hidden flex flex-col space-y-3 sm:space-y-4">
+          <div className="lg:hidden flex flex-col space-y-2 sm:space-y-3">
             {/* Connect text */}
             <div className="text-center">
-              <h3 className="text-2xl sm:text-3xl font-bold text-cyan-300 mb-1 sm:mb-2 leading-tight">Connect with me:</h3>
-              <p className="text-base sm:text-lg text-gray-300 opacity-90 leading-relaxed">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-cyan-300 mb-1 leading-tight">Connect with me:</h3>
+              <p className="text-sm sm:text-base md:text-lg text-gray-300 opacity-90 leading-relaxed">
                 Feel free to reach out via email or check my GitHub/LinkedIn.
               </p>
             </div>
             
             {/* Social Icons */}
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <div className="flex items-center justify-center gap-2 sm:gap-3">
               {socialLinks.map((link, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <Tooltip>
@@ -79,7 +88,7 @@ const SocialFooter: React.FC = () => {
                         target={link.name === 'Email' ? '_self' : '_blank'}
                         rel={link.name === 'Email' ? '' : 'noopener noreferrer'}
                         onClick={link.name === 'Email' ? handleEmailClick : undefined}
-                        className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
+                        className="w-10 sm:w-11 md:w-12 h-10 sm:h-11 md:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
                       >
                         {link.icon}
                       </a>
@@ -93,9 +102,9 @@ const SocialFooter: React.FC = () => {
                     </TooltipContent>
                   </Tooltip>
                   {link.name === 'Email' && (
-                    <div className="flex flex-col text-base sm:text-lg text-cyan-300 font-medium whitespace-nowrap leading-snug">
+                    <div className="flex flex-col text-sm sm:text-base md:text-lg text-cyan-300 font-medium whitespace-nowrap leading-snug">
                       <span>Got work for me?</span>
-                      <span className="text-sm text-gray-300 opacity-80 leading-tight">Email me</span>
+                      <span className="text-xs sm:text-sm text-gray-300 opacity-80 leading-tight">Email me</span>
                     </div>
                   )}
                 </div>
@@ -104,7 +113,7 @@ const SocialFooter: React.FC = () => {
             
             {/* Copyright */}
             <div className="text-center">
-              <p className="text-sm sm:text-base text-gray-300 opacity-90 flex items-center justify-center leading-tight">
+              <p className="text-xs sm:text-sm md:text-base text-gray-300 opacity-90 flex items-center justify-center leading-tight">
                 © 2026 Mark Aldrin Quipit
                 <span className="inline-block w-0.5 h-3 sm:h-4 bg-cyan-300 animate-[blink_1s_infinite] ml-1"></span>
               </p>
@@ -112,25 +121,25 @@ const SocialFooter: React.FC = () => {
           </div>
 
           {/* Desktop Layout (lg and above) */}
-          <div className="hidden lg:grid lg:grid-cols-4 lg:gap-4 lg:items-center">
+          <div className="hidden lg:grid lg:grid-cols-4 lg:gap-2 xl:gap-3 2xl:gap-4 lg:items-center">
             {/* Column 1: Decorative Lines */}
-            <div className="flex flex-col items-start justify-center gap-3 w-full">
+            <div className="flex flex-col items-start justify-center gap-2 lg:gap-2 xl:gap-2.5 2xl:gap-3 w-full">
               <div className="h-px w-full bg-gradient-to-r from-transparent to-cyan-400/50"></div>
               <div className="h-px w-3/4 bg-gradient-to-r from-transparent to-cyan-400/30"></div>
             </div>
             
             {/* Column 2: Connect with me text */}
             <div className="text-left">
-              <h3 className="text-2xl font-bold text-cyan-300 mb-1 leading-tight">Connect with me:</h3>
-              <p className="text-lg text-gray-300 opacity-90 leading-relaxed">
+              <h3 className="text-lg xl:text-xl 2xl:text-2xl font-bold text-cyan-300 mb-0.5 xl:mb-1 leading-tight">Connect with me:</h3>
+              <p className="text-sm xl:text-base 2xl:text-lg text-gray-300 opacity-90 leading-relaxed">
                 Feel free to reach out via email or check my GitHub/LinkedIn.
               </p>
             </div>
             
             {/* Column 3: Social Icons */}
-            <div className="flex items-center gap-4 justify-center">
+            <div className="flex items-center gap-2 xl:gap-3 2xl:gap-4 justify-center">
               {socialLinks.map((link, index) => (
-                <div key={index} className="flex items-center gap-2">
+                <div key={index} className="flex items-center gap-1.5 xl:gap-2">
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
@@ -138,7 +147,7 @@ const SocialFooter: React.FC = () => {
                         target={link.name === 'Email' ? '_self' : '_blank'}
                         rel={link.name === 'Email' ? '' : 'noopener noreferrer'}
                         onClick={link.name === 'Email' ? handleEmailClick : undefined}
-                        className="w-12 h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
+                        className="w-10 xl:w-11 2xl:w-12 h-10 xl:h-11 2xl:h-12 rounded-lg bg-white/10 border border-white/20 hover:scale-110 hover:bg-white/20 hover:border-cyan-400/50 transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm text-cyan-300 hover:text-cyan-200"
                       >
                         {link.icon}
                       </a>
@@ -152,9 +161,9 @@ const SocialFooter: React.FC = () => {
                     </TooltipContent>
                   </Tooltip>
                   {link.name === 'Email' && (
-                    <div className="flex flex-col text-lg text-cyan-300 font-medium whitespace-nowrap leading-snug">
+                    <div className="flex flex-col text-sm xl:text-base 2xl:text-lg text-cyan-300 font-medium whitespace-nowrap leading-snug">
                       <span>Got work for me?</span>
-                      <span className="text-sm text-gray-300 opacity-80 leading-tight">Email me</span>
+                      <span className="text-xs xl:text-sm text-gray-300 opacity-80 leading-tight">Email me</span>
                     </div>
                   )}
                 </div>
@@ -163,9 +172,9 @@ const SocialFooter: React.FC = () => {
             
             {/* Column 4: Copyright with blinking cursor */}
             <div className="text-right">
-              <p className="text-lg text-gray-300 opacity-90 flex items-center justify-end leading-tight">
+              <p className="text-sm xl:text-base 2xl:text-lg text-gray-300 opacity-90 flex items-center justify-end leading-tight">
                 © 2026 Mark Aldrin Quipit
-                <span className="inline-block w-0.5 h-4 bg-cyan-300 animate-[blink_1s_infinite]"></span>
+                <span className="inline-block w-0.5 h-3.5 xl:h-4 bg-cyan-300 animate-[blink_1s_infinite]"></span>
               </p>
             </div>
           </div>

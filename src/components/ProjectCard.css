@@ -8,7 +8,7 @@
 /* Project showcase container - tech styled with layout stability */
 .project-card.project-showcase {
   background: #111827; /* bg-gray-900 equivalent */
-  padding: 0;
+  padding: 0 !important;
   margin: 0;
   overflow: hidden;
   border-radius: 8px;
@@ -21,6 +21,45 @@
   min-width: 0;
   min-height: 0;
   flex-shrink: 0;
+}
+
+/* Remove all spacing from carousel components */
+.project-card.project-showcase .embla,
+.project-card.project-showcase .embla__viewport,
+.project-card.project-showcase .embla__container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.project-card.project-showcase .embla__slide {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Force carousel to fill container completely */
+.project-card.project-showcase > div {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Target the carousel content wrapper */
+.project-card.project-showcase [class*="carousel"] {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Target the overflow-hidden wrapper inside carousel */
+.project-card.project-showcase .overflow-hidden {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Target flex container inside carousel */
+.project-card.project-showcase .overflow-hidden > div {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Text shadow for better readability over images */
@@ -51,6 +90,11 @@
 .project-card.image-placeholder::before,
 .project-card.project-showcase::before {
   display: none;
+}
+
+/* Allow bubbles to overflow outside the image placeholder */
+.project-card.image-placeholder {
+  overflow: visible !important;
 }
 
 /* Enhanced Floating bubble animation keyframes */
@@ -135,11 +179,15 @@
   .project-card.wide-horizontal .card-content {
     max-width: 100%;
   }
+  
+  .project-card {
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 768px) {
   .project-card {
-    min-height: 200px;
+    min-height: 180px;
   }
   
   .project-card.project-showcase {
@@ -149,7 +197,7 @@
 
 @media (max-width: 640px) {
   .project-card {
-    min-height: 180px;
+    min-height: 160px;
   }
   
   .project-card.project-showcase {
