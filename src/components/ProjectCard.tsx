@@ -233,7 +233,7 @@ const showcaseProjects = [
     image: "/images/smmc-front.png",
     description: "Developed an agricultural eCommerce platform that connects farmers, customers, and logistics staff. The system features multi-role access, product management, order tracking, and secure transactions. I handled both the frontend and backend development using React and Laravel, creating a user-friendly and responsive interface while ensuring smooth database operations with MySQL. The platform streamlines the buying and selling of perishable goods, improving efficiency for both sellers and buyers.",
     technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redux"],
-    liveUrl: "https://smmc-ecommerce.onrender.com",
+    liveUrl: "https://smmc-system.onrender.com/",
     githubUrl: "https://github.com/anyunyay/ITB13-capstone.git"
   },
   {
