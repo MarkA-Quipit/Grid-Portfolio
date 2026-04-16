@@ -482,7 +482,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="image-container w-full h-full flex items-center justify-center overflow-hidden relative touch-none select-none">
           <img
             src={photo}
-            alt="Mark Quipit's Photo"
+            alt="Mark Aldrin Quipit"
             className="absolute inset-0 w-full h-full object-cover rounded-lg"
             draggable="false"
           />
