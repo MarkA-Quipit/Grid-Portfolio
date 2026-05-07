@@ -37,26 +37,25 @@ const ProjectDialog: React.FC<{
 
   // Dynamic project details configuration
   const projectStats = [
-    { label: "Status", value: "Completed", color: "text-green-400" },
-    { label: "Role", value: "Full Stack Developer", color: "text-cyan-300" },
-    { label: "Duration", value: project ? "6 ½ months" : "6 months", color: "text-gray-300" },
-    { label: "Team Size", value: project ? "3 developers" : "Solo project", color: "text-gray-300" },
-    { label: "Platform", value: project ? "Web (Desktop & Mobile)" : "Web", color: "text-gray-300" }
+    { label: "Status", value: project?.status || "Completed", color: "text-green-400" },
+    { label: "Role", value: project?.role || "Full Stack Developer", color: "text-cyan-300" },
+    { label: "Duration", value: project?.duration || "6 months", color: "text-gray-300" },
+    { label: "Team Size", value: project?.teamSize || "Solo project", color: "text-gray-300" },
+    { label: "Platform", value: project?.platform || "Web", color: "text-gray-300" }
   ];
 
-  const keyFeatures = [
+  const keyFeatures = project?.keyFeatures || [
     "Secure authentication and authorization",
-    project ? "Multi-role dashboards (Farmers, Customers, Admin, Logistics)" : "Performance Optimized",
+    "Performance Optimized",
     "Order placement, tracking, and management system",
-    project ? "Product management and inventory tracking" : "SEO Friendly"
+    "SEO Friendly"
   ];
 
-  const technologiesUsed = [
+  const technologiesUsed = project?.technologies || technologies || [
     "React",
-    "Laravel",
-    "MySql",
-    "PHP",
-    "Inertia.js"
+    "TypeScript",
+    "Tailwind CSS",
+    "Node.js"
   ];
 
   return (
@@ -98,14 +97,14 @@ const ProjectDialog: React.FC<{
                   <h5 className="text-base sm:text-lg lg:text-xl font-semibold text-cyan-300 mb-2 sm:mb-3 leading-tight">Technologies Used:</h5>
                   <div className="flex flex-wrap gap-2 sm:gap-2.5">
                     {/* Show first 3 technologies on mobile, all on larger screens */}
-                    {technologiesUsed.slice(0, 3).map((tech, index) => (
+                    {technologiesUsed.slice(0, 3).map((tech: string, index: number) => (
                       <span key={index} className="bg-gray-800 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
                         {tech}
                       </span>
                     ))}
                     
                     {/* Show remaining technologies on larger screens */}
-                    {technologiesUsed.slice(3).map((tech, index) => (
+                    {technologiesUsed.slice(3).map((tech: string, index: number) => (
                       <span key={index + 3} className="hidden sm:inline-block bg-gray-800 text-cyan-300 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base border border-cyan-500/30 leading-snug">
                         {tech}
                       </span>
@@ -122,7 +121,7 @@ const ProjectDialog: React.FC<{
                           </TooltipTrigger>
                           <TooltipContent side="top" sideOffset={8} className="z-[100] bg-gray-800 border-cyan-500/50 max-w-[200px] p-2">
                             <div className="flex flex-wrap gap-1.5">
-                              {technologiesUsed.slice(3).map((tech, index) => (
+                              {technologiesUsed.slice(3).map((tech: string, index: number) => (
                                 <span key={index} className="text-xs text-cyan-300 bg-gray-700 px-2 py-0.5 rounded">
                                   {tech}
                                 </span>
@@ -187,7 +186,7 @@ const ProjectDialog: React.FC<{
               <div>
                 <h5 className="text-lg sm:text-xl font-semibold text-cyan-300 mb-2.5 sm:mb-3 leading-tight">Key Features</h5>
                 <ul className="space-y-2 text-sm sm:text-base text-gray-300">
-                  {keyFeatures.map((feature, index) => (
+                  {keyFeatures.map((feature: string, index: number) => (
                     <li key={index} className="flex items-start">
                       <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3 flex-shrink-0 mt-1.5"></span>
                       <span className="leading-relaxed">{feature}</span>
@@ -206,7 +205,7 @@ const ProjectDialog: React.FC<{
                   rel="noopener noreferrer"
                   className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
                 >
-                  View Live Project
+                  {projectData.liveUrl.includes('drive.google.com') ? 'View Demo Video' : 'View Live Project'}
                 </a>
                 <a
                   href={projectData.githubUrl}
@@ -214,8 +213,18 @@ const ProjectDialog: React.FC<{
                   rel="noopener noreferrer"
                   className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
                 >
-                  View Repository
+                  {projectData.githubUrlBackend ? 'View Frontend Repo' : 'View Repository'}
                 </a>
+                {projectData.githubUrlBackend && (
+                  <a
+                    href={projectData.githubUrlBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
+                  >
+                    View Backend Repo
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -232,27 +241,61 @@ const showcaseProjects = [
     name: "Agricultural E-commerce System",
     image: "/images/smmc-front.png",
     description: "Developed an agricultural eCommerce platform that connects farmers, customers, and logistics staff. The system features multi-role access, product management, order tracking, and secure transactions. I handled both the frontend and backend development using React and Laravel, creating a user-friendly and responsive interface while ensuring smooth database operations with MySQL. The platform streamlines the buying and selling of perishable goods, improving efficiency for both sellers and buyers.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redux"],
+    technologies: ["React", "Laravel", "MySQL", "PHP", "Inertia.js"],
     liveUrl: "https://smmc-system.onrender.com/",
-    githubUrl: "https://github.com/anyunyay/ITB13-capstone.git"
+    githubUrl: "https://github.com/anyunyay/ITB13-capstone.git",
+    status: "Completed (Capstone Project)",
+    role: "Full Stack Developer",
+    duration: "Jun 2025 - Dec 2025",
+    teamSize: "3 Developers",
+    platform: "Web (Desktop & Mobile)",
+    keyFeatures: [
+      "Secure authentication and authorization",
+      "Multi-role dashboards (Farmers, Customers, Admin, Logistics)",
+      "Order placement, tracking, and management system",
+      "Product management and inventory tracking"
+    ]
   },
   {
     id: 2,
-    name: "Deploying..",
-    image: "/images/Default.jpg",
-    description: "",
-    technologies: [],
-    liveUrl: "",
-    githubUrl: ""
+    name: "AI-Powered Professional Tools Platform",
+    image: "/images/AI-Powered-Professional-Tools-Platform.png",
+    description: "An AI-powered full-stack platform that automates and enhances professional communication and recruitment workflows. It leverages IBM watsonx.ai Granite models for intelligent content generation, resume parsing, and ATS scoring. The system significantly improves document quality, hiring efficiency, and workflow automation through a hybrid AI + rule-based architecture.",
+    technologies: ["React 19", "Next.js 16", "TypeScript", "Node.js", "Prisma ORM", "MySQL", "Python (FastAPI)", "IBM watsonx.ai"],
+    liveUrl: "https://drive.google.com/file/d/1qMitvU-Bm0beTXbNXQv02YXDDXxI8WtH/edit",
+    githubUrl: "https://github.com/MAASIM-HACKATHON/IBM-HACKATHON-2026",
+    status: "Completed (Hackathon Entry)",
+    role: "Lead Developer / System Architect",
+    duration: "May 1 - 3 2026",
+    teamSize: "5 Developers",
+    platform: "Web",
+    keyFeatures: [
+      "AI-powered Smart Email Composer with tone control (formal, friendly, urgent, casual)",
+      "Hybrid Resume Parser (IBM Watsonx AI + rule-based fallback with 92–97% accuracy)",
+      "ATS Scoring Engine with skill normalization and job matching",
+      "Advanced PDF parsing with layout-aware extraction (PyMuPDF)"
+    ]
   },
   {
     id: 3,
-    name: "Soon..",
-    image: "/images/Default.jpg",
-    description: "",
-    technologies: [],
-    liveUrl: "",
-    githubUrl: ""
+    name: "CCS Comprehensive Profiling System",
+    image: "/images/CCS-Comprehensive-Profiling-System.png",
+    description: "A full-stack academic profiling system designed to solve institutional data fragmentation by centralizing student, faculty, and administrative records. The system implements secure role-based access, structured data workflows, and scalable architecture for future academic module expansion.",
+    technologies: ["React", "Node.js", "Express.js", "TypeScript", "PostgreSQL", "Drizzle ORM"],
+    liveUrl: "https://ccs-profiling-frontend.vercel.app/",
+    githubUrl: "https://github.com/ccs-profiling-system/ccs-profiling-frontend",
+    githubUrlBackend: "https://github.com/ccs-profiling-system/ccs-profiling-backend",
+    status: "Completed (Academic Project)",
+    role: "Lead Developer / Backend Developer",
+    duration: "Mar 2026 – Apr 2026",
+    teamSize: "4 Developers",
+    platform: "Web",
+    keyFeatures: [
+      "Centralized academic profiling system for students, faculty, and admins",
+      "Role-Based Access Control (Admin, Faculty, Chairperson, Student)",
+      "Secure CRUD operations with validation and error handling",
+      "Normalized PostgreSQL schema for data integrity"
+    ]
   }
 ];
 
@@ -361,68 +404,37 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               key={project.id} 
               className="flex-shrink-0 w-full lg:w-1/3 h-full snap-start"
             >
-              {project.id === 2 || project.id === 3 ? (
-                // Non-clickable version for projects 2 and 3
-                <div className={`w-full h-full bg-gray-900 ${index < showcaseProjects.length - 1 ? 'border-r border-cyan-500/30' : ''} hover:bg-gray-800 transition-all duration-300 group relative overflow-hidden cursor-not-allowed`}>
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
+              <ProjectDialog
+                project={project}
+                trigger={
+                  <div className={`w-full h-full bg-gray-900 ${index < showcaseProjects.length - 1 ? 'border-r border-cyan-500/30' : ''} hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden`}>
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
 
-                  {/* Full height image */}
-                  <div className="w-full h-full overflow-hidden bg-gray-800 relative">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                    {/* Full height image */}
+                    <div className="w-full h-full overflow-hidden bg-gray-800 relative">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
 
-                    {/* Dark overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                      {/* Dark overlay for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
-                    {/* Overlaid title text */}
-                    <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
-                      <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
-                        {project.name}
-                      </h3>
-                    </div>
-
-                    {/* Accent border on hover */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
-                  </div>
-                </div>
-              ) : (
-                // Clickable version for other projects
-                <ProjectDialog
-                  project={project}
-                  trigger={
-                    <div className={`w-full h-full bg-gray-900 ${index < showcaseProjects.length - 1 ? 'border-r border-cyan-500/30' : ''} hover:bg-gray-800 transition-all duration-300 group cursor-pointer relative overflow-hidden`}>
-                      {/* Subtle glow effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
-
-                      {/* Full height image */}
-                      <div className="w-full h-full overflow-hidden bg-gray-800 relative">
-                        <img
-                          src={project.image}
-                          alt={project.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-
-                        {/* Dark overlay for text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-
-                        {/* Overlaid title text */}
-                        <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
-                          <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        {/* Accent border on hover */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
+                      {/* Overlaid title text */}
+                      <div className="absolute inset-0 flex items-center justify-center text-center px-2 sm:px-4 py-3 z-20">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-tight drop-shadow-2xl text-shadow-lg">
+                          {project.name}
+                        </h3>
                       </div>
+
+                      {/* Accent border on hover */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
                     </div>
-                  }
-                />
-              )}
+                  </div>
+                }
+              />
             </div>
           ))}
         </div>
