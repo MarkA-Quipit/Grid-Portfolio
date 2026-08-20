@@ -536,7 +536,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
           <div className="card-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-0 space-y-3 sm:space-y-4 lg:space-y-2 xl:space-y-3">
             <p>
-              <span className="text-cyan-300 font-bold">Incoming IT Graduate (June 2026) </span> specializing in full-stack software engineering, with hands-on experience developing scalable web applications using React, Laravel, Node.js, and PostgreSQL.
+              <span className="text-cyan-300 font-bold">IT Graduate </span> specializing in full-stack software engineering, with hands-on experience developing scalable web applications using React, Laravel, Node.js, and PostgreSQL.
             </p>
             <p>
               I am committed to writing clean, structured code and continuously improving system design and development practices. I also explore areas such as AI and cloud computing, and I strive to grow as a developer while contributing meaningful, real-world solutions through technology.
