@@ -258,6 +258,25 @@ const showcaseProjects = [
   },
   {
     id: 2,
+    name: "School Management System",
+    image: "/images/default.jpg",
+    description: "An enterprise school management system built during my internship at C8nnect IT Solutions. I led backend development within a 5-member agile team, delivering 500+ API endpoints across admin, teacher, student, and guardian portals. It covers enrollment, attendance, grading, and performance analytics, with a grade computation engine that includes locking mechanisms and performance-based reporting.",
+    technologies: ["Node.js", "TypeScript", "Express.js", "PostgreSQL", "Drizzle ORM", "JWT", "RBAC", "REST APIs"],
+    liveUrl: "https://c8nnect.com/sms",
+    status: "Completed (Internship Project)",
+    role: "Team Lead Intern / Backend Lead",
+    duration: "Jan 2026 – Apr 2026",
+    teamSize: "5 Members",
+    platform: "Web",
+    keyFeatures: [
+      "Complete student information system: enrollment, records, transcripts, and academic tracking",
+      "Grade management with configurable components, weighted calculations, analytics, and locking mechanisms",
+      "9 role-based modules for students, teachers, parents, and staff, secured with JWT access and refresh tokens",
+      "Finance, guidance counseling, and security modules covering billing, case management, and gate logs"
+    ]
+  },
+  {
+    id: 3,
     name: "AI-Powered Professional Tools Platform",
     image: "/images/AI-Powered-Professional-Tools-Platform.png",
     description: "An AI-powered full-stack platform that automates and enhances professional communication and recruitment workflows. It leverages IBM watsonx.ai Granite models for intelligent content generation, resume parsing, and ATS scoring. The system significantly improves document quality, hiring efficiency, and workflow automation through a hybrid AI + rule-based architecture.",
@@ -277,7 +296,7 @@ const showcaseProjects = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     name: "CCS Comprehensive Profiling System",
     image: "/images/CCS-Comprehensive-Profiling-System.png",
     description: "A full-stack academic profiling system designed to solve institutional data fragmentation by centralizing student, faculty, and administrative records. The system implements secure role-based access, structured data workflows, and scalable architecture for future academic module expansion.",
