@@ -259,7 +259,7 @@ const showcaseProjects = [
   {
     id: 2,
     name: "School Management System",
-    image: "/images/default.jpg",
+    image: "/images/Default.jpg",
     description: "An enterprise school management system built during my internship at C8nnect IT Solutions. I led backend development within a 5-member agile team, delivering 500+ API endpoints across admin, teacher, student, and guardian portals. It covers enrollment, attendance, grading, and performance analytics, with a grade computation engine that includes locking mechanisms and performance-based reporting.",
     technologies: ["Node.js", "TypeScript", "Express.js", "PostgreSQL", "Drizzle ORM", "JWT", "RBAC", "REST APIs"],
     liveUrl: "https://c8nnect.com/sms",
