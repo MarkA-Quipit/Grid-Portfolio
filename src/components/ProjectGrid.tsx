@@ -100,7 +100,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         {/* Image Placeholder - Second on mobile */}
-        <div className="w-full aspect-square sm:aspect-[4/3] flex-shrink-0">
+        <div className="hidden lg:flex w-full flex-shrink-0">
           <ProjectCard
             key={projects[0].id}
             title={projects[0].title}

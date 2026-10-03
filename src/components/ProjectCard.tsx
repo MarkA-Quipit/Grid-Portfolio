@@ -493,7 +493,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
     return (
       <div 
-        className={`project-card ${size} image-placeholder bg-gray-900 border border-cyan-500 border-opacity-30 p-0 flex items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative w-full h-full ${isMobileBubblesActive ? 'mobile-bubbles-active' : ''}`}
+        className={`project-card ${size} image-placeholder hidden lg:flex bg-gray-900 border border-cyan-500 border-opacity-30 p-0 items-center justify-center rounded-lg hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 group relative w-full h-full ${isMobileBubblesActive ? 'mobile-bubbles-active' : ''}`}
         onClick={handleMobileClick}
       >
         {/* Outside Bubbles - Positioned outside the card */}
