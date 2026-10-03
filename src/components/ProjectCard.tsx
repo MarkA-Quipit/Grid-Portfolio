@@ -207,14 +207,16 @@ const ProjectDialog: React.FC<{
                 >
                   {projectData.liveUrl.includes('drive.google.com') ? 'View Demo Video' : 'View Live Project'}
                 </a>
-                <a
-                  href={projectData.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
-                >
-                  {projectData.githubUrlBackend ? 'View Frontend Repo' : 'View Repository'}
-                </a>
+                {projectData.githubUrl && (
+                  <a
+                    href={projectData.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
+                  >
+                    {projectData.githubUrlBackend ? 'View Frontend Repo' : 'View Repository'}
+                  </a>
+                )}
                 {projectData.githubUrlBackend && (
                   <a
                     href={projectData.githubUrlBackend}
@@ -259,7 +261,7 @@ const showcaseProjects = [
   {
     id: 2,
     name: "School Management System",
-    image: "/images/default.jpg",
+    image: "/images/School-Management-System.jpeg",
     description: "An enterprise school management system built during my internship at C8nnect IT Solutions. I led backend development within a 5-member agile team, delivering 500+ API endpoints across admin, teacher, student, and guardian portals. It covers enrollment, attendance, grading, and performance analytics, with a grade computation engine that includes locking mechanisms and performance-based reporting.",
     technologies: ["Node.js", "TypeScript", "Express.js", "PostgreSQL", "Drizzle ORM", "JWT", "RBAC", "REST APIs"],
     liveUrl: "https://c8nnect.com/sms",
@@ -461,7 +463,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Navigation buttons */}
         <button
           onClick={scrollToPrev}
-          className="absolute left-2 sm:left-3 lg:left-1 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
+          className="absolute left-2 sm:left-3 lg:left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
           aria-label="Previous slide"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -470,7 +472,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </button>
         <button
           onClick={scrollToNext}
-          className="absolute right-2 sm:right-3 lg:right-1 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
+          className="absolute right-2 sm:right-3 lg:right-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
           aria-label="Next slide"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

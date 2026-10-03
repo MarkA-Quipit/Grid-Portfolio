@@ -38,7 +38,7 @@ const TechStack: React.FC<TechStackProps> = ({
   const [isHovering, setIsHovering] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const leaveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Auto-scroll effect
   useEffect(() => {
