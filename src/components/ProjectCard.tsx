@@ -341,7 +341,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   personalName,
   isProjectShowcase
 }) => {
-  const photo = "/images/Mark-Quipit-Photo2.jpg";
+  const photo = "/images/Mark-Quipit-Photo1.jpg";
 
   // Always call hooks at the top level
   const [isMobileBubblesActive, setIsMobileBubblesActive] = useState(false);
