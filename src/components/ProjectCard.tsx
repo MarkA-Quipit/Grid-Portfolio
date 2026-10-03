@@ -551,15 +551,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     return (
       <div className={`project-card ${size} personal-section rounded-lg border border-cyan-500 border-opacity-40 p-3 sm:p-4 md:p-5 lg:p-3 xl:p-4 2xl:p-5 flex flex-col justify-end relative overflow-hidden transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] min-h-0 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:border-opacity-80 bg-gray-900 w-full h-full`}>
         <div className="card-content relative z-[2] text-white">
-          {/* Name */}
-          <div className="mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4">
-            <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-cyan-300 leading-tight">{personalName || "Your Name"}</h1>
+          {/* Photo + Name */}
+          <div className="mb-3 sm:mb-4 lg:mb-2 xl:mb-3 2xl:mb-4 flex items-center gap-3 sm:gap-4">
+            <img
+              src="images/Mark-Quipit-Photo3.jpg"
+              alt={personalName || "Profile photo"}
+              className="lg:hidden w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-center border-2 border-cyan-500/50 shrink-0"
+            />
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-cyan-300 leading-tight min-w-0">
+              {personalName || "Your Name"}
+            </h1>
           </div>
           <div className="card-description leading-relaxed opacity-90 text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-lg mb-0 space-y-3 sm:space-y-4 lg:space-y-2 xl:space-y-3">
             <p>
-              <span className="text-cyan-300 font-bold">IT Graduate </span> specializing in full-stack software engineering, with hands-on experience developing scalable web applications using React, Laravel, Node.js, and PostgreSQL.
+              <span className="text-cyan-300 font-bold">IT Graduate </span>
+              <span className="md:hidden">
+                specializing in full-stack development with React, Laravel, Node.js, and PostgreSQL. I write clean, structured code and enjoy building real-world solutions.
+              </span>
+              <span className="hidden md:inline">
+                specializing in full-stack software engineering, with hands-on experience developing scalable web applications using React, Laravel, Node.js, and PostgreSQL.
+              </span>
             </p>
-            <p>
+            <p className="hidden md:block">
               I am committed to writing clean, structured code and continuously improving system design and development practices. I also explore areas such as AI and cloud computing, and I strive to grow as a developer while contributing meaningful, real-world solutions through technology.
             </p>
           </div>
