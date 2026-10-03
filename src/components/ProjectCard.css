@@ -183,6 +183,12 @@
   .project-card {
     overflow-y: auto;
   }
+
+  .project-card.project-showcase {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
 }
 
 @media (max-width: 768px) {
