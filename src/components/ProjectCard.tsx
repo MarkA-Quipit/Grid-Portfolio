@@ -207,14 +207,16 @@ const ProjectDialog: React.FC<{
                 >
                   {projectData.liveUrl.includes('drive.google.com') ? 'View Demo Video' : 'View Live Project'}
                 </a>
-                <a
-                  href={projectData.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
-                >
-                  {projectData.githubUrlBackend ? 'View Frontend Repo' : 'View Repository'}
-                </a>
+                {projectData.githubUrl && (
+                  <a
+                    href={projectData.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-center text-sm sm:text-base leading-snug"
+                  >
+                    {projectData.githubUrlBackend ? 'View Frontend Repo' : 'View Repository'}
+                  </a>
+                )}
                 {projectData.githubUrlBackend && (
                   <a
                     href={projectData.githubUrlBackend}
