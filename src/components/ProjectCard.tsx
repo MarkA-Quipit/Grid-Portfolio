@@ -461,7 +461,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Navigation buttons */}
         <button
           onClick={scrollToPrev}
-          className="absolute left-2 sm:left-3 lg:left-1 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
+          className="absolute left-2 sm:left-3 lg:left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
           aria-label="Previous slide"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -470,7 +470,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </button>
         <button
           onClick={scrollToNext}
-          className="absolute right-2 sm:right-3 lg:right-1 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
+          className="absolute right-2 sm:right-3 lg:right-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 h-9 sm:h-10 lg:h-full w-9 sm:w-10 lg:w-10 bg-gray-800/70 lg:bg-gray-800/0 border border-gray-600 lg:border-0 text-gray-300 rounded-full lg:rounded-none hover:bg-gray-800/90 hover:text-cyan-300 transition-all duration-300 opacity-90 lg:opacity-0 hover:opacity-100 flex items-center justify-center z-30"
           aria-label="Next slide"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
